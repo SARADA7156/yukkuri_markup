@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.custom-animation:hover {
+    animation: 0.3s tilt ease-in-out;
+}
+
+@keyframes tilt {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    75% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}

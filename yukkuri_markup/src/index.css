@@ -10,3 +10,12 @@ body {
     background: var(--background);
     color: var(--foreground);
 }
+
+.tiptap {
+    height: 100%;
+
+}
+
+.tiptap:focus {
+    outline: 2px solid #00000036;
+}

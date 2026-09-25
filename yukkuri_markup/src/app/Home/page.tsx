@@ -7,7 +7,7 @@ import ScriptEditor from "./_components/ScriptEditor";
 import ScriptPreview from "./_components/ScriptPreview";
 import { useState } from "react";
 
-export default function Home() {
+export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
         type: "doc",
         content: []

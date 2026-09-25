@@ -1,23 +1,11 @@
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { parseScriptToJson, type ScriptData } from "../parser";
+import { Editor, EditorContent } from "@tiptap/react";
 
 interface ScriptEditorProps {
-    onChangeJson: (data: ScriptData) => void;
+    editor: Editor;
 }
 
-export default function ScriptEditor({ onChangeJson }: ScriptEditorProps) {
-    const editor = useEditor({
-        extensions: [StarterKit],
-        onUpdate({ editor }) {
-            const text = editor.getText();
-            const parsedJson = parseScriptToJson(text);
-
-            onChangeJson(parsedJson);
-        }
-    });
-
+export default function ScriptEditor({ editor }: ScriptEditorProps) {
     return (
-        <EditorContent editor={editor} className="h-full w-1/2 p-1 border-e border-e-[#00000036]" />
+        <EditorContent editor={editor} className="h-full w-1/2 p-2 border-e border-e-[#00000036]" />
     )
 }

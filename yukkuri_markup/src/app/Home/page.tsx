@@ -2,15 +2,32 @@ import Button from "@/components/Button/Button";
 import Container from "@/components/Container";
 import { MdAdd } from "react-icons/md"
 import Toolbar from "./_components/Toolbar";
-import { type ScriptData } from "./parser";
+import { parseScriptToJson, type ScriptData } from "./parser";
 import ScriptEditor from "./_components/ScriptEditor";
 import ScriptPreview from "./_components/ScriptPreview";
 import { useState } from "react";
+import { useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { DEFAULT_CHARACTERS, type Character } from "./character";
+import SideBar from "./_components/SideBar";
 
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
         type: "doc",
         content: []
+    });
+
+    const [chars, setChars] = useState<Character[]>(DEFAULT_CHARACTERS);
+
+    const editor = useEditor({
+        extensions: [StarterKit],
+        onUpdate({ editor }) {
+            const text = editor.getText();
+            const parsedJson = parseScriptToJson(text, chars);
+
+            console.log(parsedJson);
+            onChangeJson(parsedJson);
+        }
     });
 
     const onChangeJson = (data: ScriptData) => {
@@ -22,14 +39,10 @@ export default function EditorHome() {
             <Toolbar />
 
             <div className="flex h-185">
-                <Container className="bg-white me-2 w-14 flex flex-col items-center">
-                    <Button className="p-1 cursor-pointer hover:bg-[#cfcfcf96] rounded-4xl mt-auto" disableAnimation>
-                        <MdAdd className="text-3xl" title="カスタムキャラクターを追加" />
-                    </Button>
-                </Container>
+                <SideBar chars={chars} />
 
                 <Container className="flex bg-white w-full ms-2">
-                    <ScriptEditor onChangeJson={onChangeJson} />
+                    <ScriptEditor editor={editor} />
                     <ScriptPreview scriptData={scriptData} />
                 </Container>
             </div>

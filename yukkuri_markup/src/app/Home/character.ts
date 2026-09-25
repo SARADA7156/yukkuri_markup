@@ -9,18 +9,17 @@ export const characterSchema = z.object({
 
 export type Character = z.infer<typeof characterSchema>;
 
-export const DEFAULT_CHARACTER: Character[] = [
+export const DEFAULT_CHARACTERS: Character[] = [
     {
         id: "reimu",
         name: "霊夢",
-        tag: "[r]",
+        tag: "r",
         ymm4CharName: "霊夢"
     },
     {
         id: "marisa",
         name: "魔理沙",
-        tag: "[m]",
+        tag: "m",
         ymm4CharName: "魔理沙"
     }
-
 ];

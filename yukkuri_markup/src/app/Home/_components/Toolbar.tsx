@@ -30,15 +30,16 @@ export default function Toolbar() {
                     <MdArticle />
                 </Button>
 
-                <button
+                <Button
                     className={`
                         p-2 transition-all cursor-pointer
                         font-bold shadow-lg bg-blue-500 text-white rounded-3xl border border-blue-500
                         hover:bg-white hover:text-blue-500
                     `}
+                    disableAnimation
                 >
                     ファイルに書き出し
-                </button>
+                </Button>
             </Container>
         </Container>
     );

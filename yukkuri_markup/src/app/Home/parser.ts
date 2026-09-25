@@ -1,3 +1,5 @@
+import type { Character } from "./character";
+
 type YukkuriVoice = {
     type: "yukkuriVoice",
     attrs: {
@@ -23,7 +25,7 @@ export type ScriptData = {
     content: (YukkuriVoice | Paragraph)[]
 }
 
-export function parseScriptToJson(rawText: string): ScriptData {
+export function parseScriptToJson(rawText: string, characters: Character[]): ScriptData {
     const lines = rawText.split("\n");
 
     const content = lines
@@ -36,7 +38,7 @@ export function parseScriptToJson(rawText: string): ScriptData {
                 return {
                     type: "yukkuriVoice",
                     attrs: {
-                        speaker,
+                        speaker: characters.find(char => char.tag === speaker)?.name ?? speaker,
                         emotion,
                     },
                     content: [

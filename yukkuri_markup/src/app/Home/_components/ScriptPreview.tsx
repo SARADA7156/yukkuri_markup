@@ -6,25 +6,25 @@ interface ScriptPreviewProps {
 
 export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
     return (
-        <div>
+        <div className="p-2 w-1/2 overflow-y-auto">
             {scriptData.content.map((item, index) => (
                 <div key={`item-${index}`}>
-                {item.type === "paragraph" &&
-                    <>
-                    {item.content.map((text, idx) => (
-                        <p key={idx}>{text.text}</p>
-                    ))}
-                    </>
-                }
-
-                {item.type === "yukkuriVoice" &&
-                    <div className="flex">
-                        <strong>[{item.attrs.speaker}:{item.attrs.emotion}]:</strong>
+                    {item.type === "paragraph" &&
+                        <>
                         {item.content.map((text, idx) => (
                             <p key={idx}>{text.text}</p>
                         ))}
-                    </div>
-                }
+                        </>
+                    }
+
+                    {item.type === "yukkuriVoice" &&
+                        <div className="flex">
+                            <strong className="min-w-26">{item.attrs.speaker} [{item.attrs.emotion}]:</strong>
+                            {item.content.map((text, idx) => (
+                                <p key={idx}>{text.text}</p>
+                            ))}
+                        </div>
+                    }
                 </div>
             ))}
         </div>

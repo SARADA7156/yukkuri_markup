@@ -15,5 +15,12 @@ export const DEFAULT_CHARACTER: Character[] = [
         name: "霊夢",
         tag: "[r]",
         ymm4CharName: "霊夢"
+    },
+    {
+        id: "marisa",
+        name: "魔理沙",
+        tag: "[m]",
+        ymm4CharName: "魔理沙"
     }
+
 ];

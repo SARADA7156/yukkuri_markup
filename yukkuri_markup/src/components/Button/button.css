@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.custom-animation:hover {
+.custom-animation {
     animation: 0.3s tilt ease-in-out;
 }
 

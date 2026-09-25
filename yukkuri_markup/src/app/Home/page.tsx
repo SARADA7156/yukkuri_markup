@@ -1,6 +1,4 @@
-import Button from "@/components/Button/Button";
 import Container from "@/components/Container";
-import { MdAdd } from "react-icons/md"
 import Toolbar from "./_components/Toolbar";
 import { parseScriptToJson, type ScriptData } from "./parser";
 import ScriptEditor from "./_components/ScriptEditor";
@@ -25,7 +23,6 @@ export default function EditorHome() {
             const text = editor.getText();
             const parsedJson = parseScriptToJson(text, chars);
 
-            console.log(parsedJson);
             onChangeJson(parsedJson);
         }
     });
@@ -39,7 +36,7 @@ export default function EditorHome() {
             <Toolbar />
 
             <div className="flex h-185">
-                <SideBar chars={chars} />
+                <SideBar chars={chars} editor={editor} />
 
                 <Container className="flex bg-white w-full ms-2">
                     <ScriptEditor editor={editor} />

@@ -19,7 +19,7 @@ export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
 
                     {item.type === "yukkuriVoice" &&
                         <div className="flex">
-                            <strong className="min-w-26">{item.attrs.speaker} [{item.attrs.emotion}]:</strong>
+                            <strong className="min-w-26">{item.attrs.speaker}({item.attrs.emotion}):</strong>
                             {item.content.map((text, idx) => (
                                 <p key={idx}>{text.text}</p>
                             ))}

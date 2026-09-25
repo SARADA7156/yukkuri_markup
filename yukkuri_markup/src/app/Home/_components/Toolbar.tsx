@@ -1,6 +1,6 @@
 import Button from "@/components/Button/Button";
 import Container from "@/components/Container";
-import { MdDriveFolderUpload, MdSettings, MdHelp, MdArticle } from "react-icons/md";
+import { MdSettings, MdHelp, MdArticle, MdUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export default function Toolbar() {
@@ -13,7 +13,7 @@ export default function Toolbar() {
 
             <Container className="flex items-center m-0 bg-[#eeeeee] ms-auto">
                 <Button className="text-3xl me-2 text-gray-600" title="ファイルをアップロード">
-                    <MdDriveFolderUpload />
+                    <MdUpload />
                 </Button>
 
                 <Button className="text-3xl me-2 text-gray-600" title="設定">
@@ -36,7 +36,6 @@ export default function Toolbar() {
                         font-bold shadow-lg bg-blue-500 text-white rounded-3xl border border-blue-500
                         hover:bg-white hover:text-blue-500
                     `}
-                    disableAnimation
                 >
                     ファイルに書き出し
                 </Button>

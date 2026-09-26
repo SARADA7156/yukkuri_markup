@@ -6,7 +6,7 @@ interface ScriptPreviewProps {
 
 export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
     return (
-        <div className="p-2 w-1/2 overflow-y-auto">
+        <div className="px-2 w-1/2 overflow-y-auto">
             {scriptData.content.map((item, index) => (
                 <div key={`item-${index}`}>
                     {item.type === "paragraph" &&

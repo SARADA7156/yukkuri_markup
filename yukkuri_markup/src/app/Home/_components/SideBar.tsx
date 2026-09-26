@@ -43,7 +43,7 @@ export default function SideBar({ chars, editor }: SideBarProps) {
     }
 
     return (
-        <Container className="bg-white me-2 w-14">
+        <div className="bg-white p-2 w-14 border-e border-e-black/20">
             <Button className="p-1 cursor-pointer" title="カスタムキャラクターを追加">
                 <MdAdd className="text-3xl" />
             </Button>
@@ -62,6 +62,6 @@ export default function SideBar({ chars, editor }: SideBarProps) {
                     </div>
                 ))}
             </div>
-        </Container>
+        </div>
     );
 }

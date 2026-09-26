@@ -35,14 +35,14 @@ export default function EditorHome() {
         <div className="mt-4">
             <Toolbar />
 
-            <div className="flex h-185">
+            <Container className="flex h-185 bg-white">
                 <SideBar chars={chars} editor={editor} />
 
-                <Container className="flex bg-white w-full ms-2">
+                <div className="flex bg-white w-full">
                     <ScriptEditor editor={editor} />
                     <ScriptPreview scriptData={scriptData} />
-                </Container>
-            </div>
+                </div>
+            </Container>
         </div>
     );
 }

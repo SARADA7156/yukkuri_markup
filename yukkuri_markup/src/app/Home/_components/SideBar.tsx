@@ -1,5 +1,4 @@
 import Button from "@/components/Button/Button";
-import Container from "@/components/Container";
 import { MdAdd } from "react-icons/md";
 import type { Character } from "../character";
 import type { Editor } from "@tiptap/react";

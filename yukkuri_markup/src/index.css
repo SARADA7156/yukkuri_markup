@@ -4,6 +4,30 @@
 :root {
     --background: #eeeeee;
     --foreground: #171717;
+    --content: #ffffff;
+    --border: #00000046;
+}
+
+/* @media (prefers-color-scheme: dark) {
+    :root {
+        --background: #080808;
+        --foreground: #ededed;
+        --content: #252525;
+    }
+} */
+
+:root[data-theme="light"] {
+    --background: #eeeeee;
+    --foreground: #171717;
+    --content: #ffffff;
+    --border: #00000046;
+}
+
+:root[data-theme="dark"] {
+    --background: #080808;
+    --foreground: #ededed;
+    --content: #252525;
+    --border: #ffffff6e;
 }
 
 body {
@@ -13,11 +37,10 @@ body {
 
 .tiptap {
     height: 100%;
-
 }
 
 .tiptap:focus {
-    outline: 2px solid #00000036;
+    outline: 2px solid var(--border);
 }
 
 .tiptap {

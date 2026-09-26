@@ -42,7 +42,7 @@ export default function SideBar({ chars, editor }: SideBarProps) {
     }
 
     return (
-        <div className="bg-white p-2 w-14 border-e border-e-black/20">
+        <div className="bg-(--content) p-2 w-14 border-e border-e-(--border) rounded-s-4xl">
             <Button className="p-1 cursor-pointer" title="カスタムキャラクターを追加">
                 <MdAdd className="text-3xl" />
             </Button>

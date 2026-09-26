@@ -23,7 +23,7 @@ export default function Button({
             )}
             {...props}
         >
-            {children && <div>{children}</div>}
+            {children && <>{children}</>}
             {title &&
                 <span
                     className={`

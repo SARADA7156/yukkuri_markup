@@ -18,7 +18,7 @@ export default function Button({
     return (
         <Component
             className={cn(
-                "flex items-center p-1 cursor-pointer hover:bg-black/10 rounded-full relative group",
+                "flex items-center p-1 cursor-pointer hover:bg-(--hover) rounded-full relative group",
                 className,
             )}
             {...props}

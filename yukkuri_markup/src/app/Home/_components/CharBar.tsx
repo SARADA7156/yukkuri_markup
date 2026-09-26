@@ -9,7 +9,7 @@ interface SideBarProps {
     // setChars: () => void;
 }
 
-export default function SideBar({ chars, editor }: SideBarProps) {
+export default function CharBar({ chars, editor }: SideBarProps) {
     const insertCharacterTag = (character: string) => {
         const { selection } = editor.state;
         const { $from } = selection;
@@ -42,22 +42,25 @@ export default function SideBar({ chars, editor }: SideBarProps) {
     }
 
     return (
-        <div className="bg-(--content) p-2 w-14 border-e border-e-(--border) rounded-s-4xl">
-            <Button className="p-1 cursor-pointer" title="カスタムキャラクターを追加">
+        <div className="bg-(--content) px-2 border-e border-e-(--border) flex flex-col w-16 items-center">
+            <div className="charbar-header">
+                <p>挿入</p>
+            </div>
+
+            <Button className="cursor-pointer" title="カスタムキャラクターを追加">
                 <MdAdd className="text-3xl" />
             </Button>
 
-            <div className="flex flex-col items-center h-full overflow-y-auto">
+            <div className="flex flex-col overflow-y-auto ">
                 {chars.map((character, index) => (
-                    <div key={`${character.id}-${index}`} className="w-full">
+                    <div key={`${character.id}-${index}`} className="flex flex-col py-1">
                         <Button
-                            className={`font-bold w-full aspect-square my-1 border border-black/50`}
+                            className={`font-bold aspect-square border border-black/50`}
                             style={{ backgroundColor: `#${character.color}` }}
                             onClick={() => insertCharacterTag(character.tag)}
-                            title={`${character.name}を挿入`}
                         >
                         </Button>
-                        <p className="text-xs text-center">{character.name}</p>
+                        <p className="text-sm text-center">{character.name}</p>
                     </div>
                 ))}
             </div>

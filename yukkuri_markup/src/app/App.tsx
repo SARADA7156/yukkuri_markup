@@ -5,7 +5,7 @@ import EditorHome from "./Home/page"
 function App() {
   return (
     <>
-      <main className="mx-20">
+      <main>
         <Routes>
           <Route path="/" element={<EditorHome />} />
           <Route path="/help" element={<Help />} />

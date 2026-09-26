@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { DEFAULT_CHARACTERS, type Character } from "./character";
-import SideBar from "./_components/SideBar";
+import CharBar from "./_components/CharBar";
 
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
@@ -32,17 +32,17 @@ export default function EditorHome() {
     }
 
     return (
-        <div className="mt-4">
+        <div className="flex flex-col h-screen">
             <Toolbar />
 
-            <Container className="flex h-185 bg-(--content)">
-                <SideBar chars={chars} editor={editor} />
+            <div className="bg-(--content) flex-1 flex">
+                <CharBar chars={chars} editor={editor} />
 
                 <div className="flex w-full">
                     <ScriptEditor editor={editor} />
                     <ScriptPreview scriptData={scriptData} />
                 </div>
-            </Container>
+            </div>
         </div>
     );
 }

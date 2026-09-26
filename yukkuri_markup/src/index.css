@@ -6,6 +6,7 @@
     --foreground: #171717;
     --content: #ffffff;
     --border: #00000046;
+    --hover: #6363632c;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -21,6 +22,7 @@
     --foreground: #171717;
     --content: #ffffff;
     --border: #00000046;
+    --hover: #6363632c;
 }
 
 :root[data-theme="dark"] {
@@ -28,11 +30,14 @@
     --foreground: #ededed;
     --content: #252525;
     --border: #ffffff6e;
+    --hover: #ffffff21;
 }
 
 body {
     background: var(--background);
     color: var(--foreground);
+    width: 100vw;
+    height: 100vh;
 }
 
 .tiptap {
@@ -44,6 +49,5 @@ body {
 }
 
 .tiptap {
-    overflow-y: auto;
     padding: 0 0.5rem;
 }

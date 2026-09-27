@@ -5,7 +5,7 @@ import EditorHome from "./Home/page"
 function App() {
   return (
     <>
-      <main>
+      <main className="h-dvh w-dvw">
         <Routes>
           <Route path="/" element={<EditorHome />} />
           <Route path="/help" element={<Help />} />

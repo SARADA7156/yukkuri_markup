@@ -32,16 +32,32 @@ export default function EditorHome() {
     }
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="grid grid-rows-[3%_94%_3%] h-full">
             <Toolbar />
 
-            <div className="bg-(--content) flex-1 flex">
+            <div className="bg-(--content) flex h-full">
                 <CharBar chars={chars} editor={editor} />
 
-                <div className="flex w-full">
+                <div className="flex-1 flex min-h-full">
                     <ScriptEditor editor={editor} />
                     <ScriptPreview scriptData={scriptData} />
                 </div>
+
+                <div className="w-[20%] bg-(--background) px-2">
+                    <div id="speaker-settings-header">
+                        <h1 className="border-b border-b-(--border)">読み上げ音声設定</h1>
+                    </div>
+
+                    <div>
+                        <div>
+                            <input type="number" name="" id="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                
             </div>
         </div>
     );

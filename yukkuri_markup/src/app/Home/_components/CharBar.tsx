@@ -42,7 +42,7 @@ export default function CharBar({ chars, editor }: SideBarProps) {
     }
 
     return (
-        <div className="bg-(--content) px-2 border-e border-e-(--border) flex flex-col w-16 items-center">
+        <div className="bg-(--background) px-2 flex flex-col w-16 items-center">
             <div className="charbar-header">
                 <p>挿入</p>
             </div>
@@ -51,7 +51,7 @@ export default function CharBar({ chars, editor }: SideBarProps) {
                 <MdAdd className="text-3xl" />
             </Button>
 
-            <div className="flex flex-col overflow-y-auto ">
+            <div className="flex flex-col overflow-y-auto h-full">
                 {chars.map((character, index) => (
                     <div key={`${character.id}-${index}`} className="flex flex-col py-1">
                         <Button

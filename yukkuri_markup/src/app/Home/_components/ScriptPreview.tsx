@@ -6,10 +6,10 @@ interface ScriptPreviewProps {
 
 export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
     return (
-        <div className="px-2 w-1/2">
-            <p>プレビュー</p>
+        <div className="px-2 w-1/2 grid grid-rows-[3%_97%] h-full">
+            <h1>プレビュー</h1>
 
-            <div className=" overflow-y-auto">
+            <div className="pb-40 overflow-y-auto">
                 {scriptData.content.map((item, index) => (
                     <div key={`item-${index}`}>
                         {item.type === "paragraph" &&

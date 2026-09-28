@@ -1,7 +1,7 @@
 import Button from "@/components/Button/Button";
 import type { Editor } from "@tiptap/react";
 import { MdAdd, MdViewList } from "react-icons/md";
-import type { Emotion } from "../emotions";
+import type { Emotion } from "../../../../store/speacker/emotions";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateEmotion from "./CreateEmotion";
@@ -16,7 +16,7 @@ export default function EmotionBar({ emotions, setEmotions, editor }: EmotionsBa
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const insertEmotionTag = (emotion: string) => {
-        const tagContent = `${emotion})`;
+        const tagContent = `${emotion}) `;
 
             editor
                 .chain()

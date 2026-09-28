@@ -1,6 +1,6 @@
 import Button from "@/components/Button/Button";
 import { MdAdd, MdViewList } from "react-icons/md";
-import type { Character } from "./character";
+import type { Character } from "../../../../store/speacker/character";
 import type { Editor } from "@tiptap/react";
 import Modal from "@/components/Modal";
 import { useState } from "react";

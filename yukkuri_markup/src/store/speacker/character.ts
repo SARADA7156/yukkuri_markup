@@ -1,9 +1,15 @@
 import { z } from "zod";
 
 export const characterSchema = z.object({
-    id: z.string().min(1, { message: "1文字以上のidを入力してください。"}),
+    id: z
+        .string()
+        .min(1, { message: "1文字以上のidを入力してください。" })
+        .regex(/^[a-zA-Z0-9]+$/, { message: "idは 半角英数 のみで構成してください。" }),
     name: z.string().min(1, { message: "1文字以上の名前を入力してください。"}),
-    tag: z.string().min(1, { message: "1文字以上のタグを入力してください。"}),
+    tag: z
+        .string()
+        .min(1, { message: "1文字以上のタグを入力してください。"})
+        .regex(/^[a-zA-Z0-9]+$/, { message: "idは 半角英数 のみで構成してください。" }),
     color: z
         .string()
         .regex(/^#?[0-9a-fA-F]{6}$/, {

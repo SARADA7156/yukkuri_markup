@@ -1,5 +1,5 @@
-import type { Character } from "./_components/characters/character";
-import type { Emotion } from "./_components/emotions";
+import type { Character } from "../../store/speacker/character";
+import type { Emotion } from "../../store/speacker/emotions";
 
 type YukkuriVoice = {
     type: "yukkuriVoice",

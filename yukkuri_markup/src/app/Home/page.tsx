@@ -5,10 +5,10 @@ import ScriptPreview from "./_components/ScriptPreview";
 import { useState } from "react";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { DEFAULT_CHARACTERS, type Character } from "./_components/characters/character";
+import { DEFAULT_CHARACTERS, type Character } from "../../store/speacker/character";
 import CharBar from "./_components/characters/CharBar";
 import EmotionBar from "./_components/emotions/EmotionBar";
-import { DEFAULT_EMOTIONS, type Emotion } from "./_components/emotions";
+import { DEFAULT_EMOTIONS, type Emotion } from "../../store/speacker/emotions";
 
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({

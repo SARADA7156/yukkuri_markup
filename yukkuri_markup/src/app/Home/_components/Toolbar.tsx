@@ -1,4 +1,4 @@
-import { useTheme } from "@/app/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import Button from "@/components/Button/Button";
 import { MdSettings, MdHelp, MdDarkMode, MdLightMode, MdFileOpen } from "react-icons/md";
 import { Link } from "react-router-dom";

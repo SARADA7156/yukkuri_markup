@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { characterSchema, type Character } from "./character";
+import { characterSchema, type Character } from "../../../../store/speacker/character";
 import InputContainer from "@/components/InputContainer";
 import Button from "@/components/Button/Button";
 

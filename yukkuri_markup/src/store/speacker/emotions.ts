@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const emotionSchema = z.object({
-    id: z.string().min(1, { message: "idは1文字以上入力してください。" }),
+    id: z
+        .string()
+        .min(1, { message: "idは1文字以上入力してください。" })
+        .regex(/^[a-zA-Z0-9]+$/, { message: "idは 半角英数 のみで構成してください。" }),
     name: z.string().min(1, { message: "名前は1文字以上入力してください。" }),
     color: z
         .string()

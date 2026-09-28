@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { emotionSchema, type Emotion } from "../emotions";
+import { emotionSchema, type Emotion } from "../../../../store/speacker/emotions";
 import Button from "@/components/Button/Button";
 import InputContainer from "@/components/InputContainer";
 import { zodResolver } from "@hookform/resolvers/zod";

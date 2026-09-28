@@ -1,7 +1,11 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const isDev = !app.isPackaged;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
@@ -11,7 +15,8 @@ function createWindow() {
             nodeIntegration: false,
             contextIsolation: true,
         },
-        autoHideMenuBar: true
+        autoHideMenuBar: true,
+        icon: path.join(__dirname, "../../public/favicon.png")
     });
 
     if (isDev) {

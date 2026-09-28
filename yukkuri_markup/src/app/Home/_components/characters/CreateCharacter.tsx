@@ -6,7 +6,7 @@ import Button from "@/components/Button/Button";
 
 interface CreateCharacterProps {
     characters: Character[];
-    setChars: (character: Character[]) => void;
+    setChars: React.Dispatch<React.SetStateAction<Character[]>>;
     setIsModalOpen: (value: boolean) => void;
 }
 
@@ -27,7 +27,7 @@ export default function CreateCharacter({ characters, setChars, setIsModalOpen }
         }
     });
 
-    const onSubmit = async (data: Character) => {
+    const onSubmit = (data: Character) => {
         const isIdDuplicate = characters.some((char) => char.id === data.id);
         const isTagDuplicate = characters.some((char) => char.tag === data.tag);
 
@@ -50,7 +50,7 @@ export default function CreateCharacter({ characters, setChars, setIsModalOpen }
         return;
     }
 
-        setChars([...characters, data]);
+        setChars((prev) => [...prev, data]);
         setIsModalOpen(false);
     };
 

@@ -1,5 +1,5 @@
 import Button from "@/components/Button/Button";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdViewList } from "react-icons/md";
 import type { Character } from "./character";
 import type { Editor } from "@tiptap/react";
 import Modal from "@/components/Modal";
@@ -8,7 +8,7 @@ import CreateCharacter from "./CreateCharacter";
 
 interface SideBarProps {
     chars: Character[];
-    setChars: (character: Character[]) => void;
+    setChars: React.Dispatch<React.SetStateAction<Character[]>>;
     editor: Editor;
 }
 
@@ -23,7 +23,7 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
         const isEmptyLine = currentBlock.content.size === 0;
         const isAtStartOfLine = $from.parentOffset === 0;
 
-        const tagContent = `(${character}:`;
+        const tagContent = `(${character}.`;
 
         if (isEmptyLine) {
             editor
@@ -49,7 +49,7 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
     return (
         <div className="bg-(--background) px-2 flex flex-col w-16 items-center m-0.5 border border-(--border) rounded-lg">
             <div className="charbar-header">
-                <p>挿入</p>
+                <p className="text-sm">キャラ</p>
             </div>
 
             <Button
@@ -58,6 +58,13 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
                 onClick={() => setIsModalOpen(true)}
             >
                 <MdAdd className="text-3xl" />
+            </Button>
+
+            <Button
+                className="cursor-pointer"
+                title="キャラクター表"
+            >
+                <MdViewList className="text-3xl" />
             </Button>
 
             <div className="flex flex-col overflow-y-auto h-full">

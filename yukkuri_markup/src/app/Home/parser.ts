@@ -1,4 +1,5 @@
 import type { Character } from "./_components/characters/character";
+import type { Emotion } from "./_components/emotions";
 
 type YukkuriVoice = {
     type: "yukkuriVoice",
@@ -25,7 +26,7 @@ export type ScriptData = {
     content: (YukkuriVoice | Paragraph)[]
 }
 
-export function parseScriptToJson(rawText: string, characters: Character[]): ScriptData {
+export function parseScriptToJson(rawText: string, characters: Character[], emotions: Emotion[]): ScriptData {
     const lines = rawText.split("\n");
 
     const content = lines
@@ -39,7 +40,7 @@ export function parseScriptToJson(rawText: string, characters: Character[]): Scr
                     type: "yukkuriVoice",
                     attrs: {
                         speaker: characters.find(char => char.tag === speaker)?.name ?? speaker,
-                        emotion,
+                        emotion: emotions.find(emo => emo.id === emotion)?.name ?? emotion,
                     },
                     content: [
                         {

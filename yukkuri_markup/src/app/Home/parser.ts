@@ -1,4 +1,4 @@
-import type { Character } from "./character";
+import type { Character } from "./_components/characters/character";
 
 type YukkuriVoice = {
     type: "yukkuriVoice",

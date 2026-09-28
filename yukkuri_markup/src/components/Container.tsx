@@ -17,7 +17,7 @@ export default function Container<T extends React.ElementType = 'div'>({
 
     return (
         <Component
-            className={cn("m-4 p-2 rounded-4xl shadow", className)}
+            className={cn("m-4 p-2 rounded-lg shadow", className)}
             {...props}
         >
             {children}

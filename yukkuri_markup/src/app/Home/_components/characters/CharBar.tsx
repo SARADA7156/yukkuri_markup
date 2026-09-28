@@ -1,15 +1,20 @@
 import Button from "@/components/Button/Button";
 import { MdAdd } from "react-icons/md";
-import type { Character } from "../character";
+import type { Character } from "./character";
 import type { Editor } from "@tiptap/react";
+import Modal from "@/components/Modal";
+import { useState } from "react";
+import CreateCharacter from "./CreateCharacter";
 
 interface SideBarProps {
     chars: Character[];
+    setChars: (character: Character[]) => void;
     editor: Editor;
-    // setChars: () => void;
 }
 
-export default function CharBar({ chars, editor }: SideBarProps) {
+export default function CharBar({ chars, setChars, editor }: SideBarProps) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const insertCharacterTag = (character: string) => {
         const { selection } = editor.state;
         const { $from } = selection;
@@ -42,12 +47,16 @@ export default function CharBar({ chars, editor }: SideBarProps) {
     }
 
     return (
-        <div className="bg-(--background) px-2 flex flex-col w-16 items-center">
+        <div className="bg-(--background) px-2 flex flex-col w-16 items-center m-0.5 border border-(--border) rounded-lg">
             <div className="charbar-header">
                 <p>挿入</p>
             </div>
 
-            <Button className="cursor-pointer" title="カスタムキャラクターを追加">
+            <Button
+                className="cursor-pointer"
+                title="カスタムキャラクターを追加"
+                onClick={() => setIsModalOpen(true)}
+            >
                 <MdAdd className="text-3xl" />
             </Button>
 
@@ -56,7 +65,7 @@ export default function CharBar({ chars, editor }: SideBarProps) {
                     <div key={`${character.id}-${index}`} className="flex flex-col py-1">
                         <Button
                             className={`font-bold aspect-square border border-black/50`}
-                            style={{ backgroundColor: `#${character.color}` }}
+                            style={{ backgroundColor: `${character.color}` }}
                             onClick={() => insertCharacterTag(character.tag)}
                         >
                         </Button>
@@ -64,6 +73,14 @@ export default function CharBar({ chars, editor }: SideBarProps) {
                     </div>
                 ))}
             </div>
+
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                title="カスタムキャラクターを追加"
+            >
+                <CreateCharacter characters={chars} setChars={setChars} setIsModalOpen={setIsModalOpen} />
+            </Modal>
         </div>
     );
 }

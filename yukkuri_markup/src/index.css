@@ -5,7 +5,8 @@
     --background: #eeeeee;
     --foreground: #171717;
     --content: #ffffff;
-    --border: #00000046;
+    --content2: #ffffff;
+    --border: #00000027;
     --hover: #6363632c;
 }
 
@@ -21,7 +22,8 @@
     --background: #eeeeee;
     --foreground: #171717;
     --content: #ffffff;
-    --border: #00000046;
+    --content2: #ffffff;
+    --border: #00000027;
     --hover: #6363632c;
 }
 
@@ -29,7 +31,8 @@
     --background: #080808;
     --foreground: #ededed;
     --content: #1b1b1b;
-    --border: #ffffff6e;
+    --content2: #313131;
+    --border: #ffffff28;
     --hover: #ffffff21;
     scrollbar-color: #ffffff6c #0000001f;
 }

@@ -5,10 +5,9 @@ import ScriptPreview from "./_components/ScriptPreview";
 import { useState } from "react";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { DEFAULT_CHARACTERS, type Character } from "../../store/speacker/character";
 import CharBar from "./_components/characters/CharBar";
 import EmotionBar from "./_components/emotions/EmotionBar";
-import { DEFAULT_EMOTIONS, type Emotion } from "../../store/speacker/emotions";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
@@ -16,14 +15,13 @@ export default function EditorHome() {
         content: []
     });
 
-    const [chars, setChars] = useState<Character[]>(DEFAULT_CHARACTERS);
-    const [emotions, setEmotions] = useState<Emotion[]>(DEFAULT_EMOTIONS);
+    const { characters, emotions } = useSpeackerStore();
 
     const editor = useEditor({
         extensions: [StarterKit],
         onUpdate({ editor }) {
             const text = editor.getText();
-            const parsedJson = parseScriptToJson(text, chars, emotions);
+            const parsedJson = parseScriptToJson(text, characters, emotions);
 
             onChangeJson(parsedJson);
         }
@@ -39,10 +37,9 @@ export default function EditorHome() {
 
             <div className="flex h-full">
                 <div className="grid grid-rows-2">
-                    <CharBar chars={chars} editor={editor} setChars={setChars} />
-                    <EmotionBar emotions={emotions} setEmotions={setEmotions} editor={editor} />
+                    <CharBar editor={editor} />
+                    <EmotionBar editor={editor} />
                 </div>
-                
 
                 <div className="flex-1 flex m-0.5 bg-(--content) rounded-lg border border-(--border)">
                     <ScriptEditor editor={editor} />
@@ -51,7 +48,7 @@ export default function EditorHome() {
             </div>
 
             <div className="bg-blue-500">
-                
+
             </div>
         </div>
     );

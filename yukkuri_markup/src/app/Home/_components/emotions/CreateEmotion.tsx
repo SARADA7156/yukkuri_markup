@@ -1,16 +1,17 @@
 import { useForm } from "react-hook-form";
-import { emotionSchema, type Emotion } from "../../../../store/speacker/emotions";
+import { emotionSchema, type Emotion } from "@/store/speacker/emotions";
 import Button from "@/components/Button/Button";
 import InputContainer from "@/components/InputContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 
 interface CreateEmotionProps {
-    emotions: Emotion[];
-    setEmotions: React.Dispatch<React.SetStateAction<Emotion[]>>;
     setIsModalOpen: (value: boolean) => void;
 }
 
-export default function CreateEmotion({ emotions, setEmotions, setIsModalOpen }: CreateEmotionProps) {
+export default function CreateEmotion({ setIsModalOpen }: CreateEmotionProps) {
+    const { emotions, addEmotions } = useSpeackerStore();
+
     const {
         register,
         handleSubmit,
@@ -33,7 +34,7 @@ export default function CreateEmotion({ emotions, setEmotions, setIsModalOpen }:
             return;
         }
 
-        setEmotions((prev) => [...prev, data]);
+        addEmotions(data);
         setIsModalOpen(false);
     }
 

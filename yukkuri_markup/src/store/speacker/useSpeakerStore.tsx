@@ -45,14 +45,6 @@ export const useSpeackerStore = create<SpeakerStore>()(
         }),
         {
             name: 'speaker-storage',
-            merge: (persistedState, currentState) => {
-                const saved = persistedState as Partial<SpeakerStore>;
-                return {
-                    ...currentState,
-                    ...saved,
-                    characters: saved.characters?.length ? saved.characters : currentState.characters,
-                };
-            },
         }
     )
 );

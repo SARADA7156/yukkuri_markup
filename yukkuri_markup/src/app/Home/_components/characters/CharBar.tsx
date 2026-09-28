@@ -1,18 +1,17 @@
 import Button from "@/components/Button/Button";
 import { MdAdd, MdViewList } from "react-icons/md";
-import type { Character } from "../../../../store/speacker/character";
 import type { Editor } from "@tiptap/react";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateCharacter from "./CreateCharacter";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 
 interface SideBarProps {
-    chars: Character[];
-    setChars: React.Dispatch<React.SetStateAction<Character[]>>;
     editor: Editor;
 }
 
-export default function CharBar({ chars, setChars, editor }: SideBarProps) {
+export default function CharBar({ editor }: SideBarProps) {
+    const { characters } = useSpeackerStore();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const insertCharacterTag = (character: string) => {
@@ -68,7 +67,7 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
             </Button>
 
             <div className="flex flex-col overflow-y-auto h-full">
-                {chars.map((character, index) => (
+                {characters.map((character, index) => (
                     <div key={`${character.id}-${index}`} className="flex flex-col py-1">
                         <Button
                             className={`font-bold aspect-square border border-black/50`}
@@ -86,7 +85,7 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
                 onClose={() => setIsModalOpen(false)}
                 title="カスタムキャラクターを追加"
             >
-                <CreateCharacter characters={chars} setChars={setChars} setIsModalOpen={setIsModalOpen} />
+                <CreateCharacter setIsModalOpen={setIsModalOpen}/>
             </Modal>
         </div>
     );

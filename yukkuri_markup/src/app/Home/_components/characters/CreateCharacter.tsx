@@ -1,16 +1,17 @@
 import { useForm } from "react-hook-form"
 import { zodResolver } from '@hookform/resolvers/zod';
-import { characterSchema, type Character } from "../../../../store/speacker/character";
+import { characterSchema, type Character } from "@/store/speacker/character";
 import InputContainer from "@/components/InputContainer";
 import Button from "@/components/Button/Button";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 
 interface CreateCharacterProps {
-    characters: Character[];
-    setChars: React.Dispatch<React.SetStateAction<Character[]>>;
     setIsModalOpen: (value: boolean) => void;
 }
 
-export default function CreateCharacter({ characters, setChars, setIsModalOpen }: CreateCharacterProps) {
+export default function CreateCharacter({ setIsModalOpen }: CreateCharacterProps) {
+    const { characters, addCharacter } = useSpeackerStore();
+
     const {
         register,
         handleSubmit,
@@ -50,7 +51,7 @@ export default function CreateCharacter({ characters, setChars, setIsModalOpen }
         return;
     }
 
-        setChars((prev) => [...prev, data]);
+        addCharacter(data);
         setIsModalOpen(false);
     };
 

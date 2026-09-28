@@ -1,19 +1,18 @@
 import Button from "@/components/Button/Button";
 import type { Editor } from "@tiptap/react";
 import { MdAdd, MdViewList } from "react-icons/md";
-import type { Emotion } from "../../../../store/speacker/emotions";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateEmotion from "./CreateEmotion";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 
 interface EmotionsBar {
-    emotions: Emotion[];
-    setEmotions: React.Dispatch<React.SetStateAction<Emotion[]>>;
     editor: Editor;
 }
 
-export default function EmotionBar({ emotions, setEmotions, editor }: EmotionsBar) {
+export default function EmotionBar({ editor }: EmotionsBar) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { emotions } = useSpeackerStore();
 
     const insertEmotionTag = (emotion: string) => {
         const tagContent = `${emotion}) `;
@@ -65,7 +64,7 @@ export default function EmotionBar({ emotions, setEmotions, editor }: EmotionsBa
                 onClose={() => setIsModalOpen(false)}
                 title="カスタム感情を追加"
             >
-                <CreateEmotion emotions={emotions} setEmotions={setEmotions} setIsModalOpen={setIsModalOpen} />
+                <CreateEmotion setIsModalOpen={setIsModalOpen} />
             </Modal>
         </div>
     );

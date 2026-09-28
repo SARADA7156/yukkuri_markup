@@ -1,6 +1,6 @@
 import Button from "@/components/Button/Button";
 import type { Editor } from "@tiptap/react";
-import { MdAdd, MdViewList } from "react-icons/md";
+import { MdAdd, MdClose, MdViewList } from "react-icons/md";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateEmotion from "./CreateEmotion";
@@ -12,6 +12,7 @@ interface EmotionsBar {
 
 export default function EmotionBar({ editor }: EmotionsBar) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isListModalOpen, setIsListModalOpen] = useState(true);
     const { emotions } = useSpeackerStore();
 
     const insertEmotionTag = (emotion: string) => {
@@ -41,6 +42,7 @@ export default function EmotionBar({ editor }: EmotionsBar) {
             <Button
                 className="cursor-pointer"
                 title="感情一覧表"
+                onClick={() => setIsListModalOpen(true)}
             >
                 <MdViewList className="text-3xl" />
             </Button>
@@ -65,6 +67,36 @@ export default function EmotionBar({ editor }: EmotionsBar) {
                 title="カスタム感情を追加"
             >
                 <CreateEmotion setIsModalOpen={setIsModalOpen} />
+            </Modal>
+
+            <Modal
+                isOpen={isListModalOpen}
+                onClose={() => setIsListModalOpen(false)}
+                title="感情タグリスト"
+            >
+                <table className="border-collapse table-auto w-full">
+                    <thead>
+                        <tr className="border-b border-b-(--border)">
+                            <th className="text-start px-4 py-2">id</th>
+                            <th className="text-start px-4 py-2">name</th>
+                            <th className="text-start px-4 py-2">color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {emotions.map((emotion, idx) => (
+                            <tr key={`${emotion.id}-${idx}`} className="border-b border-b-(--border) odd:bg-(--content2)">
+                                <td className="px-4 py-2">{emotion.id}</td>
+                                <td className="px-4 py-2">{emotion.name}</td>
+                                <td className="px-4 py-2">{emotion.color}</td>
+                                <td className="px-4 py-2">
+                                    <Button title="削除" className="ms-auto">
+                                        <MdClose />
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </Modal>
         </div>
     );

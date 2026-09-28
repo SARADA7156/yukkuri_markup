@@ -11,7 +11,7 @@ export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
 
             <div className="pb-40 overflow-y-auto">
                 {scriptData.content.map((item, index) => (
-                    <div key={`item-${index}`}>
+                    <div key={`item-${index}`} className="my-1">
                         {item.type === "paragraph" &&
                             <>
                                 {item.content.map((text, idx) => (

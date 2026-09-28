@@ -31,7 +31,7 @@ export function parseScriptToJson(rawText: string, characters: Character[]): Scr
     const content = lines
         .filter((line) => line.trim() !== "")
         .map((line): YukkuriVoice | Paragraph => {
-            const match = line.match(/^\[([a-zA-Z0-9_-]+):([a-zA-Z0-9_-]+)\]\s*(.*)$/);
+            const match = line.match(/^\(([a-zA-Z0-9_-]+).([a-zA-Z0-9_-]+)\)\s*(.*)$/);
 
             if (match) {
                 const [, speaker, emotion, text] = match;

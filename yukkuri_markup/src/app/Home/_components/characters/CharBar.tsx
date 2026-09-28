@@ -23,7 +23,7 @@ export default function CharBar({ chars, setChars, editor }: SideBarProps) {
         const isEmptyLine = currentBlock.content.size === 0;
         const isAtStartOfLine = $from.parentOffset === 0;
 
-        const tagContent = `[${character}:`;
+        const tagContent = `(${character}:`;
 
         if (isEmptyLine) {
             editor

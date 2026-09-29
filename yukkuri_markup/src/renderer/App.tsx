@@ -33,7 +33,6 @@ function App() {
                     isOpen={activeModal === "settings"}
                     onClose={closeModal}
                     title="設定"
-                    className="min-w-1/2 max-w-1/2 min-h-1/2 max-h-1/2"
                 >
                     <Settings />
                 </Modal>

@@ -1,11 +1,6 @@
 import Button from "@/components/Button/Button";
-import { MdAdd, MdViewList } from "react-icons/md";
 import type { Editor } from "@tiptap/react";
-import Modal from "@/components/Modal";
-import { useState } from "react";
-import CreateCharacter from "./CreateCharacter";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
-import Table from "@/components/Table/Table";
 
 interface SideBarProps {
     editor: Editor;
@@ -13,8 +8,6 @@ interface SideBarProps {
 
 export default function CharBar({ editor }: SideBarProps) {
     const { characters } = useSpeackerStore();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isListModalOpen, setIsListModalOpen] = useState(false);
 
     const insertCharacterTag = (character: string) => {
         const { selection } = editor.state;
@@ -53,22 +46,6 @@ export default function CharBar({ editor }: SideBarProps) {
                 <p className="text-sm">キャラ</p>
             </div>
 
-            <Button
-                className="cursor-pointer"
-                title="カスタムキャラクターを追加"
-                onClick={() => setIsModalOpen(true)}
-            >
-                <MdAdd className="text-3xl" />
-            </Button>
-
-            <Button
-                className="cursor-pointer"
-                title="キャラクター表"
-                onClick={() => setIsListModalOpen(true)}
-            >
-                <MdViewList className="text-3xl" />
-            </Button>
-
             <div className="flex flex-col overflow-y-auto h-full">
                 {characters.map((character, index) => (
                     <div key={`${character.id}-${index}`} className="flex flex-col py-1">
@@ -82,36 +59,6 @@ export default function CharBar({ editor }: SideBarProps) {
                     </div>
                 ))}
             </div>
-
-            <Modal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                title="カスタムキャラクターを追加"
-            >
-                <CreateCharacter setIsModalOpen={setIsModalOpen}/>
-            </Modal>
-
-            <Modal
-                isOpen={isListModalOpen}
-                onClose={() => setIsListModalOpen(false)}
-                title="感情タグリスト"
-            >
-                <Table
-                    data={characters}
-                    columns={{
-                        id: { label: "id" },
-                        name: { label: "キャラ名" },
-                        tag: { label: "マークアップタグ" },
-                        color: {
-                            label: "キャラの色",
-                            render: (value) => (
-                                <span style={{ backgroundColor: value }} className="h-4 w-full inline-block"></span>
-                            )
-                        },
-                        ymm4CharName: { label: "YMM4キャラ名" }
-                    }}
-                />
-            </Modal>
         </div>
     );
 }

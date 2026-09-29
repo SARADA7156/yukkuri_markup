@@ -39,7 +39,7 @@ export default function Modal({ isOpen, onClose, title, className, children }: M
             onClick={onClose}
         >
             <Container
-                className={cn("bg-(--background) border border-(--border) p-0 min-w-1/3 flex flex-col h-full", className)}
+                className={cn("bg-(--background) border border-(--border) p-0 min-w-1/2 max-w-1/2 min-h-1/2 max-h-1/2 grid grid-rows-[6%_94%]", className)}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* モーダルヘッダー */}
@@ -52,7 +52,7 @@ export default function Modal({ isOpen, onClose, title, className, children }: M
                 </div>
 
                 {/* モーダルコンテンツ */}
-                <div className="px-4 py-2 bg-(--content) rounded-b-lg flex-1 h-full">
+                <div className="px-4 py-2 bg-(--content) rounded-b-lg h-full">
                     {children}
                 </div>
                 

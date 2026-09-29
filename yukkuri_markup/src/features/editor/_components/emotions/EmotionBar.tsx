@@ -1,19 +1,12 @@
 import Button from "@/components/Button/Button";
 import type { Editor } from "@tiptap/react";
-import { MdAdd, MdViewList } from "react-icons/md";
-import Modal from "@/components/Modal";
-import { useState } from "react";
-import CreateEmotion from "./CreateEmotion";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
-import Table from "@/components/Table/Table";
 
 interface EmotionsBar {
     editor: Editor;
 }
 
 export default function EmotionBar({ editor }: EmotionsBar) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isListModalOpen, setIsListModalOpen] = useState(false);
     const { emotions } = useSpeackerStore();
 
     const insertEmotionTag = (emotion: string) => {
@@ -32,22 +25,6 @@ export default function EmotionBar({ editor }: EmotionsBar) {
                 <p className="text-sm">感情</p>
             </div>
 
-            <Button
-                className="cursor-pointer"
-                title="カスタム感情を追加"
-                onClick={() => setIsModalOpen(true)}
-            >
-                <MdAdd className="text-3xl" />
-            </Button>
-
-            <Button
-                className="cursor-pointer"
-                title="感情一覧表"
-                onClick={() => setIsListModalOpen(true)}
-            >
-                <MdViewList className="text-3xl" />
-            </Button>
-
             <div className="flex flex-col overflow-y-auto h-full">
                 {emotions.map((emotion, index) => (
                     <div key={`${emotion.id}-${index}`} className="flex flex-col py-1">
@@ -61,34 +38,6 @@ export default function EmotionBar({ editor }: EmotionsBar) {
                     </div>
                 ))}
             </div>
-
-            <Modal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                title="カスタム感情を追加"
-            >
-                <CreateEmotion setIsModalOpen={setIsModalOpen} />
-            </Modal>
-
-            <Modal
-                isOpen={isListModalOpen}
-                onClose={() => setIsListModalOpen(false)}
-                title="感情タグリスト"
-            >
-                <Table
-                    data={emotions}
-                    columns={{
-                        id: { label: "id" },
-                        name: { label: "name" },
-                        color: {
-                            label: "color",
-                            render: (value) => (
-                                <span style={{ backgroundColor: value }} className="h-4 w-full inline-block"></span>
-                            )
-                        }
-                    }}
-                />
-            </Modal>
         </div>
     );
 }

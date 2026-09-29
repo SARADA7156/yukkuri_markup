@@ -1,16 +1,15 @@
-import Toolbar from "./_components/Toolbar";
-import { parseScriptToJson, type ScriptData } from "./parser";
-import ScriptEditor from "./_components/ScriptEditor";
-import ScriptPreview from "./_components/ScriptPreview";
-import { useState } from "react";
+import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { useState } from "react";
+import { type ScriptData, parseScriptToJson } from "./parser";
 import CharBar from "./_components/characters/CharBar";
 import EmotionBar from "./_components/emotions/EmotionBar";
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import ScriptEditor from "./_components/ScriptEditor";
+import ScriptPreview from "./_components/ScriptPreview";
 import StatusBar from "./_components/StatusBar";
 
-export default function EditorHome() {
+export default function Editor() {
     const [scriptData, setScriptData] = useState<ScriptData>({
         type: "doc",
         content: []
@@ -29,9 +28,7 @@ export default function EditorHome() {
     });
 
     return (
-        <div className="grid grid-rows-[3%_94%_3%] h-full">
-            <Toolbar />
-
+        <>
             <div className="flex h-full">
                 <div className="grid grid-rows-2">
                     <CharBar editor={editor} />
@@ -45,6 +42,6 @@ export default function EditorHome() {
             </div>
 
             <StatusBar editor={editor} />
-        </div>
+        </>
     );
 }

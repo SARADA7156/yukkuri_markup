@@ -64,7 +64,7 @@ export default function CreateEmotion({ setIsModalOpen }: CreateEmotionProps) {
 
 
             <InputContainer>
-                <label htmlFor="emotion-color" className="text-sm mb-1">感情id(一意):</label>
+                <label htmlFor="emotion-color" className="text-sm mb-1">カラー:</label>
                 {errors.id && <p className="text-sm text-red-500">{errors.color?.message}</p>}
                 <input
                     type="color"

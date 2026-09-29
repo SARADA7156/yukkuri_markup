@@ -9,7 +9,7 @@ export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
         <div className="px-2 w-1/2 grid grid-rows-[3%_97%] h-full rounded-lg">
             <h1>プレビュー</h1>
 
-            <div className="pb-40 overflow-y-auto">
+            <div className="pb-40 overflow-y-auto select-text">
                 {scriptData.content.map((item, index) => (
                     <div key={`item-${index}`} className="my-1">
                         {item.type === "paragraph" &&

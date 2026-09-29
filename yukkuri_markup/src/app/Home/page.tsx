@@ -10,7 +10,6 @@ import EmotionBar from "./_components/emotions/EmotionBar";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import StatusBar from "./_components/StatusBar";
 
-
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
         type: "doc",

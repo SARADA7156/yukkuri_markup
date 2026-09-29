@@ -24,9 +24,6 @@ export default function StatusBar({ editor }: StatusBarProps) {
             setEditorStatus({ totalLine: lineCount, totalChar: characterCount });
         }
 
-        // 初回レンダリング時の初期値を反映
-        handleUpdate();
-
         editor.on("update", handleUpdate);
 
         return () => {

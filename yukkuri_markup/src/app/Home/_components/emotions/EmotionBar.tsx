@@ -1,10 +1,11 @@
 import Button from "@/components/Button/Button";
 import type { Editor } from "@tiptap/react";
-import { MdAdd, MdClose, MdViewList } from "react-icons/md";
+import { MdAdd, MdViewList } from "react-icons/md";
 import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateEmotion from "./CreateEmotion";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import Table from "@/components/Table/Table";
 
 interface EmotionsBar {
     editor: Editor;
@@ -12,7 +13,7 @@ interface EmotionsBar {
 
 export default function EmotionBar({ editor }: EmotionsBar) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isListModalOpen, setIsListModalOpen] = useState(true);
+    const [isListModalOpen, setIsListModalOpen] = useState(false);
     const { emotions } = useSpeackerStore();
 
     const insertEmotionTag = (emotion: string) => {
@@ -74,29 +75,19 @@ export default function EmotionBar({ editor }: EmotionsBar) {
                 onClose={() => setIsListModalOpen(false)}
                 title="感情タグリスト"
             >
-                <table className="border-collapse table-auto w-full">
-                    <thead>
-                        <tr className="border-b border-b-(--border)">
-                            <th className="text-start px-4 py-2">id</th>
-                            <th className="text-start px-4 py-2">name</th>
-                            <th className="text-start px-4 py-2">color</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {emotions.map((emotion, idx) => (
-                            <tr key={`${emotion.id}-${idx}`} className="border-b border-b-(--border) odd:bg-(--content2)">
-                                <td className="px-4 py-2">{emotion.id}</td>
-                                <td className="px-4 py-2">{emotion.name}</td>
-                                <td className="px-4 py-2">{emotion.color}</td>
-                                <td className="px-4 py-2">
-                                    <Button title="削除" className="ms-auto">
-                                        <MdClose />
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <Table
+                    data={emotions}
+                    columns={{
+                        id: { label: "id" },
+                        name: { label: "name" },
+                        color: {
+                            label: "color",
+                            render: (value) => (
+                                <span style={{ backgroundColor: value }} className="h-4 w-full inline-block"></span>
+                            )
+                        }
+                    }}
+                />
             </Modal>
         </div>
     );

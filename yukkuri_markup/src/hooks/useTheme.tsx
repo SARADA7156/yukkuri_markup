@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 
+export const DEFAULT_THEMES = ["light", "dark"] as const;
+
+export type Theme = typeof DEFAULT_THEMES[number];
+
+export const themeLabels: Record<Theme, string> = {
+    light: "ライト",
+    dark: "ダーク"
+}
+
 export function useTheme() {
-    const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const [theme, setTheme] = useState<Theme>(() => {
         if (typeof window !== "undefined") {
             const savedTheme = localStorage.getItem("theme");
             if (savedTheme === "dark" || savedTheme === "light") {
@@ -25,9 +34,9 @@ export function useTheme() {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
-    const toggleTheme = () => {
-        setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    const changeTheme = (theme: Theme) => {
+        setTheme(theme);
     };
 
-    return { theme, toggleTheme }
+    return { theme, changeTheme }
 }

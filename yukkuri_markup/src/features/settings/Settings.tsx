@@ -1,0 +1,52 @@
+import Button from "@/components/Button/Button";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+import GeneralSettings from "./GeneralSettings";
+
+type SettingsType = "general" | "character" | "emotion";
+
+export default function Settings() {
+    const [activeTab, setActiveTab] = useState<SettingsType>("general");
+
+    return (
+        <div className="p-4 grid grid-cols-[20%_80%] h-full">
+            <ul className="border-e border-e-(--border) h-full overflow-y-auto pe-4">
+                <li>
+                    <Button
+                        className={cn(
+                            "w-full text-start rounded-none p-0 hover:text-blue-500",
+                            activeTab === "general" && "text-blue-500"
+                        )}
+                        onClick={() => setActiveTab("general")}
+                    >
+                        一般
+                    </Button>
+                </li>
+                <li>
+                    <Button
+                        className={cn(
+                            "w-full text-start rounded-none p-0 hover:text-blue-500",
+                            activeTab === "character" && "text-blue-500"
+                        )}
+                        onClick={() => setActiveTab("character")}
+                    >
+                        登録キャラクター
+                    </Button>
+                </li>
+                <li>
+                    <Button
+                        className={cn(
+                            "w-full text-start rounded-none p-0 hover:text-blue-500",
+                            activeTab === "emotion" && "text-blue-500"
+                        )}
+                        onClick={() => setActiveTab("emotion")}
+                    >
+                        感情フラグ
+                    </Button>
+                </li>
+            </ul>
+
+            {activeTab === "general" && <GeneralSettings />}
+        </div>
+    );
+}

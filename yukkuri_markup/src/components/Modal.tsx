@@ -3,15 +3,17 @@ import { createPortal } from "react-dom";
 import Container from "./Container";
 import Button from "./Button/Button";
 import { MdClose } from "react-icons/md";
+import { cn } from "@/lib/utils";
 
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     title?: string;
+    className?: string;
     children: React.ReactNode;
 }
 
-export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, className, children }: ModalProps) {
     // escキー押下でモーダルを閉じる
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -37,7 +39,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
             onClick={onClose}
         >
             <Container
-                className="bg-(--background) border border-(--border) p-0 min-w-1/3"
+                className={cn("bg-(--background) border border-(--border) p-0 min-w-1/3 flex flex-col h-full", className)}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* モーダルヘッダー */}
@@ -50,7 +52,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
                 </div>
 
                 {/* モーダルコンテンツ */}
-                <div className="px-4 py-2 bg-(--content)">
+                <div className="px-4 py-2 bg-(--content) rounded-b-lg flex-1 h-full">
                     {children}
                 </div>
                 

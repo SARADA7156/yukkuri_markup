@@ -8,6 +8,8 @@ import StarterKit from "@tiptap/starter-kit";
 import CharBar from "./_components/characters/CharBar";
 import EmotionBar from "./_components/emotions/EmotionBar";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import StatusBar from "./_components/StatusBar";
+
 
 export default function EditorHome() {
     const [scriptData, setScriptData] = useState<ScriptData>({
@@ -23,13 +25,9 @@ export default function EditorHome() {
             const text = editor.getText();
             const parsedJson = parseScriptToJson(text, characters, emotions);
 
-            onChangeJson(parsedJson);
+            setScriptData(parsedJson);
         }
     });
-
-    const onChangeJson = (data: ScriptData) => {
-        setScriptData(data);
-    }
 
     return (
         <div className="grid grid-rows-[3%_94%_3%] h-full">
@@ -47,9 +45,7 @@ export default function EditorHome() {
                 </div>
             </div>
 
-            <div className="bg-blue-500">
-
-            </div>
+            <StatusBar editor={editor} />
         </div>
     );
 }

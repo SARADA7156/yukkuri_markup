@@ -14,9 +14,10 @@ export default function Toolbar() {
                 <p className="text-base">{theme === "dark" ? "ダーク" : "ライト"}</p>
             </Button>
 
-            <Button className="text-lg me-2" title="ファイルを開く">
+            {/* ファイルを開いて読み込む機能は、初期リリース後実装するため現在は凍結させる */}
+            {/* <Button className="text-lg me-2" title="ファイルを開く">
                 <MdFileOpen />
-            </Button>
+            </Button> */}
 
             <Button className="text-lg me-2" title="設定">
                 <MdSettings />

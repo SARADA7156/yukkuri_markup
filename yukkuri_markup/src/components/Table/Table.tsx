@@ -24,7 +24,7 @@ export default function Table<T extends Record<string, any>>({
             <thead>
                 <tr className="border-b border-b-(--border)">
                     {columnKeys.map((key) => (
-                        <th className="text-start px-4 py-2">
+                        <th key={String(key)} className="text-start px-4 py-2">
                             {columns[key].label}
                         </th>
                     ))}
@@ -33,7 +33,7 @@ export default function Table<T extends Record<string, any>>({
 
             <tbody>
                 {data.map((row, rowIndex) => (
-                    <tr key={rowIndex}>
+                    <tr key={rowIndex} className="border-b border-b-(--border) odd:bg-(--content2)">
                         {columnKeys.map((key) => {
                             const config = columns[key];
                             const value = row[key];

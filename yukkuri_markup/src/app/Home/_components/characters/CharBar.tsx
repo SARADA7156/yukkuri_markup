@@ -5,6 +5,7 @@ import Modal from "@/components/Modal";
 import { useState } from "react";
 import CreateCharacter from "./CreateCharacter";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import Table from "@/components/Table/Table";
 
 interface SideBarProps {
     editor: Editor;
@@ -13,6 +14,7 @@ interface SideBarProps {
 export default function CharBar({ editor }: SideBarProps) {
     const { characters } = useSpeackerStore();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isListModalOpen, setIsListModalOpen] = useState(false);
 
     const insertCharacterTag = (character: string) => {
         const { selection } = editor.state;
@@ -62,6 +64,7 @@ export default function CharBar({ editor }: SideBarProps) {
             <Button
                 className="cursor-pointer"
                 title="キャラクター表"
+                onClick={() => setIsListModalOpen(true)}
             >
                 <MdViewList className="text-3xl" />
             </Button>
@@ -86,6 +89,28 @@ export default function CharBar({ editor }: SideBarProps) {
                 title="カスタムキャラクターを追加"
             >
                 <CreateCharacter setIsModalOpen={setIsModalOpen}/>
+            </Modal>
+
+            <Modal
+                isOpen={isListModalOpen}
+                onClose={() => setIsListModalOpen(false)}
+                title="感情タグリスト"
+            >
+                <Table
+                    data={characters}
+                    columns={{
+                        id: { label: "id" },
+                        name: { label: "キャラ名" },
+                        tag: { label: "マークアップタグ" },
+                        color: {
+                            label: "キャラの色",
+                            render: (value) => (
+                                <span style={{ backgroundColor: value }} className="h-4 w-full inline-block"></span>
+                            )
+                        },
+                        ymm4CharName: { label: "YMM4キャラ名" }
+                    }}
+                />
             </Modal>
         </div>
     );

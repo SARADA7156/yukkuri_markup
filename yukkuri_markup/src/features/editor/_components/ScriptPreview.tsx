@@ -1,10 +1,8 @@
-import type { ScriptData } from "../parser";
+import { useEditorStore } from "@/store/editor/useEditorStore";
 
-interface ScriptPreviewProps {
-    scriptData: ScriptData
-}
+export default function ScriptPreview() {
+    const { scriptData } = useEditorStore();
 
-export default function ScriptPreview({ scriptData }: ScriptPreviewProps) {
     return (
         <div className="px-2 w-1/2 grid grid-rows-[3%_97%] h-full rounded-lg">
             <h1>プレビュー</h1>

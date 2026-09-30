@@ -1,30 +1,6 @@
+import type { Paragraph, ScriptData, YukkuriVoice } from "@/types/scriptData";
 import type { Character } from "../../store/speacker/character";
 import type { Emotion } from "../../store/speacker/emotions";
-
-type YukkuriVoice = {
-    type: "yukkuriVoice",
-    attrs: {
-        speaker: string,
-        emotion: string,
-    },
-    content: {
-        type: string;
-        text: string;
-    }[];
-}
-
-type Paragraph = {
-    type: "paragraph",
-    content: {
-        type: string;
-        text: string;
-    }[];
-}
-
-export type ScriptData = {
-    type: "doc",
-    content: (YukkuriVoice | Paragraph)[]
-}
 
 export function parseScriptToJson(rawText: string, characters: Character[], emotions: Emotion[]): ScriptData {
     const lines = rawText.split("\n");

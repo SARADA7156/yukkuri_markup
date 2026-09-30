@@ -4,6 +4,7 @@ import Editor from "@/features/editor/Editor";
 import Settings from "@/features/settings/Settings";
 import { useState } from "react";
 import Modal from "@/components/Modal";
+import Theme from "@/components/Theme";
 
 type ModalType = "settings" | "help" | "updateNote" | null;
 
@@ -36,6 +37,8 @@ function App() {
                 >
                     <Settings />
                 </Modal>
+
+                <Theme />
             </div>
         </main>
     )

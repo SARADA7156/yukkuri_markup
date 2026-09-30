@@ -8,7 +8,7 @@ import Modal from "@/components/Modal";
 type ModalType = "settings" | "help" | "updateNote" | null;
 
 function App() {
-    const [activeModal, setActiveModal] = useState<ModalType>("settings");
+    const [activeModal, setActiveModal] = useState<ModalType>(null);
     const closeModal = () => setActiveModal(null);
 
     return (

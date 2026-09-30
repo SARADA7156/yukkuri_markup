@@ -2,6 +2,7 @@ import Button from "@/components/Button/Button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
+import CharacterSettings from "./character/CharacterSettings";
 
 type SettingsType = "general" | "character" | "emotion";
 
@@ -46,7 +47,10 @@ export default function Settings() {
                 </li>
             </ul>
 
-            {activeTab === "general" && <GeneralSettings />}
+            <div className="h-full overflow-y-auto">
+                {activeTab === "general" && <GeneralSettings />}
+                {activeTab === "character" && <CharacterSettings />}
+            </div>
         </div>
     );
 }

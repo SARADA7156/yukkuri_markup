@@ -25,24 +25,51 @@ export interface SpeakerStore {
      * @param value 追加したいカスタム感情のデータ
      */
     addEmotions: (value: Emotion) => void;
+
+    /**
+     * 登録されているキャラクターを削除するメソッド
+     * @param id 削除するキャラクターid
+     */
+    removeCharacter: (id: string) => void;
+
+    /**
+     * 登録されている感情フラグを削除するメソッド
+     * @param id 削除する感情フラグid
+     */
+    removeEmotion: (id: string) => void;
 }
 
 export const useSpeackerStore = create<SpeakerStore>()(
     persist(
-        (set) => ({
-            characters: DEFAULT_CHARACTERS,
-            emotions: DEFAULT_EMOTIONS,
+        (set) => {
+            const filterById = <T extends { id: string }>(list: T[], id: string) =>
+                list.filter((item) => item.id !== id);
 
-            addCharacter: (value) =>
-                set((state) => ({
-                    characters: [...state.characters, value],
-                })),
+            return {
+                characters: DEFAULT_CHARACTERS,
+                emotions: DEFAULT_EMOTIONS,
 
-            addEmotions: (value) =>
-                set((state) => ({
-                    emotions: [...state.emotions, value],
-                })),
-        }),
+                addCharacter: (value) =>
+                    set((state) => ({
+                        characters: [...state.characters, value],
+                    })),
+
+                addEmotions: (value) =>
+                    set((state) => ({
+                        emotions: [...state.emotions, value],
+                    })),
+
+                removeCharacter: (id) =>
+                    set((state) => ({
+                        characters: filterById(state.characters, id),
+                    })),
+
+                removeEmotion: (id) =>
+                    set((state) => ({
+                        emotions: filterById(state.emotions, id),
+                    })),
+            };
+        },
         {
             name: 'speaker-storage',
         }

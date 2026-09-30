@@ -39,14 +39,14 @@ export default function Modal({ isOpen, onClose, title, className, children }: M
             onClick={onClose}
         >
             <Container
-                className={cn("bg-(--background) border border-(--border) p-0 min-w-1/2 max-w-1/2 min-h-1/2 max-h-1/2 grid grid-rows-[6%_94%]", className)}
+                className={cn("bg-(--background) border border-(--border) p-0 min-w-2/3 max-w-2/3 min-h-2/3 max-h-2/3 grid grid-rows-[6%_94%]", className)}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* モーダルヘッダー */}
                 <div className="px-2 border-b border-b-(--border) flex items-center">
                     <h1 className="text-sm">{title}</h1>
 
-                    <Button title="閉じる" className="ms-auto" onClick={onClose}>
+                    <Button title="閉じる" className="ms-auto rounded-none hover:bg-red-600" onClick={onClose}>
                         <MdClose />
                     </Button>
                 </div>

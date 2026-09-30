@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
 import CharacterSettings from "./character/CharacterSettings";
+import EmotionSettings from "./emotion/EmotionSettings";
 
 type SettingsType = "general" | "character" | "emotion";
 
@@ -50,6 +51,7 @@ export default function Settings() {
             <div className="h-full overflow-y-auto">
                 {activeTab === "general" && <GeneralSettings />}
                 {activeTab === "character" && <CharacterSettings />}
+                {activeTab === "emotion" && <EmotionSettings />}
             </div>
         </div>
     );

@@ -1,10 +1,10 @@
-import Button from "@/components/Button/Button";
 import { MdSettings, MdHelp } from "react-icons/md";
-import Editor from "@/features/editor/Editor";
-import Settings from "@/features/settings/Settings";
 import { useState } from "react";
-import Modal from "@/components/Modal";
-import Theme from "@/components/Theme";
+import Button from "./components/Button/Button";
+import Modal from "./components/Modal";
+import Theme from "./components/Theme";
+import Editor from "./features/editor/Editor";
+import Settings from "./features/settings/Settings";
 
 type ModalType = "settings" | "help" | "updateNote" | null;
 

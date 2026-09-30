@@ -1,9 +1,9 @@
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import SettingsContent from "../SettingsContent";
-import Table from "@/components/Table/Table";
 import AddCharacter from "./AddCharacter";
-import Button from "@/components/Button/Button";
 import { MdClose } from "react-icons/md";
+import Button from "@/renderer/components/Button/Button";
+import Table from "@/renderer/components/Table/Table";
 
 export default function CharacterSettings() {
     const { characters, removeCharacter } = useSpeackerStore();

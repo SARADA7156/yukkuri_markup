@@ -1,5 +1,5 @@
-import Button from "@/components/Button/Button";
-import InputContainer from "@/components/InputContainer";
+import Button from "@/renderer/components/Button/Button";
+import InputContainer from "@/renderer/components/InputContainer";
 import { type Emotion, emotionSchema } from "@/store/speacker/emotions";
 import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import { zodResolver } from "@hookform/resolvers/zod";

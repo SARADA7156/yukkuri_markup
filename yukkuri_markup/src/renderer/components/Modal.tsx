@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import Container from "./Container";
 import Button from "./Button/Button";
 import { MdClose } from "react-icons/md";
-import { cn } from "@/lib/utils";
+import { cn } from "@/renderer/lib/utils";
 
 interface ModalProps {
     isOpen: boolean;

@@ -1,4 +1,4 @@
-import { DEFAULT_THEMES, themeLabels, useTheme, type Theme } from "@/hooks/useTheme";
+import { DEFAULT_THEMES, themeLabels, useTheme, type Theme } from "@/renderer/hooks/useTheme";
 import SettingsContent from "./SettingsContent";
 
 export default function GeneralSettings() {

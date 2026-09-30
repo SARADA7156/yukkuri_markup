@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/renderer/lib/utils";
 
 interface InputContainerProps {
     className?: string;

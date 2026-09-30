@@ -1,9 +1,9 @@
-import Button from "@/components/Button/Button";
-import { cn } from "@/lib/utils";
+import { cn } from "@/renderer/lib/utils";
 import { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
 import CharacterSettings from "./character/CharacterSettings";
 import EmotionSettings from "./emotion/EmotionSettings";
+import Button from "@/renderer/components/Button/Button";
 
 type SettingsType = "general" | "character" | "emotion";
 

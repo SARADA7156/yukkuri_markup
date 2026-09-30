@@ -5,6 +5,7 @@ import Modal from "./components/Modal";
 import Theme from "./components/Theme";
 import Editor from "./features/editor/Editor";
 import Settings from "./features/settings/Settings";
+import Help from "./features/help/Help";
 
 type ModalType = "settings" | "help" | "updateNote" | null;
 
@@ -21,7 +22,7 @@ function App() {
                         <MdSettings />
                     </Button>
 
-                    <Button className="text-lg me-2" title="ヘルプ">
+                    <Button className="text-lg me-2" title="ヘルプ" onClick={() => setActiveModal("help")}>
                         <MdHelp />
                     </Button>
                 </div>
@@ -36,6 +37,14 @@ function App() {
                     title="設定"
                 >
                     <Settings />
+                </Modal>
+
+                <Modal
+                    isOpen={activeModal === "help"}
+                    onClose={closeModal}
+                    title="ヘルプ"
+                >
+                    <Help />
                 </Modal>
 
                 <Theme />

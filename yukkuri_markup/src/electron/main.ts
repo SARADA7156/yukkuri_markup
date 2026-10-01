@@ -1,11 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
-import { fileURLToPath } from "url";
 
 const isDev = !app.isPackaged;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
@@ -16,14 +12,14 @@ function createWindow() {
             contextIsolation: true,
         },
         autoHideMenuBar: true,
-        icon: path.join(__dirname, "../../public/favicon.png")
+        icon: path.join(app.getAppPath(), "public/icon.ico")
     });
 
     if (isDev) {
         mainWindow.loadURL("http://localhost:5173");
         mainWindow.webContents.openDevTools();
     } else {
-        mainWindow.loadFile(path.join(__dirname, "../dist/index.html"));
+        mainWindow.loadFile(path.join(app.getAppPath(), "dist-react/index.html"));
     }
 }
 

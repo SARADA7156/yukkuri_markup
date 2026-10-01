@@ -10,6 +10,9 @@ export default defineConfig({
     tailwindcss(),
   ],
   base: "./",
+  build: {
+    outDir: "dist-react"
+  },
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src")

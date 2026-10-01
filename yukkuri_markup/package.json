@@ -1,16 +1,30 @@
 {
   "name": "yukkuri_markup",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "./src/electron/main.ts",
   "scripts": {
+    "start": "",
     "dev": "vite",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
-    "licenses:generate": "generate-license-file --input package.json --output ./src/renderer/assets/THIRD-PARTY-LICENSES.txt --overwrite"
+    "licenses:generate": "generate-license-file --input package.json --output ./src/renderer/assets/THIRD-PARTY-LICENSES.txt --overwrite",
+    "build:win-zip": "electron-builder --win zip",
+    "build:react": "tsc -b && vite build",
+    "build": "npm run licenses:generate && npm run build:react && npm run build:win-zip"
+  },
+  "build": {
+    "appId": "com.example.yukkuri_markup",
+    "productName": "ゆっくりマークアップ",
+    "directories": {
+      "output": "dist"
+    },
+    "win" : {
+      "target": ["zip"],
+      "icon": "public/icon.ico"
+    }
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -40,6 +54,7 @@
     "concurrently": "^10.0.5",
     "cross-env": "^10.1.0",
     "electron": "^44.4.5",
+    "electron-builder": "^26.15.3",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",

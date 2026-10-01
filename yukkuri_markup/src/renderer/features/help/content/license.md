@@ -1,6 +1,9 @@
 ### 著作権表示
 Copyright (C) 2026 サラダ製作所
 
+### ソースコードリンク
+https://github.com/SARADA7156/yukkuri_markup
+
 ### オープンソースライセンス
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

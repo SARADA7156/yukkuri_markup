@@ -40,7 +40,7 @@ export default function Help() {
                 ))}
             </ul>
 
-            <div className="h-full overflow-y-auto px-2 pb-2">
+            <div className="h-full overflow-y-auto px-2 pb-2 select-text">
                 {activeTab === "information" && <HelpContent text={helpInformation} title="概要" />}
                 {activeTab === "editor" && <HelpContent text={editorDoc} title="ドキュメント" />}
                 {activeTab === "updates" && <HelpContent text={updatesText} title="アップデートについて" />}

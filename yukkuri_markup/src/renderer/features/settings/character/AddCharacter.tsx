@@ -1,7 +1,7 @@
 import Button from "@/renderer/components/Button/Button";
 import InputContainer from "@/renderer/components/InputContainer";
-import { characterSchema, type Character } from "@/store/speacker/character";
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import { characterSchema, type Character } from "@/renderer/store/speacker/character";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 

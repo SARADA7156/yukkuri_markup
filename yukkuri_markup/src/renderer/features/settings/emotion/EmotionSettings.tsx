@@ -1,9 +1,9 @@
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import SettingsContent from "../SettingsContent";
 import { MdClose } from "react-icons/md";
 import AddEmotion from "./AddEmotion";
 import Button from "@/renderer/components/Button/Button";
 import Table from "@/renderer/components/Table/Table";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 
 export default function EmotionSettings() {
     const { emotions, removeEmotion } = useSpeackerStore();

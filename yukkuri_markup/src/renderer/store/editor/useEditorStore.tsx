@@ -1,4 +1,4 @@
-import type { ScriptData } from "@/types/scriptData";
+import type { ScriptData } from "@/renderer/types/scriptData";
 import { create } from "zustand";
 
 interface EditorStatus {

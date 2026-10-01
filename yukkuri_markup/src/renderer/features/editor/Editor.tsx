@@ -1,4 +1,3 @@
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count"
@@ -8,7 +7,8 @@ import EmotionBar from "./_components/emotions/EmotionBar";
 import ScriptEditor from "./_components/ScriptEditor";
 import ScriptPreview from "./_components/ScriptPreview";
 import StatusBar from "./_components/StatusBar";
-import { useEditorStore } from "@/store/editor/useEditorStore";
+import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 
 export default function Editor() {
     const { characters, emotions } = useSpeackerStore();

@@ -1,7 +1,7 @@
 import Button from "@/renderer/components/Button/Button";
 import InputContainer from "@/renderer/components/InputContainer";
-import { type Emotion, emotionSchema } from "@/store/speacker/emotions";
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import { emotionSchema, type Emotion } from "@/renderer/store/speacker/emotions";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 

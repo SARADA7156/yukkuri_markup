@@ -1,5 +1,5 @@
 import type { Editor } from "@tiptap/react";
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import Button from "@/renderer/components/Button/Button";
 
 interface EmotionsBar {

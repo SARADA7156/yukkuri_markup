@@ -1,4 +1,4 @@
-import { useSpeackerStore } from "@/store/speacker/useSpeakerStore";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import SettingsContent from "../SettingsContent";
 import AddCharacter from "./AddCharacter";
 import { MdClose } from "react-icons/md";

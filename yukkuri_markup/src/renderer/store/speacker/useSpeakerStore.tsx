@@ -1,7 +1,7 @@
-import { DEFAULT_CHARACTERS, type Character } from "@/store/speacker/character";
-import { DEFAULT_EMOTIONS, type Emotion } from "@/store/speacker/emotions";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { DEFAULT_CHARACTERS, type Character } from "./character";
+import { DEFAULT_EMOTIONS, type Emotion } from "./emotions";
 
 export interface SpeakerStore {
     /**

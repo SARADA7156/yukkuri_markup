@@ -1,4 +1,4 @@
-import { useEditorStore } from "@/store/editor/useEditorStore";
+import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 
 export default function StatusBar() {
     const { editorStatus } = useEditorStore();

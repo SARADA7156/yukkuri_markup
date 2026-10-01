@@ -5,6 +5,8 @@ import HelpContent from "./HelpContent";
 import helpOfHelp from "./content/help-of-help.md?raw";
 import helpInformation from "./content/information.md?raw";
 import licenseText from "./content/license.md?raw";
+import updatesText from "./content/updates.md?raw";
+import editorDoc from "./content/editorDoc.md?raw";
 
 const helps = ["information", "editor", "updates", "license", "helpOfhelp"] as const;
 type HelpType = typeof helps[number];
@@ -38,8 +40,10 @@ export default function Help() {
                 ))}
             </ul>
 
-            <div className="h-full overflow-y-auto p-2">
-                {activeTab === "information" && <HelpContent text={helpInformation} title="【YMU】ゆっくりマークアップについて" />}
+            <div className="h-full overflow-y-auto px-2 pb-2">
+                {activeTab === "information" && <HelpContent text={helpInformation} title="概要" />}
+                {activeTab === "editor" && <HelpContent text={editorDoc} title="ドキュメント" />}
+                {activeTab === "updates" && <HelpContent text={updatesText} title="アップデートについて" />}
                 {activeTab === "license" && <HelpContent text={licenseText} title="ライセンス" />}
                 {activeTab === "helpOfhelp" && <HelpContent text={helpOfHelp} title="ヘルプのヘルプ" />}
             </div>

@@ -7,8 +7,9 @@ import helpInformation from "./content/information.md?raw";
 import licenseText from "./content/license.md?raw";
 import updatesText from "./content/updates.md?raw";
 import editorDoc from "./content/editorDoc.md?raw";
+import thirdPartyLicenses from "@/renderer/assets/THIRD-PARTY-LICENSES.txt?raw";
 
-const helps = ["information", "editor", "updates", "license", "helpOfhelp"] as const;
+const helps = ["information", "editor", "updates", "license", "thirdPartyLicenses", "helpOfhelp"] as const;
 type HelpType = typeof helps[number];
 
 const labels: Record<HelpType, string> = {
@@ -16,6 +17,7 @@ const labels: Record<HelpType, string> = {
     editor: "エディター",
     updates: "アップデートについて",
     license: "ライセンス",
+    thirdPartyLicenses: "サードパーティーライセンス",
     helpOfhelp: "ヘルプのヘルプ"
 }
 
@@ -45,6 +47,7 @@ export default function Help() {
                 {activeTab === "editor" && <HelpContent text={editorDoc} title="ドキュメント" />}
                 {activeTab === "updates" && <HelpContent text={updatesText} title="アップデートについて" />}
                 {activeTab === "license" && <HelpContent text={licenseText} title="ライセンス" />}
+                {activeTab === "thirdPartyLicenses" && <HelpContent text={thirdPartyLicenses} title="ライセンス" />}
                 {activeTab === "helpOfhelp" && <HelpContent text={helpOfHelp} title="ヘルプのヘルプ" />}
             </div>
         </div>

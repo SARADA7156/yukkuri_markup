@@ -1,4 +1,4 @@
-import { MdSettings, MdHelp } from "react-icons/md";
+import { MdSettings, MdHelp, MdEventNote } from "react-icons/md";
 import { useState } from "react";
 import Button from "./components/Button/Button";
 import Modal from "./components/Modal";
@@ -7,7 +7,7 @@ import Editor from "./features/editor/Editor";
 import Settings from "./features/settings/Settings";
 import Help from "./features/help/Help";
 
-type ModalType = "settings" | "help" | "updateNote" | null;
+type ModalType = "settings" | "help" | "releaseNote" | null;
 
 function App() {
     const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -25,6 +25,11 @@ function App() {
                     <Button className="text-lg me-2" title="ヘルプ" onClick={() => setActiveModal("help")}>
                         <MdHelp />
                     </Button>
+
+                    <Button className="text-lg me-2" title="リリースノート" onClick={() => setActiveModal("releaseNote")}>
+                        <MdEventNote />
+                    </Button>
+
                 </div>
 
                 {/* エディター本体 */}

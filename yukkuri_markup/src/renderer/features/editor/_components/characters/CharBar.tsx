@@ -46,9 +46,9 @@ export default function CharBar({ editor }: SideBarProps) {
                 <p className="text-sm">キャラ</p>
             </div>
 
-            <div className="flex flex-col overflow-y-auto h-full">
+            <div className="flex flex-col overflow-y-auto h-full w-full">
                 {characters.map((character, index) => (
-                    <div key={`${character.id}-${index}`} className="flex flex-col py-1">
+                    <div key={`${character.id}-${index}`} className="flex flex-col py-1 w-full">
                         <Button
                             className={`font-bold aspect-square border border-black/50`}
                             style={{ backgroundColor: `${character.color}` }}

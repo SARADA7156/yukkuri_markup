@@ -21,13 +21,13 @@ export default function EmotionBar({ editor }: EmotionsBar) {
 
     return (
         <div className="bg-(--background) px-2 flex flex-col w-16 items-center m-0.5 border border-(--border) rounded-lg">
-            <div className="charbar-header">
+            <div className="emotionbar-header">
                 <p className="text-sm">感情</p>
             </div>
 
-            <div className="flex flex-col overflow-y-auto h-full">
+            <div className="flex flex-col overflow-y-auto h-full w-full">
                 {emotions.map((emotion, index) => (
-                    <div key={`${emotion.id}-${index}`} className="flex flex-col py-1">
+                    <div key={`${emotion.id}-${index}`} className="flex flex-col py-1 w-full">
                         <Button
                             className={`font-bold aspect-square border border-black/50`}
                             style={{ backgroundColor: `${emotion.color}` }}

@@ -428,7 +428,7 @@ Apache License
 
 The following npm package may be included in this product:
 
- - source-map-js@1.2.1
+ - source-map-js@1.2.2
 
 This package contains the following license:
 
@@ -680,7 +680,7 @@ The following npm packages may be included in this product:
  - @types/hast@3.0.5
  - @types/mdast@4.0.4
  - @types/ms@2.1.0
- - @types/node@24.13.6
+ - @types/node@24.19.0
  - @types/react-dom@19.3.0
  - @types/react@19.3.0
  - @types/unist@2.0.11
@@ -2019,7 +2019,7 @@ software or this license, under any kind of legal claim._**
 
 The following npm package may be included in this product:
 
- - vite@8.3.0
+ - vite@8.3.2
 
 This package contains the following license:
 
@@ -2699,35 +2699,6 @@ Repository: https://github.com/expressjs/cors
 
 ---------------------------------------
 
-## cross-spawn
-License: MIT
-By: André Cruz
-Repository: https://github.com/moxystudio/node-cross-spawn
-
-> The MIT License (MIT)
-> 
-> Copyright (c) 2018 Made With MOXY Lda <hello@moxy.studio>
-> 
-> Permission is hereby granted, free of charge, to any person obtaining a copy
-> of this software and associated documentation files (the "Software"), to deal
-> in the Software without restriction, including without limitation the rights
-> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-> copies of the Software, and to permit persons to whom the Software is
-> furnished to do so, subject to the following conditions:
-> 
-> The above copyright notice and this permission notice shall be included in
-> all copies or substantial portions of the Software.
-> 
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-> THE SOFTWARE.
-
----------------------------------------
-
 ## cssesc
 License: MIT
 By: Mathias Bynens
@@ -3251,29 +3222,6 @@ Repository: https://github.com/Rich-Harris/is-reference
 
 ---------------------------------------
 
-## isexe, which
-License: ISC
-By: Isaac Z. Schlueter
-Repositories: https://github.com/isaacs/isexe, https://github.com/isaacs/node-which
-
-> The ISC License
-> 
-> Copyright (c) Isaac Z. Schlueter and Contributors
-> 
-> Permission to use, copy, modify, and/or distribute this software for any
-> purpose with or without fee is hereby granted, provided that the above
-> copyright notice and this permission notice appear in all copies.
-> 
-> THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-> WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-> MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-> ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-> WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-> ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-> IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
----------------------------------------
-
 ## js-tokens
 License: MIT
 By: Simon Lydell
@@ -3694,23 +3642,6 @@ Repository: https://github.com/pillarjs/parseurl
 
 ---------------------------------------
 
-## path-key, shebang-regex
-License: MIT
-By: Sindre Sorhus
-Repositories: https://github.com/sindresorhus/path-key, https://github.com/sindresorhus/shebang-regex
-
-> MIT License
-> 
-> Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (sindresorhus.com)
-> 
-> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-> 
-> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-> 
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
----------------------------------------
-
 ## periscopic
 License: MIT
 Repository: https://github.com/Rich-Harris/periscopic
@@ -4021,23 +3952,6 @@ Repositories: https://github.com/lukeed/resolve.exports, https://github.com/luke
 
 ---------------------------------------
 
-## shebang-command
-License: MIT
-By: Kevin Mårtensson
-Repository: https://github.com/kevva/shebang-command
-
-> MIT License
-> 
-> Copyright (c) Kevin Mårtensson <kevinmartensson@gmail.com> (github.com/kevva)
-> 
-> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-> 
-> The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-> 
-> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
----------------------------------------
-
 ## shell-quote
 License: MIT
 By: James Halliday
@@ -4122,6 +4036,35 @@ Repository: https://github.com/antfu/strip-literal
 > MIT License
 > 
 > Copyright (c) 2022 Anthony Fu <https://github.com/antfu>
+> 
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to deal
+> in the Software without restriction, including without limitation the rights
+> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+> copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+> 
+> The above copyright notice and this permission notice shall be included in all
+> copies or substantial portions of the Software.
+> 
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+> SOFTWARE.
+
+---------------------------------------
+
+## tinyexec
+License: MIT
+By: James Garbutt
+Repository: https://github.com/tinylibs/tinyexec
+
+> MIT License
+> 
+> Copyright (c) 2024 Tinylibs
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -5034,16 +4977,16 @@ THE SOFTWARE.
 The following npm packages may be included in this product:
 
  - prosemirror-commands@1.7.2
- - prosemirror-dropcursor@1.8.3
+ - prosemirror-dropcursor@1.8.4
  - prosemirror-gapcursor@1.4.1
- - prosemirror-history@1.5.0
+ - prosemirror-history@1.5.1
  - prosemirror-inputrules@1.5.1
  - prosemirror-keymap@1.2.3
  - prosemirror-model@1.25.12
  - prosemirror-schema-list@1.5.1
  - prosemirror-state@1.4.4
- - prosemirror-transform@1.12.1
- - prosemirror-view@1.42.5
+ - prosemirror-transform@1.12.2
+ - prosemirror-view@1.42.6
 
 These packages each contain the following license:
 
@@ -5201,7 +5144,7 @@ THE SOFTWARE.
 
 The following npm package may be included in this product:
 
- - prosemirror-changeset@2.4.3
+ - prosemirror-changeset@2.4.4
 
 This package contains the following license:
 
@@ -5733,7 +5676,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - enhanced-resolve@5.25.1
+ - enhanced-resolve@5.26.0
 
 This package contains the following license:
 
@@ -6003,7 +5946,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @rolldown/binding-win32-x64-msvc@1.2.10
+ - @rolldown/binding-win32-x64-msvc@1.2.12
  - proxy-agent-negotiate@1.1.0
 
 These packages each contain the following license:
@@ -6054,6 +5997,66 @@ These packages each contain the following license:
 MIT License
 
 Copyright (c) 2017 Evgeny Poberezkin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-----------
+
+The following npm package may be included in this product:
+
+ - tippy.js@6.3.7
+
+This package contains the following license:
+
+MIT License
+
+Copyright (c) 2017-present atomiks
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-----------
+
+The following npm package may be included in this product:
+
+ - @tippyjs/react@4.2.6
+
+This package contains the following license:
+
+MIT License
+
+Copyright (c) 2018 atomiks
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -6138,7 +6141,7 @@ SOFTWARE.
 The following npm packages may be included in this product:
 
  - @hookform/resolvers@5.9.1
- - react-hook-form@7.88.0
+ - react-hook-form@7.89.0
 
 These packages each contain the following license:
 
@@ -6411,7 +6414,7 @@ SOFTWARE.
 
 The following npm package may be included in this product:
 
- - rolldown@1.2.10
+ - rolldown@1.2.12
 
 This package contains the following license:
 
@@ -6445,7 +6448,7 @@ The licenses of externally maintained libraries from which parts of the Software
 
 The following npm package may be included in this product:
 
- - @oxc-project/types@0.151.0
+ - @oxc-project/types@0.152.0
 
 This package contains the following license:
 
@@ -6536,35 +6539,37 @@ SOFTWARE.
 
 The following npm packages may be included in this product:
 
- - @tiptap/core@3.31.3
- - @tiptap/extension-blockquote@3.31.3
- - @tiptap/extension-bold@3.31.3
- - @tiptap/extension-bubble-menu@3.31.3
- - @tiptap/extension-bullet-list@3.31.3
- - @tiptap/extension-character-count@3.31.3
- - @tiptap/extension-code-block@3.31.3
- - @tiptap/extension-code@3.31.3
- - @tiptap/extension-document@3.31.3
- - @tiptap/extension-dropcursor@3.31.3
- - @tiptap/extension-floating-menu@3.31.3
- - @tiptap/extension-gapcursor@3.31.3
- - @tiptap/extension-hard-break@3.31.3
- - @tiptap/extension-heading@3.31.3
- - @tiptap/extension-horizontal-rule@3.31.3
- - @tiptap/extension-italic@3.31.3
- - @tiptap/extension-link@3.31.3
- - @tiptap/extension-list-item@3.31.3
- - @tiptap/extension-list-keymap@3.31.3
- - @tiptap/extension-list@3.31.3
- - @tiptap/extension-ordered-list@3.31.3
- - @tiptap/extension-paragraph@3.31.3
- - @tiptap/extension-strike@3.31.3
- - @tiptap/extension-text@3.31.3
- - @tiptap/extension-underline@3.31.3
- - @tiptap/extensions@3.31.3
- - @tiptap/pm@3.31.3
- - @tiptap/react@3.31.3
- - @tiptap/starter-kit@3.31.3
+ - @tiptap/core@3.31.4
+ - @tiptap/extension-blockquote@3.31.4
+ - @tiptap/extension-bold@3.31.4
+ - @tiptap/extension-bubble-menu@3.31.4
+ - @tiptap/extension-bullet-list@3.31.4
+ - @tiptap/extension-character-count@3.31.4
+ - @tiptap/extension-code-block@3.31.4
+ - @tiptap/extension-code@3.31.4
+ - @tiptap/extension-document@3.31.4
+ - @tiptap/extension-dropcursor@3.31.4
+ - @tiptap/extension-floating-menu@3.31.4
+ - @tiptap/extension-gapcursor@3.31.4
+ - @tiptap/extension-hard-break@3.31.4
+ - @tiptap/extension-heading@3.31.4
+ - @tiptap/extension-horizontal-rule@3.31.4
+ - @tiptap/extension-italic@3.31.4
+ - @tiptap/extension-link@3.31.4
+ - @tiptap/extension-list-item@3.31.4
+ - @tiptap/extension-list-keymap@3.31.4
+ - @tiptap/extension-list@3.31.4
+ - @tiptap/extension-mention@3.31.4
+ - @tiptap/extension-ordered-list@3.31.4
+ - @tiptap/extension-paragraph@3.31.4
+ - @tiptap/extension-strike@3.31.4
+ - @tiptap/extension-text@3.31.4
+ - @tiptap/extension-underline@3.31.4
+ - @tiptap/extensions@3.31.4
+ - @tiptap/pm@3.31.4
+ - @tiptap/react@3.31.4
+ - @tiptap/starter-kit@3.31.4
+ - @tiptap/suggestion@3.31.4
 
 These packages each contain the following license:
 
@@ -6642,7 +6647,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 The following npm packages may be included in this product:
 
- - undici-types@7.18.2
+ - undici-types@7.24.6
  - undici@8.11.2
 
 These packages each contain the following license:
@@ -7771,6 +7776,35 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+-----------
+
+The following npm package may be included in this product:
+
+ - @popperjs/core@2.11.8
+
+This package contains the following license:
+
+The MIT License (MIT)
+
+Copyright (c) 2019 Federico Zivolo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 -----------
 

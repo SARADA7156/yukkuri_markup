@@ -1,9 +1,11 @@
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count"
+import { Mention } from "@tiptap/extension-mention";
+import { suggestion } from "./suggestion";
 import { parseScriptToJson } from "./parser";
-import CharBar from "./_components/characters/CharBar";
-import EmotionBar from "./_components/emotions/EmotionBar";
+import CharBar from "./_components/CharBar";
+import EmotionBar from "./_components/EmotionBar";
 import ScriptEditor from "./_components/ScriptEditor";
 import ScriptPreview from "./_components/ScriptPreview";
 import StatusBar from "./_components/StatusBar";
@@ -17,7 +19,11 @@ export default function Editor() {
     const editor = useEditor({
         extensions: [
             StarterKit,
-            CharacterCount
+            CharacterCount,
+            Mention.configure({
+                HTMLAttributes: { class: "mention" },
+                suggestion
+            })
         ],
         onUpdate({ editor }) {
             const text = editor.getText();

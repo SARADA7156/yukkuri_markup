@@ -1,6 +1,22 @@
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-export default function HelpContent({ text, title }: { text: string, title: string }) {
+interface HelpContentProps {
+    link: string;
+    title: string;
+}
+
+export default function HelpContent({ link, title }: HelpContentProps) {
+    const [text, setText] = useState("");
+
+    useEffect(() => {
+        fetch(link)
+            .then(response => response.text())
+            .then((text) => {
+                setText(text);
+            });
+    }, []);
+
     return (
         <div className="flex flex-col px-2 pb-2 mb-20 relative">
             <div className="settings-content-header sticky top-0 bg-(--content)">

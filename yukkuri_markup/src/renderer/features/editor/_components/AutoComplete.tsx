@@ -3,13 +3,18 @@ import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import type { SuggestionKeyDownProps, SuggestionProps } from "@tiptap/suggestion";
 import { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from "react";
 
-type Item = string;
+export type Item = string;
 
 export interface AutoCompleteRef {
     onKeyDown: (props: SuggestionKeyDownProps) => boolean;
 }
 
-export type AutoCompleteProps = SuggestionProps<Item>
+export type AutoCompleteProps = SuggestionProps<Item>;
+
+export type AutoCompleteItem = {
+    value: string;
+    label: string;
+};
 
 export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -17,20 +22,31 @@ export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((prop
     const characters = useSpeackerStore((state) => state.characters);
     const emotions = useSpeackerStore((state) => state.emotions);
 
-    const items = useMemo(() => {
-        const candidates = characters.flatMap((char) =>
-            emotions.map((emotion) => `${char.tag}.${emotion.id}`)
+    // マスター配列(キャラと感情フラグの変更時のみ生成される)
+    const allCandidates = useMemo<AutoCompleteItem[]>(() => {
+        return characters.flatMap((char) =>
+            emotions.map((emotion) => ({
+                value: `${char.tag}.${emotion.id}`,
+                label: `${char.name}(${emotion.name})`
+            }))
         );
+    }, [characters, emotions]);
 
-        return candidates.filter((item) =>
-            item.toLowerCase().startsWith((props.query || '').toLowerCase())
+    // タイピング時はマスター配列のフィルタリングのみを行う
+    const items = useMemo(() => {
+        const query = (props.query || '').toLowerCase();
+        if (!query) return allCandidates;
+
+        return allCandidates.filter((item) =>
+            item.value.toLowerCase().includes(query) ||
+            item.label.toLowerCase().includes(query)
         );
-    }, [characters, emotions, props.query]);
+    }, [allCandidates, props.query]);
 
     const selectItem = (index: number) => {
         const item = items[index];
         if (item) {
-            props.command({ id: item });
+            props.command(item.value);
         }
     };
 
@@ -38,6 +54,9 @@ export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((prop
 
     useImperativeHandle(ref, () => ({
         onKeyDown: ({ event }: { event: KeyboardEvent }) => {
+            // 候補がない場合はキーイベントをエディタ側に流す
+            if (items.length === 0) return false;
+
             if (event.key === 'ArrowUp') {
                 setSelectedIndex((prev) => (prev + items.length - 1) % items.length);
                 return true;
@@ -58,13 +77,14 @@ export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((prop
     return (
         <div className="suggestion-menu flex flex-col border border-(--border)">
             {items.length ? (
-                items.map((item: string, index: number) => (
+                items.map((item: AutoCompleteItem, index: number) => (
                     <button
-                        key={`${item}-${index}`}
-                        className={cn("text-start px-1 font-bold", index === selectedIndex && "bg-blue-500/30 text-blue-400")}
+                        key={item.value}
+                        className={cn("px-1 flex items-center cursor-pointer", index === selectedIndex && "bg-blue-500/30")}
                         onClick={() => selectItem(index)}
                     >
-                        {item}
+                        <p className="text-start font-bold me-16">{item.value}</p>
+                        <p className={cn("ms-auto opacity-50 text-sm", index === selectedIndex && "opacity-100")}>{item.label}</p>
                     </button>
                 ))
             ) : (

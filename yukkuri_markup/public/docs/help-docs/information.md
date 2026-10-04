@@ -15,4 +15,4 @@
 - **開発言語:** TypeScript
 - **デスクトップアプリケーションフレームワーク:** Electron
 - **フロントエンド:** React, Tailwind CSS
-- **エディター:** Tipap React
+- **エディター:** Tiptap React

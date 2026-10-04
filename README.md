@@ -13,6 +13,17 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://gnu.org>.
+ライセンスの詳細はアプリ内ヘルプ画面の`ライセンスページ`をご確認ください。
+
+# 初回起動の警告について
+現在Windowsの署名を行っていないため、ダウンロードしてアプリケーションを初回起動した際、 *『WindowsによってPCが保護されました』* と言うダイアログボックスが表示される可能性があります。
+***詳細情報 > 実行ボタンをクリック***
+することで起動できます。
+※アプリケーション署名は今後行い、警告が表示されないように対応させるつもりです。
+
+# 対応機種について
+現在 **Windows搭載のデバイス** にのみ対応しております。ご了承ください。
+※macOSおよびLinuxの対応は検討中です。macOS版に関しては開発環境でのアプリケーション署名が難しいため、リリースしない可能性が高いです。
 
 # 【YMU】ゆっくりマークアップとは？
 本アプリケーションはゆっくり実況の台本を作成する手間や負荷を軽減するために開発されたアプリケーションです。
@@ -27,11 +38,14 @@ along with this program.  If not, see <https://gnu.org>.
 プログラミングが大好きな学生です。
 ※そのため突然開発やアップデートが止まる可能性があります。
 
+### お問い合わせ
+- **バグ報告・機能要望:** [https://github.com/SARADA7156/yukkuri_markup/issues]
+
 ### 技術スタック
 - **開発言語:** TypeScript
 - **デスクトップアプリケーションフレームワーク:** Electron
 - **フロントエンド:** React, Tailwind CSS
-- **エディター:** Tipap React
+- **エディター:** Tiptap React
 
 # 今後のアップデート
 1.0リリース後も順次アップデートを進めていくつもりです。

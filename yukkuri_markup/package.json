@@ -9,6 +9,7 @@
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
+    "generate:release-notes": "node scripts/generate-release-note-list.js",
     "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "licenses:generate": "generate-license-file --input package.json --output ./public/THIRD-PARTY-LICENSES.txt --overwrite",
     "build:win-zip": "electron-builder --win zip",

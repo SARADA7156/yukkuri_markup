@@ -6,7 +6,7 @@ interface HelpContentProps {
     title: string;
 }
 
-export default function HelpContent({ link, title }: HelpContentProps) {
+export default function MarkdownContent({ link, title }: HelpContentProps) {
     const [text, setText] = useState("");
 
     useEffect(() => {

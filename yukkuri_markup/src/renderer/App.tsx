@@ -6,8 +6,9 @@ import Theme from "./components/Theme";
 import Editor from "./features/editor/Editor";
 import Settings from "./features/settings/Settings";
 import Help from "./features/help/Help";
+import ReleaseNote from "./features/releaseNote/ReleaseNote";
 
-type ModalType = "settings" | "help" | "releaseNote" | null;
+type ModalType = "settings" | "help" | "releaseNotes" | null;
 
 function App() {
     const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -26,7 +27,7 @@ function App() {
                         <MdHelp />
                     </Button>
 
-                    <Button className="text-lg me-2" title="リリースノート" onClick={() => setActiveModal("releaseNote")}>
+                    <Button className="text-lg me-2" title="リリースノート" onClick={() => setActiveModal("releaseNotes")}>
                         <MdEventNote />
                     </Button>
 
@@ -50,6 +51,14 @@ function App() {
                     title="ヘルプ"
                 >
                     <Help />
+                </Modal>
+
+                <Modal
+                    isOpen={activeModal === "releaseNotes"}
+                    onClose={closeModal}
+                    title="リリースノート"
+                >
+                    <ReleaseNote />
                 </Modal>
 
                 <Theme />

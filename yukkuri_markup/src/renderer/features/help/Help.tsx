@@ -1,7 +1,7 @@
 import Button from "@/renderer/components/Button/Button";
 import { cn } from "@/renderer/lib/utils";
 import { useState } from "react";
-import HelpContent from "./HelpContent";
+import MarkdownContent from "../../components/MarkdownContent";
 
 const helps = ["information", "editor", "updates", "license", "thirdPartyLicenses", "helpOfhelp"] as const;
 type HelpType = typeof helps[number];
@@ -37,12 +37,12 @@ export default function Help() {
             </ul>
 
             <div className="h-full overflow-y-auto px-2 pb-2 select-text">
-                {activeTab === "information" && <HelpContent link="./docs/help-docs/information.md" title="概要" />}
-                {activeTab === "editor" && <HelpContent link="./docs/help-docs/editorDoc.md" title="ドキュメント" />}
-                {activeTab === "updates" && <HelpContent link="./docs/help-docs/updates.md" title="アップデートについて" />}
-                {activeTab === "license" && <HelpContent link="./docs/help-docs/license.md" title="ライセンス" />}
-                {activeTab === "thirdPartyLicenses" && <HelpContent link="./THIRD-PARTY-LICENSES.txt" title="サードパーティーライセンス" />}
-                {activeTab === "helpOfhelp" && <HelpContent link="./docs/help-docs/help-of-help.md" title="ヘルプのヘルプ" />}
+                {activeTab === "information" && <MarkdownContent link="./docs/help-docs/information.md" title="概要" />}
+                {activeTab === "editor" && <MarkdownContent link="./docs/help-docs/editorDoc.md" title="ドキュメント" />}
+                {activeTab === "updates" && <MarkdownContent link="./docs/help-docs/updates.md" title="アップデートについて" />}
+                {activeTab === "license" && <MarkdownContent link="./docs/help-docs/license.md" title="ライセンス" />}
+                {activeTab === "thirdPartyLicenses" && <MarkdownContent link="./THIRD-PARTY-LICENSES.txt" title="サードパーティーライセンス" />}
+                {activeTab === "helpOfhelp" && <MarkdownContent link="./docs/help-docs/help-of-help.md" title="ヘルプのヘルプ" />}
             </div>
         </div>
     )

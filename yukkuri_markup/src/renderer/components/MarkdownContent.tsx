@@ -15,7 +15,7 @@ export default function MarkdownContent({ link, title }: HelpContentProps) {
             .then((text) => {
                 setText(text);
             });
-    }, []);
+    }, [link]);
 
     return (
         <div className="flex flex-col px-2 pb-2 mb-20 relative">
@@ -28,6 +28,9 @@ export default function MarkdownContent({ link, title }: HelpContentProps) {
                     components={{
                         p: ({ children }) => (
                             <p className="whitespace-pre-wrap [word-break:auto-phrase]">{children}</p>
+                        ),
+                        h2: ({ children }) => (
+                            <h3 className="whitespace-pre-wrap text-2xl font-bold [word-break:auto-phrase] mt-5">{children}</h3>
                         ),
                         h3: ({ children }) => (
                             <h3 className="whitespace-pre-wrap text-xl font-bold [word-break:auto-phrase] mt-5">{children}</h3>

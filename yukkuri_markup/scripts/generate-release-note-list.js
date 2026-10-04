@@ -15,7 +15,19 @@ function getFiles(dirPath) {
         }
     }
 
-    return fileList;
+    return fileList
+        .filter((file) => /^v\d+\.\d+\.\d+\.md$/.test(file))
+        .sort((a, b) => {
+            return b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" });
+        })
+        .map((fileName) => {
+            const version = fileName.replace(".md", "");
+            return {
+                version,
+                fileName,
+                path: `/release-notes/${fileName}`
+            };
+        });
 }
 
 try {

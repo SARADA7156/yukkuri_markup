@@ -14,7 +14,7 @@
     "licenses:generate": "generate-license-file --input package.json --output ./public/THIRD-PARTY-LICENSES.txt --overwrite",
     "build:win-zip": "electron-builder --win zip",
     "build:react": "tsc -b && vite build",
-    "build": "npm run licenses:generate && npm run build:react && npm run build:win-zip"
+    "build": "npm run generate:release-notes && npm run licenses:generate && npm run build:react && npm run build:win-zip"
   },
   "build": {
     "appId": "com.example.yukkuri_markup",

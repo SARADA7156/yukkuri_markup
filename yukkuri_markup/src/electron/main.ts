@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from "electron";
 import path from "path";
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 const isDev = !app.isPackaged;
 
 function createWindow() {

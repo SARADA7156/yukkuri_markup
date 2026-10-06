@@ -48,7 +48,7 @@ export default function AddEmotion() {
 
             <InputContainer>
                 <label htmlFor="emotion-name" className="text-sm mb-1">感情名:</label>
-                {errors.id && <p className="text-sm text-red-500">{errors.name?.message}</p>}
+                {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
                 <input
                     type="text"
                     id="emotion-name"
@@ -60,7 +60,7 @@ export default function AddEmotion() {
 
             <InputContainer>
                 <label htmlFor="emotion-color" className="text-sm mb-1">カラー:</label>
-                {errors.id && <p className="text-sm text-red-500">{errors.color?.message}</p>}
+                {errors.color && <p className="text-sm text-red-500">{errors.color.message}</p>}
                 <input
                     type="color"
                     id="emotion-color"

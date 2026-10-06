@@ -11,7 +11,6 @@ export const emotionSchema = z.object({
         .regex(/^#?[0-9a-fA-F]{6}$/, {
             message: "有効な16進数カラーコード（例: #ffffff または #fff）を入力してください",
         })
-        .transform((val) => (val.startsWith("#") ? val : `#${val}`)),
 });
 
 export type Emotion = z.infer<typeof emotionSchema>;

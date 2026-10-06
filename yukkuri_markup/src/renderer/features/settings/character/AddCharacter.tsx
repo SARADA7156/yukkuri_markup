@@ -8,6 +8,16 @@ import { useForm } from "react-hook-form";
 export default function AddCharacter() {
     const { characters, addCharacter } = useSpeackerStore();
 
+    const defaultValues: Character = {
+        id: "",
+        name: "",
+        tag: "",
+        color: "#ffffff",
+        pitch: 0,
+        readingSpeed: 100,
+        ymm4CharName: ""
+    }
+
     const {
         register,
         handleSubmit,
@@ -16,13 +26,7 @@ export default function AddCharacter() {
         formState: { errors, isSubmitting },
     } = useForm<Character>({
         resolver: zodResolver(characterSchema),
-        defaultValues: {
-            id: "",
-            name: "",
-            tag: "",
-            color: "#ffffff",
-            ymm4CharName: ""
-        }
+        defaultValues
     });
 
     const onSubmit = (data: Character) => {
@@ -49,7 +53,7 @@ export default function AddCharacter() {
     }
 
         addCharacter(data);
-        reset();
+        reset(defaultValues);
     };
 
     return (
@@ -94,6 +98,30 @@ export default function AddCharacter() {
                     type="color"
                     id="character-color"
                     {...register("color")}
+                    className="bg-(--content2) border border-(--border) rounded"
+                />
+            </InputContainer>
+
+            <InputContainer className="mb-4">
+                <label htmlFor="character-pitch" className="text-sm mb-1">音程/再生速度:</label>
+                {errors.pitch && <p className="text-sm text-red-500">{errors.pitch.message}</p>}
+                <input
+                    type="number"
+                    id="character-pitch"
+                    {...register("pitch", { valueAsNumber: true })}
+                    defaultValue={defaultValues.pitch}
+                    className="bg-(--content2) border border-(--border) rounded"
+                />
+            </InputContainer>
+
+            <InputContainer className="mb-4">
+                <label htmlFor="character-reading-speed" className="text-sm mb-1">読み上げ速度:</label>
+                {errors.readingSpeed && <p className="text-sm text-red-500">{errors.readingSpeed.message}</p>}
+                <input
+                    type="number"
+                    id="character-reading-speed"
+                    {...register("readingSpeed", { valueAsNumber: true })}
+                    defaultValue={defaultValues.readingSpeed}
                     className="bg-(--content2) border border-(--border) rounded"
                 />
             </InputContainer>

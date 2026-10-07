@@ -11,6 +11,7 @@ import ScriptPreview from "./_components/ScriptPreview";
 import StatusBar from "./_components/StatusBar";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
+import Panel from "@/renderer/components/Panel";
 
 export default function Editor() {
     const { characters, emotions } = useSpeackerStore();
@@ -50,10 +51,10 @@ export default function Editor() {
                     <EmotionBar editor={editor} />
                 </div>
 
-                <div className="flex-1 flex m-0.5 bg-(--content) rounded-lg border border-(--border)">
+                <Panel className="flex-1 flex m-0.5">
                     <ScriptEditor editor={editor} />
                     <ScriptPreview />
-                </div>
+                </Panel>
             </div>
 
             <StatusBar />

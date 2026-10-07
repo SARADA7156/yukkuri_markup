@@ -1,5 +1,4 @@
 import { cn } from "@/renderer/lib/utils";
-import "./button.css";
 
 type ButtonProps = {
     children?: React.ReactNode;

@@ -1,3 +1,4 @@
+import Panel from "@/renderer/components/Panel";
 import { cn } from "@/renderer/lib/utils";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import type { SuggestionKeyDownProps, SuggestionProps } from "@tiptap/suggestion";
@@ -75,7 +76,7 @@ export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((prop
     }), [items, selectedIndex]);
 
     return (
-        <div className="suggestion-menu flex flex-col border border-(--border)">
+        <Panel className="suggestion-menu flex flex-col rounded-none">
             {items.length ? (
                 items.map((item: AutoCompleteItem, index: number) => (
                     <button
@@ -90,6 +91,6 @@ export const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((prop
             ) : (
                 <div className="no-result">候補がありません</div>
             )}
-        </div>
+        </Panel>
     );
 });

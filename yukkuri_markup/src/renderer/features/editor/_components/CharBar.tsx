@@ -1,6 +1,7 @@
 import type { Editor } from "@tiptap/react";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
-import Button from "@/renderer/components/Button/Button";
+import Button from "@/renderer/components/Button";
+import Panel from "@/renderer/components/Panel";
 
 interface SideBarProps {
     editor: Editor;
@@ -41,7 +42,7 @@ export default function CharBar({ editor }: SideBarProps) {
     }
 
     return (
-        <div className="bg-(--background) px-2 flex flex-col w-16 items-center m-0.5 border border-(--border) rounded-lg">
+        <Panel className="px-2 flex flex-col w-16 items-center" background="dark">
             <div className="charbar-header">
                 <p className="text-sm">キャラ</p>
             </div>
@@ -59,6 +60,6 @@ export default function CharBar({ editor }: SideBarProps) {
                     </div>
                 ))}
             </div>
-        </div>
+        </Panel>
     );
 }

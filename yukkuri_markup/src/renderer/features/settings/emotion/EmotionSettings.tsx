@@ -1,8 +1,8 @@
 import SettingsContent from "../SettingsContent";
 import { MdAdd, MdClose, MdEdit, MdMoreHoriz } from "react-icons/md";
 import EditEmotion from "./EditEmotion";
-import Button from "@/renderer/components/Button/Button";
-import Table from "@/renderer/components/Table/Table";
+import Button from "@/renderer/components/Button";
+import Table from "@/renderer/components/Table";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import type { Emotion } from "@/renderer/store/speacker/emotions";
 import { useState } from "react";

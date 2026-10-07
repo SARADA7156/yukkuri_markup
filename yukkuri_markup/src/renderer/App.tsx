@@ -1,6 +1,6 @@
 import { MdSettings, MdHelp, MdEventNote } from "react-icons/md";
 import { useState } from "react";
-import Button from "./components/Button/Button";
+import Button from "./components/Button";
 import Modal from "./components/Modal";
 import Theme from "./components/Theme";
 import Editor from "./features/editor/Editor";

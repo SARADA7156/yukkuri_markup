@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import Container from "./Container";
-import Button from "./Button/Button";
+import Button from "./Button";
 import { MdClose } from "react-icons/md";
 import { cn } from "@/renderer/lib/utils";
 

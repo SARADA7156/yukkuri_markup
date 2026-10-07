@@ -1,4 +1,4 @@
-import Button from "@/renderer/components/Button/Button";
+import Button from "@/renderer/components/Button";
 import InputContainer from "@/renderer/components/InputContainer";
 import { characterSchema, type Character } from "@/renderer/store/speacker/character";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";

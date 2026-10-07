@@ -3,7 +3,7 @@ import { useState } from "react";
 import GeneralSettings from "./GeneralSettings";
 import CharacterSettings from "./character/CharacterSettings";
 import EmotionSettings from "./emotion/EmotionSettings";
-import Button from "@/renderer/components/Button/Button";
+import Button from "@/renderer/components/Button";
 
 type SettingsType = "general" | "character" | "emotion";
 

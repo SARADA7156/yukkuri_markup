@@ -2,8 +2,8 @@ import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import SettingsContent from "../SettingsContent";
 import EditCharacter from "./EditCharacter";
 import { MdAdd, MdClose, MdEdit, MdMoreHoriz } from "react-icons/md";
-import Button from "@/renderer/components/Button/Button";
-import Table from "@/renderer/components/Table/Table";
+import Button from "@/renderer/components/Button";
+import Table from "@/renderer/components/Table";
 import { useState } from "react";
 import { type Character } from "@/renderer/store/speacker/character";
 

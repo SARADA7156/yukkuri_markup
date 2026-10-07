@@ -1,4 +1,4 @@
-import Button from "@/renderer/components/Button/Button";
+import Button from "@/renderer/components/Button";
 import { cn } from "@/renderer/lib/utils";
 import { useState } from "react";
 import MarkdownContent from "../../components/MarkdownContent";

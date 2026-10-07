@@ -39,6 +39,12 @@ export interface SpeakerStore {
     addEmotions: (value: Emotion) => void;
 
     /**
+     * カスタム感情を更新・追加するメソッド。カスタム感情が存在する場合は更新を行い、存在しない場合は新たに追加を行う。
+     * @param value 追加・更新したいカスタム感情のデータ
+     */
+    upsertEmotion: (value: Emotion) => void;
+
+    /**
      * 登録されている感情フラグを削除するメソッド
      * @param id 削除する感情フラグid
      */
@@ -85,6 +91,22 @@ export const useSpeackerStore = create<SpeakerStore>()(
                     set((state) => ({
                         emotions: [...state.emotions, value],
                     })),
+
+                upsertEmotion: (value) =>
+                    set((state) => {
+                        const exists = state.emotions.some(el => el.id === value.id);
+                        if (exists) {
+                            return {
+                                emotions: state.emotions.map((emotion) =>
+                                    emotion.id === value.id ? { ...emotion, ...value } : emotion
+                                ),
+                            };
+                        }
+
+                        return {
+                            emotions: [...state.emotions, value],
+                        };
+                    }),
 
                 removeEmotion: (id) =>
                     set((state) => ({

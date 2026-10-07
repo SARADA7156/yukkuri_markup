@@ -10,27 +10,33 @@ export interface SpeakerStore {
     characters: Character[];
 
     /**
+     * キャラクターの感情データが格納される変数
+     */
+    emotions: Emotion[];
+
+    /**
      * 新たにカスタムキャラクターを追加するメソッド
      * @param value 追加したいカスタムキャラクターのデータ
      */
     addCharacter: (value: Character) => void;
 
     /**
-     * キャラクターの感情データが格納される変数
+     * キャラクターを更新・追加するメソッド。キャラが存在する場合は更新を行い、存在しない場合は新たに追加を行う。
+     * @param value 追加・更新したいキャラクターのデータ
      */
-    emotions: Emotion[];
-
-    /**
-     * 新たにカスタム感情を追加するメソッド
-     * @param value 追加したいカスタム感情のデータ
-     */
-    addEmotions: (value: Emotion) => void;
+    upsertCharacter: (value: Character) => void;
 
     /**
      * 登録されているキャラクターを削除するメソッド
      * @param id 削除するキャラクターid
      */
     removeCharacter: (id: string) => void;
+
+    /**
+     * 新たにカスタム感情を追加するメソッド
+     * @param value 追加したいカスタム感情のデータ
+     */
+    addEmotions: (value: Emotion) => void;
 
     /**
      * 登録されている感情フラグを削除するメソッド
@@ -54,14 +60,30 @@ export const useSpeackerStore = create<SpeakerStore>()(
                         characters: [...state.characters, value],
                     })),
 
-                addEmotions: (value) =>
-                    set((state) => ({
-                        emotions: [...state.emotions, value],
-                    })),
+                upsertCharacter: (value) =>
+                    set((state) => {
+                        const exists = state.characters.some(el => el.id === value.id);
+                        if (exists) {
+                            return {
+                                characters: state.characters.map((char) => 
+                                    char.id === value.id ? { ...char, ...value } : char
+                                ),
+                            };
+                        }
+
+                        return {
+                            characters: [...state.characters, value],
+                        };
+                    }),
 
                 removeCharacter: (id) =>
                     set((state) => ({
                         characters: filterById(state.characters, id),
+                    })),
+
+                addEmotions: (value) =>
+                    set((state) => ({
+                        emotions: [...state.emotions, value],
                     })),
 
                 removeEmotion: (id) =>

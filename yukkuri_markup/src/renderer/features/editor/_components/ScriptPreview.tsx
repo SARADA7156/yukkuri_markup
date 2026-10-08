@@ -1,4 +1,5 @@
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
+import { calculateDuration, formatMs } from "../calculateDuration";
 
 export default function ScriptPreview() {
     const { scriptData } = useEditorStore();
@@ -21,15 +22,21 @@ export default function ScriptPreview() {
                         {item.type === "yukkuriVoice" &&
                             <div className="flex">
                                 <strong className="min-w-26">{item.attrs.speaker}({item.attrs.emotion}):</strong>
-                                {item.content.map((text, idx) => (
-                                    <p key={idx}>{text.text}</p>
-                                ))}
+                                    {item.content.map((text, idx) => (
+                                        <div className="flex items-center" key={`yukkuri_script-${idx}`}>
+                                            <p>{text.text}</p>
+                                            <p
+                                                className="text-green-500 text-sm ms-1"
+                                            >
+                                                {formatMs(calculateDuration(text.text))}
+                                            </p>
+                                        </div>
+                                    ))}
                             </div>
                         }
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }

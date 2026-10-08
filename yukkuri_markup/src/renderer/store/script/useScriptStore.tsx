@@ -9,13 +9,13 @@ type ParagraphObject = {
     type: "paragraph";
 } & BaseObject;
 
-type YUkkuriVoiceObject = {
+type YukkuriVoiceObject = {
     type: "yukkuriVoice";
     speaker: string;
     emotion: string;
 } & BaseObject
 
-export type ScriptObject = ParagraphObject | YUkkuriVoiceObject;
+export type ScriptObject = ParagraphObject | YukkuriVoiceObject;
 
 export interface ScriptStore {
     lineIds: string[];
@@ -30,23 +30,31 @@ export interface ScriptStore {
     deleteScript: (id: string) => void;
 }
 
-export const useScriptStore = create<ScriptStore>((set, get) => {
-    return {
-        lineIds: [],
-        scripts: {},
-        readingTimes: {},
-        totalReadingTimes: 0,
+export const useScriptStore = create<ScriptStore>((set) => ({
+    lineIds: [],
+    scripts: {},
+    readingTimes: {},
+    totalReadingTimes: 0,
 
-        insertScript: (index, script) => set(() => ({
+    insertScript: (index, script) => set((state) => ({
+        lineIds: state.lineIds.toSpliced(index, 0, script.id),
+        scripts: { ...state.scripts, [script.id]: script },
+    })),
 
-        })),
+    updateScript: (script) => set((state) => {
+        if (!(script.id in state.scripts)) return state;
+        return { scripts: { ...state.scripts, [script.id]: script } };
+    }),
 
-        updateScript: (script) => set(() => ({
+    deleteScript: (id) => set((state) => {
+        const { [id]: _removed, ...rest } = state.scripts;
+        const { [id]: removedTime = 0, ...readingTimes } = state.readingTimes;
 
-        })),
-
-        deleteScript: (id) => set(() => ({
-            
-        }))
-    }
-});
+        return {
+            lineIds: state.lineIds.filter((lineId) => lineId !== id),
+            scripts: rest,
+            readingTimes,
+            totalReadingTimes: state.totalReadingTimes - removedTime,
+        };
+    })
+}));

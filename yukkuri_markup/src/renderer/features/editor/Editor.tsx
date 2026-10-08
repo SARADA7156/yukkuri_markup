@@ -2,6 +2,7 @@ import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count"
 import { Mention } from "@tiptap/extension-mention";
+import UniqueID from "@tiptap/extension-unique-id";
 import { suggestion } from "./suggestion";
 import { parseScriptToJson } from "./parser";
 import CharBar from "./_components/CharBar";
@@ -32,10 +33,16 @@ export default function Editor() {
             Mention.configure({
                 HTMLAttributes: { class: "mention" },
                 suggestion
-            })
+            }),
+            UniqueID.configure({
+                types: ["heading", "paragraph"],
+                attributeName: "lineId"
+            }),
         ],
         onUpdate({ editor }) {
             const text = editor.getText();
+            const json = editor.getJSON();
+            console.log(json)
 
             // 解析・保存データ更新は重い処理なのでデバウンス実行
             debouncedParse(text, characters, emotions);

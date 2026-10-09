@@ -1,5 +1,3 @@
-import type { Character } from "@/renderer/store/speacker/character";
-
 export function calculateDuration(
     text: string,
     // characters: Character[],

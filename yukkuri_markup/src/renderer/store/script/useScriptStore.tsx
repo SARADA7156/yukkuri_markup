@@ -4,17 +4,17 @@ type BaseObject = {
     id: string;
     text: string;
     readingTime: number;
-}
+};
 
-type ParagraphObject = {
+export type ParagraphObject = BaseObject & {
     type: "paragraph";
-} & BaseObject;
+};
 
-type YukkuriVoiceObject = {
+export type YukkuriVoiceObject = BaseObject & {
     type: "yukkuriVoice";
     speaker: string;
     emotion: string;
-} & BaseObject
+};
 
 export type ScriptObject = ParagraphObject | YukkuriVoiceObject;
 

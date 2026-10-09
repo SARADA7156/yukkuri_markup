@@ -21,7 +21,7 @@ export default function Editor() {
                 suggestion
             }),
             UniqueID.configure({
-                types: ["heading", "paragraph"],
+                types: ["paragraph"],
                 attributeName: "lineId"
             }),
         ],

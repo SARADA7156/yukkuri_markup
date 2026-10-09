@@ -1,5 +1,5 @@
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
-import { calculateDuration, formatMs } from "../calculateDuration";
+import { calculateDuration, formatMs } from "../lib/calculateDuration";
 
 export default function ScriptPreview() {
     const { scriptData } = useEditorStore();

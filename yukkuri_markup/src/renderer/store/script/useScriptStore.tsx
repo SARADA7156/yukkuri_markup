@@ -3,6 +3,7 @@ import { create } from "zustand";
 type BaseObject = {
     id: string;
     text: string;
+    readingTime: number;
 }
 
 type ParagraphObject = {
@@ -17,44 +18,38 @@ type YukkuriVoiceObject = {
 
 export type ScriptObject = ParagraphObject | YukkuriVoiceObject;
 
+type SyncPayload = {
+    lineIds: string[];
+    changed: Record<string, ScriptObject>;
+};
+
 export interface ScriptStore {
     lineIds: string[];
     scripts: Record<string, ScriptObject>;
-    readingTimes: Record<string, number>;
     totalReadingTimes: number;
 
-    insertScript: (index: number, script: ScriptObject) => void;
-
-    updateScript: (script: ScriptObject) => void;
-
-    deleteScript: (id: string) => void;
+    syncScripts: (payload: SyncPayload) => void;
 }
 
 export const useScriptStore = create<ScriptStore>((set) => ({
     lineIds: [],
     scripts: {},
-    readingTimes: {},
     totalReadingTimes: 0,
 
-    insertScript: (index, script) => set((state) => ({
-        lineIds: state.lineIds.toSpliced(index, 0, script.id),
-        scripts: { ...state.scripts, [script.id]: script },
-    })),
+    syncScripts: ({ lineIds, changed }) => set((state) => {
+        const scripts = { ...state.scripts, ...changed };
 
-    updateScript: (script) => set((state) => {
-        if (!(script.id in state.scripts)) return state;
-        return { scripts: { ...state.scripts, [script.id]: script } };
-    }),
+        const alive = new Set(lineIds);
+        for (const id of state.lineIds) {
+            if (!alive.has(id)) {
+                delete scripts[id];
+            }
+        }
 
-    deleteScript: (id) => set((state) => {
-        const { [id]: _removed, ...rest } = state.scripts;
-        const { [id]: removedTime = 0, ...readingTimes } = state.readingTimes;
+        const totalReadingTimes = lineIds.reduce(
+            (sum, id) => sum + (scripts[id]?.readingTime ?? 0), 0
+        );
 
-        return {
-            lineIds: state.lineIds.filter((lineId) => lineId !== id),
-            scripts: rest,
-            readingTimes,
-            totalReadingTimes: state.totalReadingTimes - removedTime,
-        };
+        return { lineIds, scripts, totalReadingTimes };
     })
 }));

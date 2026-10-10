@@ -1,6 +1,6 @@
 import { ReactRenderer } from "@tiptap/react";
 import tippy from 'tippy.js';
-import { AutoComplete, type AutoCompleteProps, type AutoCompleteRef, type Item } from "../_components/AutoComplete";
+import { AutoComplete, type AutoCompleteProps, type AutoCompleteRef, type Item } from "./AutoComplete";
 import type { SuggestionOptions } from "@tiptap/suggestion";
 
 export const suggestion: Omit<SuggestionOptions<Item>, "editor"> = {

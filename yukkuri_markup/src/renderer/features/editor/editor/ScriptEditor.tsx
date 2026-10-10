@@ -1,5 +1,5 @@
 import { Editor, EditorContent } from "@tiptap/react";
-import useTransaction from "../_hooks/useTransaction";
+import useTransaction from "./useTransaction";
 
 interface ScriptEditorProps {
     editor: Editor;

@@ -3,12 +3,12 @@ import StarterKit from "@tiptap/starter-kit";
 import CharacterCount from "@tiptap/extension-character-count"
 import { Mention } from "@tiptap/extension-mention";
 import UniqueID from "@tiptap/extension-unique-id";
-import { suggestion } from "./lib/suggestion";
-import CharBar from "./_components/CharBar";
-import EmotionBar from "./_components/EmotionBar";
-import ScriptEditor from "./_components/ScriptEditor";
-import ScriptPreview from "./_components/ScriptPreview";
-import StatusBar from "./_components/StatusBar";
+import { suggestion } from "./autoComplete/suggestion";
+import CharBar from "./speaker/CharBar";
+import EmotionBar from "./speaker/EmotionBar";
+import ScriptEditor from "./editor/ScriptEditor";
+import ScriptPreview from "./preview/ScriptPreview";
+import StatusBar from "./status/StatusBar";
 import Panel from "@/renderer/components/Panel";
 
 export default function Editor() {

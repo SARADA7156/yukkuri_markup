@@ -1,12 +1,8 @@
-import type { ScriptObject } from "@/renderer/store/script/useScriptStore";
 import type { Character } from "@/renderer/store/speacker/character";
 import type { Emotion } from "@/renderer/store/speacker/emotions";
 
-type ParseResult = Pick<ScriptObject, "type" | "text" > & (
-    | { type: "paragraph" }
-    | { type: "yukkuriVoice"; speaker: string; emotion: string }
-);
-export function parseToJson(rawText: string, characters: Character[], emotions: Emotion[]): ParseResult {
+// TODO: 変換リザルトの型を定義し、戻り値の構造を変更する
+export function parseToJson(rawText: string, characters: Character[], emotions: Emotion[]) {
     const characterMap = new Map(characters.map(c => [c.tag, c.name]));
     const emotionMap = new Map(emotions.map(e => [e.id, e.name]));
 

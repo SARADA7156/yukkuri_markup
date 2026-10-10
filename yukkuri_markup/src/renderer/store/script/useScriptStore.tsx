@@ -1,22 +1,20 @@
 import { create } from "zustand";
 
-type BaseObject = {
+export type ScriptObject = {
     id: string;
     text: string;
-    readingTime: number;
 };
 
-export type ParagraphObject = BaseObject & {
+export type ParagraphObject = ScriptObject & {
     type: "paragraph";
 };
 
-export type YukkuriVoiceObject = BaseObject & {
+export type YukkuriVoiceObject = ScriptObject & {
     type: "yukkuriVoice";
     speaker: string;
     emotion: string;
+    readingTime: number;
 };
-
-export type ScriptObject = ParagraphObject | YukkuriVoiceObject;
 
 type SyncPayload = {
     lineIds: string[];
@@ -26,7 +24,6 @@ type SyncPayload = {
 export interface ScriptStore {
     lineIds: string[];
     scripts: Record<string, ScriptObject>;
-    totalReadingTimes: number;
 
     syncScripts: (payload: SyncPayload) => void;
 }
@@ -34,7 +31,6 @@ export interface ScriptStore {
 export const useScriptStore = create<ScriptStore>((set) => ({
     lineIds: [],
     scripts: {},
-    totalReadingTimes: 0,
 
     syncScripts: ({ lineIds, changed }) => set((state) => {
         const scripts = { ...state.scripts, ...changed };
@@ -46,10 +42,6 @@ export const useScriptStore = create<ScriptStore>((set) => ({
             }
         }
 
-        const totalReadingTimes = lineIds.reduce(
-            (sum, id) => sum + (scripts[id]?.readingTime ?? 0), 0
-        );
-
-        return { lineIds, scripts, totalReadingTimes };
+        return { lineIds, scripts };
     })
 }));

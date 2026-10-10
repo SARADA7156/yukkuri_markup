@@ -1,28 +1,49 @@
 import { useDebouncedCallback } from "@/renderer/hooks/useDebouncedCallback";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
-import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
+import { useScriptStore, type ScriptObject } from "@/renderer/store/script/useScriptStore";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
 import { useEffect } from "react";
 
 export default function useTransaction(editor: Editor | null) {
     const updateEditorStatus = useEditorStore((state) => state.updateEditorStatus);
-    const characters = useSpeackerStore((state) => state.characters);
-    const emotions = useSpeackerStore((state) => state.emotions);
+
+    const syncScripts = useScriptStore((state) => state.syncScripts);
 
     const debouncedParse = useDebouncedCallback(() => {
         if (!editor) return;
 
-        // Tiptapの全ノード内のidを取得
-        const ids: string[] = [];
+        const { lineIds, scripts } = useScriptStore.getState();
 
+        const ids: string[] = [];
+        const newScripts: Record<string, ScriptObject> = {};
+
+        // Tiptapの全ノード内のidを取得
         editor.state.doc.forEach((node) => {
-            if (node.attrs.lineId) {
-                ids.push(node.attrs.lineId);
+            const id: string | undefined = node.attrs.lineId;
+            if (id) {
+                ids.push(id);
+
+                // 文字列を直接比較し差分を検知する
+                const prevText = scripts[id]?.text;
+                const text = node.textContent;
+
+                if (prevText !== undefined && prevText !== text) {
+                    newScripts[id] = { id, text };
+                }
             }
         });
 
-        // 行の追加判定
+        // idによる追加検知
+        const oldIds = new Set(lineIds);
+        editor.state.doc.forEach((node) => {
+            const id: string | undefined = node.attrs.lineId;
+            if (id && !oldIds.has(id)) {
+                newScripts[id] = { id, text: node.textContent };
+            }
+        });
+
+        syncScripts({ lineIds: ids, changed: newScripts });
     }, 500);
 
     useEffect(() => {
@@ -53,5 +74,5 @@ export default function useTransaction(editor: Editor | null) {
         return () => {
             editor.off("transaction", handleTransaction);
         }
-    }, [editor, characters, emotions]);
+    }, [editor]);
 }

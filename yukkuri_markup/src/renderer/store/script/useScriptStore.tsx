@@ -1,30 +1,26 @@
+import type { BaseObject } from "@/renderer/types/script";
 import { create } from "zustand";
-
-export type ScriptObject = {
-    id: string;
-    text: string;
-};
-
-export type ParagraphObject = ScriptObject & {
-    type: "paragraph";
-};
-
-export type YukkuriVoiceObject = ScriptObject & {
-    type: "yukkuriVoice";
-    speaker: string;
-    emotion: string;
-    readingTime: number;
-};
 
 type SyncPayload = {
     lineIds: string[];
-    changed: Record<string, ScriptObject>;
+    changed: Record<string, BaseObject>;
 };
 
 export interface ScriptStore {
+    /**
+     * 入力した行ごとのユニークなidが格納される。この配列は表示される行の順序を保証しなければならない。
+     */
     lineIds: string[];
-    scripts: Record<string, ScriptObject>;
 
+    /**
+     * 実際にエディタの行に入力したテキストとidのオブジェクトが格納される。
+     */
+    scripts: Record<string, BaseObject>;
+
+    /**
+     * idの配列と変更があったオブジェクトを渡し、ストアの状態を最新にする。
+     * @param payload 新しくセットするidの配列と変更があった台本オブジェクト
+     */
     syncScripts: (payload: SyncPayload) => void;
 }
 

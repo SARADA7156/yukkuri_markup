@@ -1,6 +1,7 @@
 import { useDebouncedCallback } from "@/renderer/hooks/useDebouncedCallback";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
-import { useScriptStore, type ScriptObject } from "@/renderer/store/script/useScriptStore";
+import { useScriptStore } from "@/renderer/store/script/useScriptStore";
+import type { BaseObject } from "@/renderer/types/script";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
 import { useEffect } from "react";
@@ -16,7 +17,7 @@ export default function useTransaction(editor: Editor | null) {
         const { lineIds, scripts } = useScriptStore.getState();
 
         const ids: string[] = [];
-        const newScripts: Record<string, ScriptObject> = {};
+        const newScripts: Record<string, BaseObject> = {};
 
         // Tiptapの全ノード内のidを取得
         editor.state.doc.forEach((node) => {

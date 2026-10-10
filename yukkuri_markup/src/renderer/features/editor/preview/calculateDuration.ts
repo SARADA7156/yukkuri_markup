@@ -1,6 +1,5 @@
 export function calculateDuration(
     text: string,
-    // characters: Character[],
     speedPercent: number = 100
 ) {
     if (speedPercent <= 0) return 0;

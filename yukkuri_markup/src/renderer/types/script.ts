@@ -11,7 +11,7 @@ export type YukkuriVoiceObject = BaseObject & {
     type: "yukkuriVoice";
     speaker: string;
     emotion: string;
-    readingTime: number;
+    readingMs: number;
 };
 
 export type ScriptObject = ParagraphObject | YukkuriVoiceObject;

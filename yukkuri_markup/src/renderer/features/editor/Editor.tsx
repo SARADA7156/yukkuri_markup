@@ -10,6 +10,7 @@ import ScriptEditor from "./editor/ScriptEditor";
 import ScriptPreview from "./preview/ScriptPreview";
 import StatusBar from "./status/StatusBar";
 import Panel from "@/renderer/components/Panel";
+import FileStatus from "./fileStatus/FileStatus";
 
 export default function Editor() {
     const editor = useEditor({
@@ -35,9 +36,13 @@ export default function Editor() {
                     <EmotionBar editor={editor} />
                 </div>
 
-                <Panel className="flex-1 flex m-0.5">
-                    <ScriptEditor editor={editor} />
-                    <ScriptPreview />
+                <Panel className="flex-1 grid grid-rows-[4%_96%] m-0.5">
+                    <FileStatus />
+
+                    <div className="flex">
+                        <ScriptEditor editor={editor} />
+                        <ScriptPreview />
+                    </div>
                 </Panel>
             </div>
 

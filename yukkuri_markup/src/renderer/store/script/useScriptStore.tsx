@@ -68,6 +68,6 @@ export const useScriptStore = create<ScriptStore>((set) => ({
             }
         }
 
-        return { lineIds, scripts, totalReadingMs, isModifined: true };
+        return { lineIds, scripts, totalReadingMs, isModified: true };
     }),
 }));

@@ -39,7 +39,11 @@ export default function Modal({ isOpen, onClose, title, className, children }: M
             onClick={onClose}
         >
             <Container
-                className={cn("bg-(--background) border border-(--border) p-0 min-w-2/3 max-w-2/3 min-h-2/3 max-h-2/3 grid grid-rows-[6%_94%]", className)}
+                className={cn(
+                    "bg-(--background) border border-(--border) p-0 min-w-2/3 max-w-2/3 min-h-2/3 max-h-2/3 grid grid-rows-[6%_94%]",
+                    "animate-zoom-in",
+                    className
+                )}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* モーダルヘッダー */}

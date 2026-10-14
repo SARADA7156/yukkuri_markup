@@ -42,9 +42,9 @@ function createWindow() {
             nodeIntegration: false,
             contextIsolation: true,
         },
-        autoHideMenuBar: true,
         icon: path.join(app.getAppPath(), "public/icon.ico")
     });
+    mainWindow.setMenuBarVisibility(false);
 
     if (rawBounds.isMaximized) {
         mainWindow.maximize();

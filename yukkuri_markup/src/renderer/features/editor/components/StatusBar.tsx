@@ -1,6 +1,6 @@
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
-import { formatMs } from "../preview/calculateDuration";
+import { formatMs } from "../extensions/calculateDuration";
 
 export default function StatusBar() {
     const editorStatus = useEditorStore((s) => s.editorStatus);

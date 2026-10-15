@@ -1,13 +1,13 @@
-import type { Editor } from "@tiptap/react";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import Button from "@/renderer/components/Button";
 import Panel from "@/renderer/components/Panel";
+import { useTiptapEditor } from "../EditorProvider";
 
-interface SideBarProps {
-    editor: Editor;
-}
+export default function CharBar() {
+    const editor = useTiptapEditor();
 
-export default function CharBar({ editor }: SideBarProps) {
+    if (!editor) return null;
+
     const { characters } = useSpeackerStore();
 
     const insertCharacterTag = (character: string) => {

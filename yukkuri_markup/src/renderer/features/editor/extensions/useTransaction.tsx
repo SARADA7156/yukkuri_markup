@@ -6,7 +6,7 @@ import type { ScriptObject } from "@/renderer/types/script";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
 import { useEffect } from "react";
-import { parseToJson } from "../preview/parseToJson";
+import { parseToJson } from "../extensions/parseToJson";
 
 export default function useTransaction(editor: Editor | null) {
     const updateEditorStatus = useEditorStore((state) => state.updateEditorStatus);

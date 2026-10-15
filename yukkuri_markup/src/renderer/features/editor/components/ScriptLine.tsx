@@ -1,5 +1,5 @@
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
-import { formatMs } from "./calculateDuration";
+import { formatMs } from "../extensions/calculateDuration";
 import { memo } from "react";
 
 export default memo(function ScriptLine({ lineId }: { lineId: string }) {

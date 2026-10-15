@@ -1,13 +1,13 @@
-import type { Editor } from "@tiptap/react";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import Button from "@/renderer/components/Button";
 import Panel from "@/renderer/components/Panel";
+import { useTiptapEditor } from "../EditorProvider";
 
-interface EmotionsBar {
-    editor: Editor;
-}
+export default function EmotionBar() {
+    const editor = useTiptapEditor();
 
-export default function EmotionBar({ editor }: EmotionsBar) {
+    if (!editor) return null;
+
     const { emotions } = useSpeackerStore();
 
     const insertEmotionTag = (emotion: string) => {

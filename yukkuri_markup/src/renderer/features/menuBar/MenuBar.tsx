@@ -2,24 +2,37 @@ import Button from "@/renderer/components/Button";
 import { useEffect, useRef, useState } from "react";
 import MenuModals from "./MenuModals";
 import Panel from "@/renderer/components/Panel";
+import type { Command, CommandContext, MenuGroup } from "@/renderer/types/command";
+import { useTiptapEditor } from "../editor/EditorProvider";
+import { useModalState } from "@/renderer/store/modal/useModalState";
+import { APP_COMMANDS } from "@/renderer/constants/appCommands";
 
-type MenuItem = {
-    title: string;
-    items: string[];
-};
-
-const menuData: MenuItem[] = [
+const menuData: MenuGroup[] = [
     {
         title: "ファイル",
-        items: ["ファイルを開く", "保存", "設定", "終了"],
+        items: [
+            APP_COMMANDS.FILE_OPEN,
+            APP_COMMANDS.SAVE,
+            APP_COMMANDS.SETTINGS,
+            APP_COMMANDS.EXIT
+        ],
     },
     {
         title: "編集",
-        items: ["元に戻す", "やり直し", "切り取り", "コピー", "貼り付け"],
+        items: [
+            APP_COMMANDS.UNDO,
+            APP_COMMANDS.REDO,
+            APP_COMMANDS.CUT,
+            APP_COMMANDS.COPY,
+            APP_COMMANDS.PASTE,
+        ],
     },
     {
         title: "ヘルプ",
-        items: ["ヘルプを表示", "リリースノート"]
+        items: [
+            APP_COMMANDS.HELP,
+            APP_COMMANDS.RELEASE_NOTES
+        ]
     }
 ];
 
@@ -27,6 +40,16 @@ export default function MenuBar() {
     const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
     const [isActivated, setIsActivated] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement>(null);
+
+    const editor = useTiptapEditor();
+    const openModal = useModalState((s) => s.openModal);
+
+    if (!editor) return null;
+
+    const context: CommandContext = {
+        editor,
+        openModal
+    }
 
     const handleMenuClick = (index: number) => {
         if (isActivated && activeMenuIndex === index) {
@@ -43,6 +66,12 @@ export default function MenuBar() {
             setActiveMenuIndex(index);
         }
     };
+
+    const handleClick = (item: Command) => {
+        setIsActivated(false);
+        setActiveMenuIndex(null);
+        item.execute(context)
+    }
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -77,16 +106,13 @@ export default function MenuBar() {
                             {/* ドロップダウンメニュー */}
                             {isOpen && (
                                 <Panel className="absolute left-0 top-full z-50 min-w-50 px-3 py-2 whitespace-nowrap animate-zoom-in">
-                                    {menu.items.map((item, itemIndex) => (
+                                    {menu.items.map((item) => (
                                         <Button
-                                            key={itemIndex}
-                                            onClick={() => {
-                                                setIsActivated(false);
-                                                setActiveMenuIndex(null);
-                                            }}
+                                            key={item.id}
+                                            onClick={() => handleClick(item)}
                                             className="cursor-pointer rounded w-full"
                                         >
-                                            {item}
+                                            {item.label}
                                         </Button>
                                     ))}
                                 </Panel>

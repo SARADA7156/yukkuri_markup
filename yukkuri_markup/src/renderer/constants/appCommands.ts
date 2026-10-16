@@ -8,16 +8,22 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     FILE_OPEN: {
         id: "fileOpen",
         label: "ファイルを開く",
+        shortcut: ["ControlLeft", "KeyO"],
+        shortcutLabel: "Ctrl+O",
         execute: (ctx) => { }
     },
     SAVE: {
         id: "save",
         label: "保存",
+        shortcut: ["ControlLeft", "KeyS"],
+        shortcutLabel: "Ctrl+S",
         execute: (ctx) => { }
     },
     SETTINGS: {
         id: "settings",
         label: "設定",
+        shortcut: ["ControlLeft", "Comma"],
+        shortcutLabel: "Ctrl+,",
         execute: (ctx) => {
             ctx.openModal("settings");
         }
@@ -30,6 +36,8 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     UNDO: {
         id: "undo",
         label: "元に戻す",
+        shortcut: ["ControlLeft", "KeyZ"],
+        shortcutLabel: "Ctrl+Z",
         execute: (ctx) => {
             ctx.editor?.chain().focus().undo().run();
         },
@@ -37,6 +45,8 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     REDO: {
         id: "redo",
         label: "やり直し",
+        shortcut: ["ControlLeft", "KeyY"],
+        shortcutLabel: "Ctrl+Y",
         execute: (ctx) => {
             ctx.editor?.chain().focus().redo().run();
         },
@@ -44,6 +54,8 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     CUT: {
         id: "cut",
         label: "切り取り",
+        shortcut: ["ControlLeft", "KeyX"],
+        shortcutLabel: "Ctrl+X",
         execute: (ctx) => {
             const editor = ctx.editor;
             if (editor) {
@@ -60,6 +72,8 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     COPY: {
         id: "copy",
         label: "コピー",
+        shortcut: ["ControlLeft", "KeyC"],
+        shortcutLabel: "Ctrl+C",
         execute: (ctx) => {
             const editor = ctx.editor;
             if (editor) {
@@ -75,6 +89,8 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     PASTE: {
         id: "paste",
         label: "貼り付け",
+        shortcut: ["ControlLeft", "KeyV"],
+        shortcutLabel: "Ctrl+V",
         execute: async (ctx) => {
             const editor = ctx.editor;
             if (editor) {

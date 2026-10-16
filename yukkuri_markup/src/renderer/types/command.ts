@@ -10,6 +10,7 @@ export interface Command {
     id: string;
     label: string;
     shortcut?: string[];
+    shortcutLabel?: string;
     isActive?: (ctx: CommandContext) => boolean;
     isEnabled?: (ctx: CommandContext) => boolean;
     execute: (ctx: CommandContext) => Promise<void> | void;

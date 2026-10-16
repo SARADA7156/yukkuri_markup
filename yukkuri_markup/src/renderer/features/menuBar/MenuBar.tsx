@@ -110,9 +110,13 @@ export default function MenuBar() {
                                         <Button
                                             key={item.id}
                                             onClick={() => handleClick(item)}
-                                            className="cursor-pointer rounded w-full"
+                                            className="cursor-pointer rounded w-full flex"
                                         >
-                                            {item.label}
+                                            <p>{item.label}</p>
+
+                                            {item.shortcutLabel &&
+                                                <p className="ms-auto text-(--foreground)/50">{item.shortcutLabel}</p>
+                                            }
                                         </Button>
                                     ))}
                                 </Panel>

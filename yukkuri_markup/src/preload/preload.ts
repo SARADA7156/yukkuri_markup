@@ -1,8 +1,8 @@
-import type { ElectronAPI } from "../shared/ipc-channels.ts";
-import { app, contextBridge } from "electron";
+import type { ElectronAPI } from "../shared/ipc-channels";
+import { contextBridge, ipcRenderer } from "electron";
 
 const api: ElectronAPI = {
-    quit: () => app.quit(),
+    quit: () => ipcRenderer.send("app:quit"),
 }
 
 contextBridge.exposeInMainWorld("electronAPI", api);

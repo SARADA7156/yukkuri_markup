@@ -1,4 +1,4 @@
-import type { ElectronAPI } from "./ipc-channels.ts";
+import type { ElectronAPI } from "./ipc-channels";
 
 declare global {
     interface Window {

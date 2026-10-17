@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { createWindow } from "./windows/mainWindow.ts";
 
 app.whenReady().then(() => {
@@ -11,4 +11,8 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") app.quit();
+});
+
+ipcMain.on("app:quit", () => {
+    app.quit();
 });

@@ -2,7 +2,6 @@ import path from "path";
 import Store from "electron-store";
 import { ensureVisibleBounds } from "./ensureVisibleBounds.ts";
 import { app, BrowserWindow } from "electron";
-import { fileURLToPath } from "url";
 
 export interface WindowBounds {
     width: number;
@@ -19,9 +18,6 @@ const store = new Store<StoreSchema>();
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 const isDev = !app.isPackaged;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export function createWindow() {
     // 前回起動していた際のウィンドウサイズと位置を取得
@@ -45,7 +41,7 @@ export function createWindow() {
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
-            preload: path.join(__dirname, "../preload/preload.js"),
+            preload: path.join(app.getAppPath(), "/dist-electron/preload.js"),
         },
         icon: path.join(app.getAppPath(), "public/icon.ico")
     });

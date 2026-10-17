@@ -2,25 +2,25 @@ import type { Command } from "../types/command";
 
 const COMMANDS = ["FILE_OPEN", "SAVE", "SETTINGS", "EXIT", "UNDO", "REDO", "CUT", "COPY", "PASTE", "HELP", "RELEASE_NOTES"] as const;
 
-type CommandKey = typeof COMMANDS[number];
+export type CommandKey = typeof COMMANDS[number];
 
 export const APP_COMMANDS: Record<CommandKey, Command> = {
     FILE_OPEN: {
-        id: "fileOpen",
+        id: "FILE_OPEN",
         label: "ファイルを開く",
         shortcut: ["ControlLeft", "KeyO"],
         shortcutLabel: "Ctrl+O",
         execute: (ctx) => { }
     },
     SAVE: {
-        id: "save",
+        id: "SAVE",
         label: "保存",
         shortcut: ["ControlLeft", "KeyS"],
         shortcutLabel: "Ctrl+S",
         execute: (ctx) => { }
     },
     SETTINGS: {
-        id: "settings",
+        id: "SETTINGS",
         label: "設定",
         shortcut: ["ControlLeft", "Comma"],
         shortcutLabel: "Ctrl+,",
@@ -29,14 +29,14 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         }
     },
     EXIT: {
-        id: "exit",
+        id: "EXIT",
         label: "終了",
         execute: (ctx) => {
-            window.electronAPI.quit()
+            ctx.api?.quit()
         }
     },
     UNDO: {
-        id: "undo",
+        id: "UNDO",
         label: "元に戻す",
         shortcut: ["ControlLeft", "KeyZ"],
         shortcutLabel: "Ctrl+Z",
@@ -45,7 +45,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         },
     },
     REDO: {
-        id: "redo",
+        id: "REDO",
         label: "やり直し",
         shortcut: ["ControlLeft", "KeyY"],
         shortcutLabel: "Ctrl+Y",
@@ -54,7 +54,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         },
     },
     CUT: {
-        id: "cut",
+        id: "CUT",
         label: "切り取り",
         shortcut: ["ControlLeft", "KeyX"],
         shortcutLabel: "Ctrl+X",
@@ -72,7 +72,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         }
     },
     COPY: {
-        id: "copy",
+        id: "COPY",
         label: "コピー",
         shortcut: ["ControlLeft", "KeyC"],
         shortcutLabel: "Ctrl+C",
@@ -89,7 +89,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         }
     },
     PASTE: {
-        id: "paste",
+        id: "PASTE",
         label: "貼り付け",
         shortcut: ["ControlLeft", "KeyV"],
         shortcutLabel: "Ctrl+V",
@@ -102,14 +102,14 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         }
     },
     HELP: {
-        id: "help",
+        id: "HELP",
         label: "ヘルプ",
         execute: (ctx) => {
             ctx.openModal("help");
         }
     },
     RELEASE_NOTES: {
-        id: "releaseNotes",
+        id: "RELEASE_NOTES",
         label: "リリースノート",
         execute: (ctx) => {
             ctx.openModal("releaseNotes");

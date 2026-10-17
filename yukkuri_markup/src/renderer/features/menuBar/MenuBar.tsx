@@ -2,10 +2,10 @@ import Button from "@/renderer/components/Button";
 import { useEffect, useRef, useState } from "react";
 import MenuModals from "./MenuModals";
 import Panel from "@/renderer/components/Panel";
-import type { Command, CommandContext, MenuGroup } from "@/renderer/types/command";
+import type { Command, MenuGroup } from "@/renderer/types/command";
 import { useTiptapEditor } from "../editor/EditorProvider";
-import { useModalState } from "@/renderer/store/modal/useModalState";
 import { APP_COMMANDS } from "@/renderer/constants/appCommands";
+import { useCommand } from "@/renderer/contexts/CommandContext";
 
 const menuData: MenuGroup[] = [
     {
@@ -42,14 +42,10 @@ export default function MenuBar() {
     const menuRef = useRef<HTMLDivElement>(null);
 
     const editor = useTiptapEditor();
-    const openModal = useModalState((s) => s.openModal);
 
     if (!editor) return null;
 
-    const context: CommandContext = {
-        editor,
-        openModal
-    }
+    const run = useCommand();
 
     const handleMenuClick = (index: number) => {
         if (isActivated && activeMenuIndex === index) {
@@ -67,10 +63,10 @@ export default function MenuBar() {
         }
     };
 
-    const handleClick = (item: Command) => {
+    const handleClick = (id: Command["id"]) => {
         setIsActivated(false);
         setActiveMenuIndex(null);
-        item.execute(context)
+        run(id);
     }
 
     useEffect(() => {
@@ -109,7 +105,7 @@ export default function MenuBar() {
                                     {menu.items.map((item) => (
                                         <Button
                                             key={item.id}
-                                            onClick={() => handleClick(item)}
+                                            onClick={() => handleClick(item.id)}
                                             className="cursor-pointer rounded w-full flex"
                                         >
                                             <p>{item.label}</p>

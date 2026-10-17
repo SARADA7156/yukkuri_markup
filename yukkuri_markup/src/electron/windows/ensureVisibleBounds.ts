@@ -1,5 +1,5 @@
 import { type Rectangle, screen } from "electron";
-import type { WindowBounds } from "./main";
+import type { WindowBounds } from "./mainWindow.ts";
 
 /**
  * 保存された座標が現在の有効な画面内にあるか判定・補正する関数

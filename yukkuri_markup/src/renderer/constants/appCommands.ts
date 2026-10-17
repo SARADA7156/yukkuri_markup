@@ -31,7 +31,9 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     EXIT: {
         id: "exit",
         label: "終了",
-        execute: (ctx) => { }
+        execute: (ctx) => {
+            window.electronAPI.quit()
+        }
     },
     UNDO: {
         id: "undo",

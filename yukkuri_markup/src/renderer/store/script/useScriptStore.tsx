@@ -1,4 +1,4 @@
-import type { ScriptObject } from "@/renderer/types/script";
+import type { ScriptObject } from "@/shared/script";
 import { create } from "zustand";
 
 type SyncPayload = {

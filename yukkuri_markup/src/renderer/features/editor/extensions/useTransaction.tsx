@@ -2,7 +2,7 @@ import { useDebouncedCallback } from "@/renderer/hooks/useDebouncedCallback";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
 import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
-import type { ScriptObject } from "@/renderer/types/script";
+import type { ScriptObject } from "@/shared/script";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
 import { useEffect } from "react";

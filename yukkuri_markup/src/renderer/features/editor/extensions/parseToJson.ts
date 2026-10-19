@@ -1,6 +1,6 @@
 import type { Character } from "@/renderer/store/speacker/character";
 import type { Emotion } from "@/renderer/store/speacker/emotions";
-import type { ScriptObject } from "@/renderer/types/script";
+import type { ScriptObject } from "@/shared/script";
 import { calculateDuration } from "./calculateDuration";
 
 // TODO: 変換リザルトの型を定義し、戻り値の構造を変更する

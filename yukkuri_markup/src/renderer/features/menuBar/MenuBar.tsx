@@ -13,6 +13,7 @@ const menuData: MenuGroup[] = [
         items: [
             APP_COMMANDS.FILE_OPEN,
             APP_COMMANDS.SAVE,
+            APP_COMMANDS.SAVE_NEW,
             APP_COMMANDS.SETTINGS,
             APP_COMMANDS.EXIT
         ],

@@ -1,6 +1,6 @@
 import type { Command } from "../types/command";
 
-const COMMANDS = ["FILE_OPEN", "SAVE", "SETTINGS", "EXIT", "UNDO", "REDO", "CUT", "COPY", "PASTE", "HELP", "RELEASE_NOTES"] as const;
+const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "UNDO", "REDO", "CUT", "COPY", "PASTE", "HELP", "RELEASE_NOTES"] as const;
 
 export type CommandKey = typeof COMMANDS[number];
 
@@ -10,13 +10,20 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         label: "ファイルを開く",
         shortcut: ["ControlLeft", "KeyO"],
         shortcutLabel: "Ctrl+O",
-        execute: (ctx) => { }
+        execute: (ctx) => { ctx.api?.scriptRead() }
     },
     SAVE: {
         id: "SAVE",
         label: "保存",
         shortcut: ["ControlLeft", "KeyS"],
         shortcutLabel: "Ctrl+S",
+        execute: (ctx) => { }
+    },
+    SAVE_AS: {
+        id: "SAVE_AS",
+        label: "名前を付けて保存",
+        shortcut: ["ControlLeft", "ShiftLeft", "KeyS"],
+        shortcutLabel: "Ctrl+Shift+S",
         execute: (ctx) => { }
     },
     SETTINGS: {

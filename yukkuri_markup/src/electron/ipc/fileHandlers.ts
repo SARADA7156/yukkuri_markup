@@ -24,7 +24,7 @@ export function registerFileHandlers(fileService: FileService) {
                 });
 
                 if (canceled || !dialogPath) {
-                    return { success: true, data: { canceled: true } };
+                    return { status: "canceled" }
                 }
                 filePath = dialogPath;
             }
@@ -34,9 +34,8 @@ export function registerFileHandlers(fileService: FileService) {
 
             // 3. 結果返却
             return {
-                success: true,
+                status: "success",
                 data: {
-                    canceled: false,
                     fileName: path.basename(filePath),
                     filePath
                 }
@@ -49,7 +48,7 @@ export function registerFileHandlers(fileService: FileService) {
 
             // Zodのエラーやファイル書き込みエラーを安全にレスポンスとして返す
             return {
-                success: false,
+                status: "error",
                 error: error.message || "予期せぬエラーが発生しました"
             };
         }
@@ -59,10 +58,7 @@ export function registerFileHandlers(fileService: FileService) {
         try {
             const r = await dialog.showOpenDialog({ properties: ["openFile"] });
 
-            // if (r.canceled) return {
-            //     success: false,
-            //     error: 
-            // };
+            if (r.canceled) return { status: "canceled" };
 
             const fileContent = await fileService.readFile(r.filePaths[0]);
 
@@ -70,15 +66,16 @@ export function registerFileHandlers(fileService: FileService) {
                 throw new Error(`An error occurred while loading the file. code: ${fileContent.code}`);
             }
 
-            const verificationed = scriptFileObjectSchema.parse(JSON.parse(fileContent.data));
+            const rawData = JSON.parse(fileContent.data);
+            const verificationed = scriptFileObjectSchema.parse(rawData);
 
             return {
-                success: true,
+                status: "success",
                 data: verificationed
             }
         } catch(error: any) {
             return {
-                success: false,
+                status: "error",
                 error: error.message || "予期せぬエラーが発生しました"
             }
         }

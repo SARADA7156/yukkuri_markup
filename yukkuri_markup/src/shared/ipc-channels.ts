@@ -8,12 +8,11 @@ export const IPC = {
 } as const;
 
 export type IpcResponse<T> =
-    | { success: true; data: T }
-    | { success: false; error: { code: string; message: string } };
+    | { status: "success"; data: T }
+    | { status: "error"; error: { code: string; message: string } }
+    | { status: "canceled" };
 
-export type ScriptSaveRes =
-    | { canceled: false, fileName: string, filePath: string; }
-    | { canceled: true }
+export type ScriptSaveRes = { fileName: string, filePath: string; }
 
 export interface ElectronAPI {
     quit(): void;

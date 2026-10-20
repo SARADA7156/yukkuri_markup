@@ -1,17 +1,41 @@
-export type BaseObject = {
-    id: string;
-    text: string;
-};
+import { z } from "zod";
 
-export type ParagraphObject = BaseObject & {
-    type: "paragraph";
-};
+export const baseObjectSchema = z.object({
+    id: z.string(),
+    text: z.string(),
+});
 
-export type YukkuriVoiceObject = BaseObject & {
-    type: "yukkuriVoice";
-    speaker: string;
-    emotion: string;
-    readingMs: number;
-};
+export const paragraphObjectSchema = baseObjectSchema.extend({
+    type: z.literal("paragraph"),
+});
 
-export type ScriptObject = ParagraphObject | YukkuriVoiceObject;
+export const yukkuriVoiceObjectSchema = baseObjectSchema.extend({
+    type: z.literal("yukkuriVoice"),
+    speaker: z.string(),
+    emotion: z.string(),
+    readingMs: z.number(),
+});
+
+export const scriptArraySchema = z.array(
+    z.discriminatedUnion("type", [
+        paragraphObjectSchema,
+        yukkuriVoiceObjectSchema,
+    ])
+);
+
+export const scriptObjectSchema = z.discriminatedUnion("type", [
+    paragraphObjectSchema,
+    yukkuriVoiceObjectSchema,
+]);
+
+export const scriptFileObjectSchema = z.object({
+    lineIds: z.array(z.string()),
+    scripts: z.record(z.string(), scriptObjectSchema),
+    totalReadingMs: z.number(),
+});
+
+export type BaseObject = z.infer<typeof baseObjectSchema>;
+export type ParagraphObject = z.infer<typeof paragraphObjectSchema>;
+export type YukkuriVoiceObject = z.infer<typeof yukkuriVoiceObjectSchema>;
+export type ScriptObject = z.infer<typeof scriptObjectSchema>;
+export type ScriptFileObject = z.infer<typeof scriptFileObjectSchema>;

@@ -1,4 +1,4 @@
-import type { ScriptObject } from "@/shared/script";
+import type { ScriptFileObject, ScriptObject } from "@/shared/script";
 import { create } from "zustand";
 
 type SyncPayload = {
@@ -36,38 +36,40 @@ export interface ScriptStore {
      * @param payload 新しくセットするidの配列と変更があった台本オブジェクト
      */
     syncScripts: (payload: SyncPayload) => void;
+
+    loadScript: (data: ScriptFileObject) => void;
 }
 
 export const useScriptStore = create<ScriptStore>((set) => ({
     lineIds: [],
     scripts: {},
     totalReadingMs: 0,
-    fileName: "untitle",
+    fileName: "untitled",
     filePath: null,
     isModified: false,
     isLoading: false,
     error: null,
 
     syncScripts: ({ lineIds, changed }) => set((state) => {
-        const scripts = { ...state.scripts, ...changed };
-        let totalReadingMs = 0;
+        const scripts: Record<string, ScriptObject> = {};
 
-        for (const [_, script] of Object.entries(changed)) {
-            if (script.type === "yukkuriVoice") {
-                totalReadingMs += script.readingMs;
-            }
+        // 生きているIDだけ残す（削除もここで完了）
+        for (const id of lineIds) {
+            const s = changed[id] ?? state.scripts[id];
+            if (s) scripts[id] = s;
         }
 
-        const alive = new Set(lineIds);
-        for (const id of state.lineIds) {
-            if (!alive.has(id)) {
-                if (scripts[id] && scripts[id].type === "yukkuriVoice") {
-                    totalReadingMs -= scripts[id].readingMs ?? 0;
-                }
-                delete scripts[id];
-            }
+        let totalReadingMs = 0;
+        for (const s of Object.values(scripts)) {
+            if (s.type === "yukkuriVoice") totalReadingMs += s.readingMs;
         }
 
         return { lineIds, scripts, totalReadingMs, isModified: true };
     }),
+
+    loadScript: ({ lineIds, scripts, totalReadingMs }) => set(() => ({
+        lineIds,
+        scripts,
+        totalReadingMs,
+    })),
 }));

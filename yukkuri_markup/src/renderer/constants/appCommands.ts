@@ -1,3 +1,4 @@
+import { saveAsScript } from "../lib/saveAsScript";
 import type { Command } from "../types/command";
 
 const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "UNDO", "REDO", "CUT", "COPY", "PASTE", "HELP", "RELEASE_NOTES"] as const;
@@ -24,7 +25,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         label: "名前を付けて保存",
         shortcut: ["ControlLeft", "ShiftLeft", "KeyS"],
         shortcutLabel: "Ctrl+Shift+S",
-        execute: (ctx) => { }
+        execute: (ctx) => saveAsScript(ctx),
     },
     SETTINGS: {
         id: "SETTINGS",

@@ -1,4 +1,4 @@
-import type { ScriptFileObject, ScriptObject } from "@/shared/script";
+import type { ScriptData, ScriptObject } from "@/shared/script";
 import { create } from "zustand";
 
 type SyncPayload = {
@@ -20,16 +20,10 @@ export interface ScriptStore {
     fileName: string;
 
     /** 現在開いているファイルパス */
-    filePath: string | null;
+    filePath: string | undefined;
 
     /** 未保存状態かどうか */
     isModified: boolean;
-
-    /** ファイル読込み中かどうか */
-    isLoading: boolean;
-
-    /** エラー状態かどうか */
-    error: string | null;
 
     /**
      * idの配列と変更があったオブジェクトを渡し、ストアの状態を最新にする。
@@ -37,7 +31,9 @@ export interface ScriptStore {
      */
     syncScripts: (payload: SyncPayload) => void;
 
-    loadScript: (data: ScriptFileObject) => void;
+    loadScript: (data: ScriptData) => void;
+
+    setFileInfo: (fileName: string, filePath: string) => void;
 }
 
 export const useScriptStore = create<ScriptStore>((set) => ({
@@ -45,10 +41,8 @@ export const useScriptStore = create<ScriptStore>((set) => ({
     scripts: {},
     totalReadingMs: 0,
     fileName: "untitled",
-    filePath: null,
+    filePath: undefined,
     isModified: false,
-    isLoading: false,
-    error: null,
 
     syncScripts: ({ lineIds, changed }) => set((state) => {
         const scripts: Record<string, ScriptObject> = {};
@@ -71,5 +65,11 @@ export const useScriptStore = create<ScriptStore>((set) => ({
         lineIds,
         scripts,
         totalReadingMs,
+    })),
+
+    setFileInfo: (fileName, filePath) => set(() => ({
+        fileName,
+        filePath,
+        isModified: false,
     })),
 }));

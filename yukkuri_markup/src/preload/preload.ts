@@ -3,9 +3,8 @@ import { contextBridge, ipcRenderer } from "electron";
 
 const api: ElectronAPI = {
     quit: () => ipcRenderer.send(IPC.QUIT),
-    scriptRead: () => ipcRenderer.invoke(IPC.SCRIPT_READ),
-    scriptSave: (path, data) => ipcRenderer.invoke(IPC.SCRIPT_SAVE, path, data),
-    scriptSaveAs: (data) => ipcRenderer.invoke(IPC.SCRIPT_SAVE_AS, data),
+    scriptLoad: () => ipcRenderer.invoke(IPC.SCRIPT_LOAD),
+    scriptSave: (data, options) => ipcRenderer.invoke(IPC.SCRIPT_SAVE, data, options),
 }
 
 contextBridge.exposeInMainWorld("electronAPI", api);

@@ -28,7 +28,7 @@ export const scriptObjectSchema = z.discriminatedUnion("type", [
     yukkuriVoiceObjectSchema,
 ]);
 
-export const scriptFileObjectSchema = z.object({
+export const scriptDataSchema = z.object({
     lineIds: z.array(z.string()),
     scripts: z.record(z.string(), scriptObjectSchema),
     totalReadingMs: z.number(),
@@ -38,4 +38,4 @@ export type BaseObject = z.infer<typeof baseObjectSchema>;
 export type ParagraphObject = z.infer<typeof paragraphObjectSchema>;
 export type YukkuriVoiceObject = z.infer<typeof yukkuriVoiceObjectSchema>;
 export type ScriptObject = z.infer<typeof scriptObjectSchema>;
-export type ScriptFileObject = z.infer<typeof scriptFileObjectSchema>;
+export type ScriptData = z.infer<typeof scriptDataSchema>;

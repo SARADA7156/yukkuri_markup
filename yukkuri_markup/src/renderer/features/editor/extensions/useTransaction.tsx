@@ -1,12 +1,10 @@
 import { useDebouncedCallback } from "@/renderer/hooks/useDebouncedCallback";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
-import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
-import type { ScriptObject } from "@/shared/script";
+import type { BaseObject } from "@/shared/script";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
 import { useEffect } from "react";
-import { parseToJson } from "../extensions/parseToJson";
 
 export default function useTransaction(editor: Editor | null) {
     const updateEditorStatus = useEditorStore((state) => state.updateEditorStatus);
@@ -17,10 +15,9 @@ export default function useTransaction(editor: Editor | null) {
         if (!editor) return;
 
         const { lineIds, scripts } = useScriptStore.getState();
-        const { characters, emotions } = useSpeackerStore.getState();
 
         const ids: string[] = [];
-        const newScripts: Record<string, ScriptObject> = {};
+        const newScripts: Record<string, BaseObject> = {};
 
         // Tiptapの全ノード内のidを取得
         editor.state.doc.forEach((node) => {
@@ -33,7 +30,7 @@ export default function useTransaction(editor: Editor | null) {
                 const text = node.textContent;
 
                 if (prevText !== undefined && prevText !== text) {
-                    newScripts[id] = { id, ...parseToJson(text, characters, emotions) };
+                    newScripts[id] = { id, text };
                 }
             }
         });
@@ -43,7 +40,7 @@ export default function useTransaction(editor: Editor | null) {
         editor.state.doc.forEach((node) => {
             const id: string | undefined = node.attrs.lineId;
             if (id && !oldIds.has(id)) {
-                newScripts[id] = { id, ...parseToJson(node.textContent, characters, emotions) };
+                newScripts[id] = { id, text: node.textContent };
             }
         });
 

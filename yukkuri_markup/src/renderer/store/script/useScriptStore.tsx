@@ -1,9 +1,9 @@
-import type { ScriptData, ScriptObject } from "@/shared/script";
+import type { BaseObject, ScriptData } from "@/shared/script";
 import { create } from "zustand";
 
 type SyncPayload = {
     lineIds: string[];
-    changed: Record<string, ScriptObject>;
+    changed: Record<string, BaseObject>;
 };
 
 export interface ScriptStore {
@@ -11,7 +11,7 @@ export interface ScriptStore {
     lineIds: string[];
 
     /** 実際にエディタの行に入力したテキストとidのオブジェクトが格納される。 */
-    scripts: Record<string, ScriptObject>;
+    scripts: Record<string, BaseObject>;
 
     /** 総読上げ時間 */
     totalReadingMs: number;
@@ -45,7 +45,7 @@ export const useScriptStore = create<ScriptStore>((set) => ({
     isModified: false,
 
     syncScripts: ({ lineIds, changed }) => set((state) => {
-        const scripts: Record<string, ScriptObject> = {};
+        const scripts: Record<string, BaseObject> = {};
 
         // 生きているIDだけ残す（削除もここで完了）
         for (const id of lineIds) {
@@ -53,18 +53,12 @@ export const useScriptStore = create<ScriptStore>((set) => ({
             if (s) scripts[id] = s;
         }
 
-        let totalReadingMs = 0;
-        for (const s of Object.values(scripts)) {
-            if (s.type === "yukkuriVoice") totalReadingMs += s.readingMs;
-        }
-
-        return { lineIds, scripts, totalReadingMs, isModified: true };
+        return { lineIds, scripts, isModified: true };
     }),
 
-    loadScript: ({ lineIds, scripts, totalReadingMs }) => set(() => ({
+    loadScript: ({ lineIds, scripts }) => set(() => ({
         lineIds,
         scripts,
-        totalReadingMs,
     })),
 
     setFileInfo: (fileName, filePath) => set(() => ({

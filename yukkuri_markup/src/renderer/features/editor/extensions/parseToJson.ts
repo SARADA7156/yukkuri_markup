@@ -3,13 +3,12 @@ import type { Emotion } from "@/renderer/store/speacker/emotions";
 import type { ScriptObject } from "@/shared/script";
 import { calculateDuration } from "./calculateDuration";
 
-// TODO: 変換リザルトの型を定義し、戻り値の構造を変更する
 type ParseResult = Pick<ScriptObject, "type" | "text"> & (
     | { type: "paragraph" }
     | { type: "yukkuriVoice"; speaker: string; emotion: string; readingMs: number; }
 );
 
-export function parseToJson(
+export function toScriptObject(
     rawText: string,
     characters: Character[],
     emotions: Emotion[]

@@ -1,3 +1,4 @@
+import { loadScript } from "../lib/loadScript";
 import { saveScript } from "../lib/saveScript";
 import type { Command } from "../types/command";
 
@@ -11,7 +12,7 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         label: "ファイルを開く",
         shortcut: ["ControlLeft", "KeyO"],
         shortcutLabel: "Ctrl+O",
-        execute: (ctx) => { ctx.api?.scriptLoad() }
+        execute: (ctx) => loadScript(ctx),
     },
     SAVE: {
         id: "SAVE",

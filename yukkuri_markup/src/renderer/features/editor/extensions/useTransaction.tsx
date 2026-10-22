@@ -1,6 +1,7 @@
 import { useDebouncedCallback } from "@/renderer/hooks/useDebouncedCallback";
 import { useEditorStore } from "@/renderer/store/editor/useEditorStore";
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
+import { useSpeackerStore } from "@/renderer/store/speacker/useSpeakerStore";
 import type { BaseObject } from "@/shared/script";
 import type { Editor } from "@tiptap/core";
 import type { Transaction } from "@tiptap/pm/state";
@@ -10,11 +11,13 @@ export default function useTransaction(editor: Editor | null) {
     const updateEditorStatus = useEditorStore((state) => state.updateEditorStatus);
 
     const syncScripts = useScriptStore((state) => state.syncScripts);
+    const syncParsedScripts = useScriptStore((state) => state.syncParsedScripts);
 
     const debouncedParse = useDebouncedCallback(() => {
         if (!editor) return;
 
         const { lineIds, scripts } = useScriptStore.getState();
+        const { characters, emotions } = useSpeackerStore.getState();
 
         const ids: string[] = [];
         const newScripts: Record<string, BaseObject> = {};
@@ -45,6 +48,7 @@ export default function useTransaction(editor: Editor | null) {
         });
 
         syncScripts({ lineIds: ids, changed: newScripts });
+        syncParsedScripts({ lineIds: ids, changed: newScripts }, characters, emotions);
     }, 500);
 
     useEffect(() => {

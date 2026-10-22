@@ -1,17 +1,18 @@
 import { app, dialog, ipcMain } from "electron";
 import type { FileService } from "../services/fileService";
-import { IPC, type IpcResponse, type SaveOptions, type ScriptSaveRes } from "@/shared/ipc-channels";
+import { IPC, type IpcResponse, type SaveOptions, type File, type ScriptLoadRes } from "@/shared/ipc-channels";
 import { scriptDataSchema, type ScriptData } from "@/shared/script";
 import path from "path";
 
 export function registerFileHandlers(fileService: FileService) {
-    ipcMain.handle(IPC.SCRIPT_LOAD, async (): Promise<IpcResponse<ScriptData>> => {
+    ipcMain.handle(IPC.SCRIPT_LOAD, async (): Promise<IpcResponse<ScriptLoadRes>> => {
         try {
             const r = await dialog.showOpenDialog({ properties: ["openFile"] });
 
             if (r.canceled) return { status: "canceled" };
 
-            const fileContent = await fileService.readFile(r.filePaths[0]);
+            const filePath = r.filePaths[0];
+            const fileContent = await fileService.readFile(filePath);
 
             if (!fileContent.ok) {
                 throw new Error(`An error occurred while loading the file. code: ${fileContent.code}`);
@@ -22,7 +23,11 @@ export function registerFileHandlers(fileService: FileService) {
 
             return {
                 status: "success",
-                data: verificationed
+                data: {
+                    ...verificationed,
+                    filePath,
+                    fileName: path.basename(filePath),
+                }
             }
         } catch(error: any) {
             return {
@@ -38,7 +43,7 @@ export function registerFileHandlers(fileService: FileService) {
             _,
             data: ScriptData,
             options?: SaveOptions
-        ): Promise<IpcResponse<ScriptSaveRes>> => {
+        ): Promise<IpcResponse<File>> => {
             try {
                 // 1. バリデーション
                 const parsedData = scriptDataSchema.parse(data);

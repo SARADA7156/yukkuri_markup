@@ -1,5 +1,8 @@
-import type { BaseObject, ScriptData } from "@/shared/script";
+import type { BaseObject, ScriptObject } from "@/shared/script";
 import { create } from "zustand";
+import type { Character } from "../speacker/character";
+import type { Emotion } from "../speacker/emotions";
+import { toScriptObject } from "@/renderer/features/editor/extensions/parseToJson";
 
 type SyncPayload = {
     lineIds: string[];
@@ -12,6 +15,9 @@ export interface ScriptStore {
 
     /** 実際にエディタの行に入力したテキストとidのオブジェクトが格納される。 */
     scripts: Record<string, BaseObject>;
+
+    /** パース済のオブジェクトが格納される */
+    parsedScripts: Record<string, ScriptObject>;
 
     /** 総読上げ時間 */
     totalReadingMs: number;
@@ -31,7 +37,7 @@ export interface ScriptStore {
      */
     syncScripts: (payload: SyncPayload) => void;
 
-    loadScript: (data: ScriptData) => void;
+    syncParsedScripts: (payload: SyncPayload, chars: Character[], emos: Emotion[]) => void;
 
     setFileInfo: (fileName: string, filePath: string) => void;
 }
@@ -39,6 +45,7 @@ export interface ScriptStore {
 export const useScriptStore = create<ScriptStore>((set) => ({
     lineIds: [],
     scripts: {},
+    parsedScripts: {},
     totalReadingMs: 0,
     fileName: "untitled",
     filePath: undefined,
@@ -56,10 +63,28 @@ export const useScriptStore = create<ScriptStore>((set) => ({
         return { lineIds, scripts, isModified: true };
     }),
 
-    loadScript: ({ lineIds, scripts }) => set(() => ({
-        lineIds,
-        scripts,
-    })),
+    syncParsedScripts: ({ lineIds, changed }, chars, emos) => set((state) => {
+        const parsedScripts: Record<string, ScriptObject> = {};
+        let totalReadingMs = 0;
+
+        for (const id of lineIds) {
+            const script = changed[id];
+
+            if (!script) continue;
+
+            const parsedScript = { id, ...toScriptObject(script.text, chars, emos) };
+            if (parsedScript.type === "yukkuriVoice") {
+                totalReadingMs += parsedScript.readingMs;
+            }
+
+            parsedScripts[id] = parsedScript;
+        }
+
+        return {
+            parsedScripts: { ...state.parsedScripts, ...parsedScripts },
+            totalReadingMs,
+        };
+    }),
 
     setFileInfo: (fileName, filePath) => set(() => ({
         fileName,

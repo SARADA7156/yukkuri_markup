@@ -13,10 +13,11 @@ export type IpcResponse<T> =
     | { status: "canceled" };
 
 export type SaveOptions = { filePath?: string; forceSaveAs?: boolean }
-export type ScriptSaveRes = { fileName: string, filePath: string; }
+export type File = { fileName: string, filePath: string; }
+export type ScriptLoadRes = ScriptData & File;
 
 export interface ElectronAPI {
     quit(): void;
-    scriptLoad(): Promise<IpcResponse<ScriptData>>;
-    scriptSave(data: ScriptData, opsions?: SaveOptions): Promise<IpcResponse<ScriptSaveRes>>;
+    scriptLoad(): Promise<IpcResponse<ScriptLoadRes>>;
+    scriptSave(data: ScriptData, opsions?: SaveOptions): Promise<IpcResponse<File>>;
 }

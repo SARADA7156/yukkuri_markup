@@ -1,3 +1,4 @@
+import { useScriptStore } from "../store/script/useScriptStore";
 import type { CommandContext } from "../types/command";
 import { toTiptapContent } from "./toTiptapContent";
 
@@ -7,9 +8,11 @@ export async function loadScript(ctx: CommandContext) {
     if (!result || result.status === "canceled") return;
 
     if (result.status === "success") {
-        console.log()
-        const tiptapContent = toTiptapContent(result.data);
+        const { scripts, lineIds, fileName, filePath } = result.data;
+        const tiptapContent = toTiptapContent({ scripts, lineIds });
         ctx.editor?.commands.clearContent();
         ctx.editor?.commands.setContent(tiptapContent.content);
+
+        useScriptStore.getState().setFileInfo(fileName, filePath);
     }
 }

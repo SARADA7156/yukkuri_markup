@@ -3,6 +3,7 @@ import { CommandProvider } from "./contexts/CommandContext";
 import Editor from "./features/editor/Editor";
 import { EditorProvider } from "./features/editor/EditorProvider";
 import StatusBar from "./features/editor/components/StatusBar";
+import { GlobalHotKeys } from "./features/hotkeys/GlobalHotKeys";
 import MenuBar from "./features/menuBar/MenuBar";
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
 
                         <Theme />
                     </div>
+
+                    <GlobalHotKeys />
                 </CommandProvider>
             </EditorProvider>
         </main>

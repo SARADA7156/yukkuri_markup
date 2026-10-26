@@ -12,8 +12,7 @@ export interface CommandContext {
 export interface Command {
     id: CommandKey;
     label: string;
-    shortcut?: string[];
-    shortcutLabel?: string;
+    shortcut?: string;
     isActive?: (ctx: CommandContext) => boolean;
     isEnabled?: (ctx: CommandContext) => boolean;
     execute: (ctx: CommandContext) => Promise<void> | void;

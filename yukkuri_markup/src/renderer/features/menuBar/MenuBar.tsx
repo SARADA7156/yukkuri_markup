@@ -18,16 +18,15 @@ const menuData: MenuGroup[] = [
             APP_COMMANDS.EXIT
         ],
     },
-    {
-        title: "編集",
-        items: [
-            APP_COMMANDS.UNDO,
-            APP_COMMANDS.REDO,
-            APP_COMMANDS.CUT,
-            APP_COMMANDS.COPY,
-            APP_COMMANDS.PASTE,
-        ],
-    },
+    // {
+    //     title: "編集",
+    //     items: [
+    //         APP_COMMANDS.UNDO,
+    //         APP_COMMANDS.REDO,
+    //         APP_COMMANDS.CUT,
+    //         APP_COMMANDS.COPY,
+    //     ],
+    // },
     {
         title: "ヘルプ",
         items: [
@@ -111,8 +110,8 @@ export default function MenuBar() {
                                         >
                                             <p>{item.label}</p>
 
-                                            {item.shortcutLabel &&
-                                                <p className="ms-auto text-(--foreground)/50">{item.shortcutLabel}</p>
+                                            {item.shortcut &&
+                                                <p className="ms-auto text-(--foreground)/50">{item.shortcut}</p>
                                             }
                                         </Button>
                                     ))}

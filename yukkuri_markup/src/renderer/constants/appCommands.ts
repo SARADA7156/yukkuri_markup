@@ -2,7 +2,7 @@ import { loadScript } from "../lib/loadScript";
 import { saveScript } from "../lib/saveScript";
 import type { Command } from "../types/command";
 
-const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "UNDO", "REDO", "CUT", "COPY", "PASTE", "HELP", "RELEASE_NOTES"] as const;
+const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "HELP", "RELEASE_NOTES"] as const;
 
 export type CommandKey = typeof COMMANDS[number];
 
@@ -10,29 +10,25 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
     FILE_OPEN: {
         id: "FILE_OPEN",
         label: "ファイルを開く",
-        shortcut: ["ControlLeft", "KeyO"],
-        shortcutLabel: "Ctrl+O",
+        shortcut: "ctrl+o",
         execute: (ctx) => loadScript(ctx),
     },
     SAVE: {
         id: "SAVE",
         label: "保存",
-        shortcut: ["ControlLeft", "KeyS"],
-        shortcutLabel: "Ctrl+S",
+        shortcut: "ctrl+s",
         execute: (ctx) => saveScript(ctx)
     },
     SAVE_AS: {
         id: "SAVE_AS",
         label: "名前を付けて保存",
-        shortcut: ["ControlLeft", "ShiftLeft", "KeyS"],
-        shortcutLabel: "Ctrl+Shift+S",
+        shortcut: "ctrl+shift+s",
         execute: (ctx) => saveScript(ctx, true),
     },
     SETTINGS: {
         id: "SETTINGS",
         label: "設定",
-        shortcut: ["ControlLeft", "Comma"],
-        shortcutLabel: "Ctrl+,",
+        shortcut: "ctrl+comma",
         execute: (ctx) => {
             ctx.openModal("settings");
         }
@@ -44,72 +40,57 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
             ctx.api?.quit()
         }
     },
-    UNDO: {
-        id: "UNDO",
-        label: "元に戻す",
-        shortcut: ["ControlLeft", "KeyZ"],
-        shortcutLabel: "Ctrl+Z",
-        execute: (ctx) => {
-            ctx.editor?.chain().focus().undo().run();
-        },
-    },
-    REDO: {
-        id: "REDO",
-        label: "やり直し",
-        shortcut: ["ControlLeft", "KeyY"],
-        shortcutLabel: "Ctrl+Y",
-        execute: (ctx) => {
-            ctx.editor?.chain().focus().redo().run();
-        },
-    },
-    CUT: {
-        id: "CUT",
-        label: "切り取り",
-        shortcut: ["ControlLeft", "KeyX"],
-        shortcutLabel: "Ctrl+X",
-        execute: (ctx) => {
-            const editor = ctx.editor;
-            if (editor) {
-                const selectedText = editor.state.doc.textBetween(
-                    editor.state.selection.from,
-                    editor.state.selection.to,
-                    "\n"
-                );
-                navigator.clipboard.writeText(selectedText);
-                editor.chain().focus().deleteSelection().run();
-            }
-        }
-    },
-    COPY: {
-        id: "COPY",
-        label: "コピー",
-        shortcut: ["ControlLeft", "KeyC"],
-        shortcutLabel: "Ctrl+C",
-        execute: (ctx) => {
-            const editor = ctx.editor;
-            if (editor) {
-                const selectedText = editor.state.doc.textBetween(
-                    editor.state.selection.from,
-                    editor.state.selection.to,
-                    "\n"
-                );
-                navigator.clipboard.writeText(selectedText);
-            }
-        }
-    },
-    PASTE: {
-        id: "PASTE",
-        label: "貼り付け",
-        shortcut: ["ControlLeft", "KeyV"],
-        shortcutLabel: "Ctrl+V",
-        execute: async (ctx) => {
-            const editor = ctx.editor;
-            if (editor) {
-                const clipboardText = await navigator.clipboard.readText();
-                editor.chain().focus().insertContent(clipboardText).run();
-            }
-        }
-    },
+    // UNDO: {
+    //     id: "UNDO",
+    //     label: "元に戻す",
+    //     shortcut: ["ControlLeft", "KeyZ"],
+    //     shortcut: "ctrl+Z",
+    //     execute: (ctx) => {
+    //         ctx.editor?.chain().focus().undo().run();
+    //     },
+    // },
+    // REDO: {
+    //     id: "REDO",
+    //     label: "やり直し",
+    //     shortcut: ["ControlLeft", "KeyY"],
+    //     shortcut: "ctrl+Y",
+    //     execute: (ctx) => {
+    //         ctx.editor?.chain().focus().redo().run();
+    //     },
+    // },
+    // CUT: {
+    //     id: "CUT",
+    //     label: "切り取り",
+    //     shortcut: "ctrl+X",
+    //     execute: (ctx) => {
+    //         const editor = ctx.editor;
+    //         if (editor) {
+    //             const selectedText = editor.state.doc.textBetween(
+    //                 editor.state.selection.from,
+    //                 editor.state.selection.to,
+    //                 "\n"
+    //             );
+    //             navigator.clipboard.writeText(selectedText);
+    //             editor.chain().focus().deleteSelection().run();
+    //         }
+    //     }
+    // },
+    // COPY: {
+    //     id: "COPY",
+    //     label: "コピー",
+    //     shortcut: "ctrl+C",
+    //     execute: (ctx) => {
+    //         const editor = ctx.editor;
+    //         if (editor) {
+    //             const selectedText = editor.state.doc.textBetween(
+    //                 editor.state.selection.from,
+    //                 editor.state.selection.to,
+    //                 "\n"
+    //             );
+    //             navigator.clipboard.writeText(selectedText);
+    //         }
+    //     }
+    // },
     HELP: {
         id: "HELP",
         label: "ヘルプ",

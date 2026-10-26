@@ -1,5 +1,10 @@
 [
   {
+    "version": "v1.4.2",
+    "fileName": "v1.4.2.md",
+    "path": "/release-notes/v1.4.2.md"
+  },
+  {
     "version": "v1.2.0",
     "fileName": "v1.2.0.md",
     "path": "/release-notes/v1.2.0.md"

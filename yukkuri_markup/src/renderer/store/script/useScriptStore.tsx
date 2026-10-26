@@ -64,8 +64,7 @@ export const useScriptStore = create<ScriptStore>((set) => ({
     }),
 
     syncParsedScripts: ({ lineIds, changed }, chars, emos) => set((state) => {
-        const parsedScripts: Record<string, ScriptObject> = {};
-        let totalReadingMs = 0;
+        const nextParsedScripts: Record<string, ScriptObject> = {};
 
         for (const id of lineIds) {
             const script = changed[id];
@@ -73,15 +72,25 @@ export const useScriptStore = create<ScriptStore>((set) => ({
             if (!script) continue;
 
             const parsedScript = { id, ...toScriptObject(script.text, chars, emos) };
-            if (parsedScript.type === "yukkuriVoice") {
-                totalReadingMs += parsedScript.readingMs;
-            }
+            nextParsedScripts[id] = parsedScript;
+        }
 
-            parsedScripts[id] = parsedScript;
+        let totalReadingMs = state.totalReadingMs;
+        for (const id of lineIds) {
+            const script = changed[id];
+            if (!script) continue;
+
+            const prev = state.parsedScripts[id];
+            if (prev?.type === "yukkuriVoice") totalReadingMs -= prev.readingMs;
+
+            const next = { id, ...toScriptObject(script.text, chars, emos) };
+            if (next.type === "yukkuriVoice") totalReadingMs += next.readingMs;
+
+            nextParsedScripts[id] = next;
         }
 
         return {
-            parsedScripts: { ...state.parsedScripts, ...parsedScripts },
+            parsedScripts: { ...state.parsedScripts, ...nextParsedScripts },
             totalReadingMs,
         };
     }),

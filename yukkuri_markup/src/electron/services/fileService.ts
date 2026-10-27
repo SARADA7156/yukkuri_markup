@@ -3,6 +3,12 @@ import path from "path";
 
 export type FileException = "ENOENT" | "EXISTS" | "INTERNAL";
 
+export const FILE_ERROR_MESSAGES: Record<FileException, string> = {
+    ENOENT: "指定されたファイルが存在しません。",
+    EXISTS: "指定されたファイルが重複しています。",
+    INTERNAL: "予期せぬエラーが発生しました。"
+};
+
 type Result<T, E = FileException> =
     | { ok: true; data: T }
     | { ok: false; code: E };

@@ -4,8 +4,9 @@ import GeneralSettings from "./GeneralSettings";
 import CharacterSettings from "./character/CharacterSettings";
 import EmotionSettings from "./emotion/EmotionSettings";
 import Button from "@/renderer/components/Button";
+import KeyboardShortcut from "./keyboardShortcut";
 
-type SettingsType = "general" | "character" | "emotion";
+type SettingsType = "general" | "character" | "emotion" | "keyboardShortcut";
 
 export default function Settings() {
     const [activeTab, setActiveTab] = useState<SettingsType>("general");
@@ -46,12 +47,24 @@ export default function Settings() {
                         感情フラグ
                     </Button>
                 </li>
+                <li>
+                    <Button
+                        className={cn(
+                            "w-full text-start rounded-none p-0 hover:text-blue-500",
+                            activeTab === "emotion" && "text-blue-500"
+                        )}
+                        onClick={() => setActiveTab("keyboardShortcut")}
+                    >
+                        キーボードショートカット
+                    </Button>
+                </li>
             </ul>
 
             <div className="h-full overflow-y-auto">
                 {activeTab === "general" && <GeneralSettings />}
                 {activeTab === "character" && <CharacterSettings />}
                 {activeTab === "emotion" && <EmotionSettings />}
+                {activeTab === "keyboardShortcut" && <KeyboardShortcut />}
             </div>
         </div>
     );

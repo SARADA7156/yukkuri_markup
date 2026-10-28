@@ -4,7 +4,7 @@ import GeneralSettings from "./GeneralSettings";
 import CharacterSettings from "./character/CharacterSettings";
 import EmotionSettings from "./emotion/EmotionSettings";
 import Button from "@/renderer/components/Button";
-import KeyboardShortcut from "./keyboardShortcut";
+import KeyboardShortcut from "./KeyboardShortcut";
 
 type SettingsType = "general" | "character" | "emotion" | "keyboardShortcut";
 

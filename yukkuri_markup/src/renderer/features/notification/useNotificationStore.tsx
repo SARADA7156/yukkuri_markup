@@ -5,6 +5,7 @@ import type { IconType } from "react-icons";
 export interface NotificationItem {
     id: string;
     date: Date;
+    source: string;
     level: "info" | "warn" | "error";
     message: string;
 }
@@ -36,7 +37,8 @@ export interface NotificationState {
     addNotification: (
         message: NotificationItem["message"],
         level: NotificationItem["level"],
-        id?: string,
+        source: string,
+        popup?: boolean,
     ) => void;
 
     /**
@@ -68,10 +70,9 @@ export const useNotificationStore = create<NotificationState>((set) => {
 
         popupNotifications: [],
 
-        addNotification: (message, level = "info", id = crypto.randomUUID()) => {
-            // 重複を防いだ一意のidを生成する
-            const read = false;
+        addNotification: (message, level = "info", source, popup = true) => {
             const date = new Date();
+            const id = crypto.randomUUID();
 
             set((state) => {
                 if (state.notifications.some((n) => n.id === id)) {
@@ -82,9 +83,18 @@ export const useNotificationStore = create<NotificationState>((set) => {
                     id,
                     date,
                     level,
+                    source,
                     message,
-                    read,
                 };
+
+                if (!popup) {
+                    return {
+                        notifications: [
+                            ...state.notifications,
+                            notification
+                        ],
+                    };
+                }
 
                 return {
                     notifications: [

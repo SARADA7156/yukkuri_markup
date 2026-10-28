@@ -8,6 +8,9 @@
     --content2: #e2e2e2;
     --border: #00000027;
     --hover: #6363632c;
+    --info: #0059ff;
+    --warn: yellow;
+    --error: red;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -54,6 +57,33 @@ body {
     padding-bottom: 10rem;
     height: 100%;
     overflow-y: auto;
+}
+
+.notification {
+    animation: slide-in 0.4s ease-out;
+}
+
+.notification.level-info {
+    border: 1px solid var(--info);
+}
+
+.notification.level-warn {
+    border: 1px solid var(--warn);
+}
+
+.notification.level-error {
+    border: 1px solid var(--error);
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(5rem);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes zoomIn {

@@ -1,6 +1,5 @@
 import { MdClose } from "react-icons/md";
 import { levelIcon, levels, useNotificationStore } from "./useNotificationStore";
-import "./Notification.css"
 
 export const NotificationToast = () => {
     const { popupNotifications, removePopupNotifications } = useNotificationStore();

@@ -10,7 +10,7 @@ export async function loadScript(ctx: CommandContext) {
     if (!result || result.status === "canceled") return;
 
     if (result.status === "error") {
-        addNotification(`${result.error.message} code: ${result.error.code}`, "error");
+        addNotification(`${result.error.message} code: ${result.error.code}`, "error", "ScriptLoader");
         return;
     }
 

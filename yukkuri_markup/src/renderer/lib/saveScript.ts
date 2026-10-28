@@ -17,6 +17,10 @@ export async function saveScript(ctx: CommandContext, forceSaveAs?: boolean): Pr
         const { fileName, filePath } = result.data;
         useScriptStore.getState().setFileInfo(fileName, filePath);
     } else if (result.status === "error") {
-        addNotification(`${result.error.message} code: ${result.error.code}`, "error");
+        addNotification(
+            `${result.error.message} code: ${result.error.code}`,
+            "error",
+            "scriptSaver"
+        );
     }
 }

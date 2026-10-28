@@ -5,6 +5,7 @@ import { EditorProvider } from "./features/editor/EditorProvider";
 import StatusBar from "./features/editor/components/StatusBar";
 import { GlobalHotKeys } from "./features/hotkeys/GlobalHotKeys";
 import MenuBar from "./features/menuBar/MenuBar";
+import { NotificationToast } from "./features/notification/NotificationToast";
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                     </div>
 
                     <GlobalHotKeys />
+                    <NotificationToast />
                 </CommandProvider>
             </EditorProvider>
         </main>

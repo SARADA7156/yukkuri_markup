@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.notification {
+    animation: slide-in 0.4s ease-out;
+}
+
+.notification.level-info {
+    border: 1px solid #0059ff;
+}
+
+.notification.level-warn {
+    border: 1px solid yellow;
+}
+
+.notification.level-error {
+    border: 1px solid red;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(5rem);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

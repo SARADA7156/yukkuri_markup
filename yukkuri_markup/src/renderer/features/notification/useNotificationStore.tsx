@@ -36,7 +36,6 @@ export interface NotificationState {
     addNotification: (
         message: NotificationItem["message"],
         level: NotificationItem["level"],
-        isLocal?: boolean,
         id?: string,
     ) => void;
 
@@ -69,7 +68,7 @@ export const useNotificationStore = create<NotificationState>((set) => {
 
         popupNotifications: [],
 
-        addNotification: (message, level = "info", isLocal = true, id = crypto.randomUUID()) => {
+        addNotification: (message, level = "info", id = crypto.randomUUID()) => {
             // 重複を防いだ一意のidを生成する
             const read = false;
             const date = new Date();
@@ -85,7 +84,6 @@ export const useNotificationStore = create<NotificationState>((set) => {
                     level,
                     message,
                     read,
-                    isLocal
                 };
 
                 return {

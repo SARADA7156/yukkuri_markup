@@ -6,6 +6,7 @@ import type { Command, MenuGroup } from "@/renderer/types/command";
 import { useTiptapEditor } from "../editor/EditorProvider";
 import { APP_COMMANDS } from "@/renderer/constants/appCommands";
 import { useCommand } from "@/renderer/contexts/CommandContext";
+import { useNotificationStore } from "../notification/useNotificationStore";
 
 const menuData: MenuGroup[] = [
     {
@@ -33,6 +34,10 @@ const menuData: MenuGroup[] = [
             APP_COMMANDS.HELP,
             APP_COMMANDS.RELEASE_NOTES
         ]
+    },
+    {
+        title: "通知",
+        items: [APP_COMMANDS.NOTICE]
     }
 ];
 
@@ -42,6 +47,7 @@ export default function MenuBar() {
     const menuRef = useRef<HTMLDivElement>(null);
 
     const editor = useTiptapEditor();
+    const { addNotification } = useNotificationStore();
 
     if (!editor) return null;
 
@@ -67,6 +73,7 @@ export default function MenuBar() {
         setIsActivated(false);
         setActiveMenuIndex(null);
         run(id);
+        addNotification("メニューがクリックされました。", "info")
     }
 
     useEffect(() => {

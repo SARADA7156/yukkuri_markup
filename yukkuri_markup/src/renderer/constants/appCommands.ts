@@ -2,7 +2,7 @@ import { loadScript } from "../lib/loadScript";
 import { saveScript } from "../lib/saveScript";
 import type { Command } from "../types/command";
 
-const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "HELP", "RELEASE_NOTES"] as const;
+const COMMANDS = ["FILE_OPEN", "SAVE", "SAVE_AS", "SETTINGS", "EXIT", "HELP", "RELEASE_NOTES", "NOTICE"] as const;
 
 export type CommandKey = typeof COMMANDS[number];
 
@@ -104,5 +104,10 @@ export const APP_COMMANDS: Record<CommandKey, Command> = {
         execute: (ctx) => {
             ctx.openModal("releaseNotes");
         }
+    },
+    NOTICE: {
+        id: "NOTICE",
+        label: "通知",
+        execute: (ctx) => ctx.openModal("notification")
     }
 } as const;

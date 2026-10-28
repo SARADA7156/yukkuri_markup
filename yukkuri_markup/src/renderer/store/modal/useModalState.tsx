@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "settings" | "help" | "releaseNotes" | null;
+export type ModalType = "settings" | "help" | "releaseNotes" | "notification" | null;
 
 interface ModalState {
     activeModal: ModalType;

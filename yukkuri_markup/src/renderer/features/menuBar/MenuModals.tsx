@@ -3,6 +3,7 @@ import Help from "../help/Help";
 import ReleaseNote from "../releaseNote/ReleaseNote";
 import Settings from "../settings/Settings";
 import { useModalState } from "@/renderer/store/modal/useModalState";
+import NotificationList from "../notification/NotificationList";
 
 export default function MenuModals() {
     const activeModal = useModalState((s) => s.activeModal);
@@ -33,6 +34,14 @@ export default function MenuModals() {
                 title="リリースノート"
             >
                 <ReleaseNote />
+            </Modal>
+
+            <Modal
+                isOpen={activeModal === "notification"}
+                onClose={closeModal}
+                title="通知"
+            >
+                <NotificationList />
             </Modal>
         </>
     )

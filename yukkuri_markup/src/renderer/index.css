@@ -59,10 +59,6 @@ body {
     overflow-y: auto;
 }
 
-.notification {
-    animation: slide-in 0.4s ease-out;
-}
-
 .notification.level-info {
     border: 1px solid var(--info);
 }
@@ -73,17 +69,6 @@ body {
 
 .notification.level-error {
     border: 1px solid var(--error);
-}
-
-@keyframes slide-in {
-    0% {
-        transform: translateX(5rem);
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 
 @keyframes zoomIn {

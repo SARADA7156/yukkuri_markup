@@ -1,14 +1,20 @@
 import { useScriptStore } from "@/renderer/store/script/useScriptStore";
 import { formatMs } from "../extensions/calculateDuration";
 import { memo } from "react";
+import Button from "@/renderer/components/Button";
+import { MdContentCopy } from "react-icons/md";
 
 export default memo(function ScriptLine({ lineId }: { lineId: string }) {
     const lineData = useScriptStore((s) => s.parsedScripts[lineId]);
 
     if (!lineData) return null;
 
+    const handleClick = async (text: string) => {
+        await navigator.clipboard.writeText(text);
+    }
+
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex gap-1">
             {lineData.type === "yukkuriVoice" &&
                 <div className="flex items-center">
                     <strong className="min-w-26">{lineData.speaker}({lineData.emotion})</strong>
@@ -20,6 +26,10 @@ export default memo(function ScriptLine({ lineId }: { lineId: string }) {
             {lineData.type === "paragraph" &&
                 <p>{lineData.text}</p>
             }
+
+            <Button title="セリフをコピー" onClick={() => handleClick(lineData.text)}>
+                <MdContentCopy />
+            </Button>
         </div>
     );
 })
